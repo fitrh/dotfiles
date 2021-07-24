@@ -1,1 +1,1 @@
-# ~/ is not a place, it's a config.
+# `~/` is not a place, it's a config.
