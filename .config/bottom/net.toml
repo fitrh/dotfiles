@@ -1,0 +1,6 @@
+[flags]
+hide_avg_cpu = true
+
+[[row]]
+[[row.child]]
+type = "net"

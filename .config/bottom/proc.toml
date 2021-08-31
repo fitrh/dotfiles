@@ -1,0 +1,6 @@
+[flags]
+mem_as_value = true
+
+[[row]]
+  [[row.child]]
+    type="proc"

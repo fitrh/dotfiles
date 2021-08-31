@@ -1,0 +1,4 @@
+[[row]]
+ratio = 50
+[[row.child]]
+type = "cpu"
