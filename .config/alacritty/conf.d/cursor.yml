@@ -1,0 +1,5 @@
+cursor:
+  style:
+    shape: Block # Block, Beam, Underline
+    # blinking: Always
+  # unfocused_hollow: true

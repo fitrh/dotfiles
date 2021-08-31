@@ -1,0 +1,17 @@
+font:
+  normal:
+    family: Roboto Mono
+    style: Regular
+  italic:
+    family: Roboto Mono
+    style: Italic
+  bold:
+    family: Roboto Mono
+    style: Bold
+  bold_italic:
+    family: Roboto Mono
+    styel: Bold Italic
+  size: 10.0
+  offset:
+    x: 0
+    y: 0

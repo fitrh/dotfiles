@@ -1,0 +1,2 @@
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

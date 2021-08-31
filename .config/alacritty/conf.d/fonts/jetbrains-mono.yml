@@ -1,0 +1,17 @@
+font:
+  normal:
+    family: JetBrains Mono
+    style: Regular
+  italic:
+    family: JetBrains Mono
+    style: Italic
+  bold:
+    family: JetBrains Mono
+    style: Bold
+  bold_italic:
+    family: JetBrains Mono
+    styel: Bold Italic
+  size: 10.0
+  offset:
+    x: 0
+    y: 0
