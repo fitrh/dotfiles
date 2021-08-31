@@ -1,0 +1,3 @@
+[submodule "/home/fitrh/.config/fish"]
+	path = /home/fitrh/.config/fish
+	url = https://github.com/fitrh/effishient.git
