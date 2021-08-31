@@ -1,0 +1,11 @@
+ctrl + space
+        exec dunstctl close
+
+ctrl + shift + space
+        exec dunstctl close-all
+
+ctrl + grave
+        exec dunstctl history-pop
+
+ctrl + shift + period
+        exec dunstctl context

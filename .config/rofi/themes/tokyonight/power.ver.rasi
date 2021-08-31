@@ -1,0 +1,39 @@
+configuration {
+    show-icons: false;
+    modi: "run";
+}
+
+window {
+    y-offset: -30%;
+    x-offset: -8px;
+    location: east;
+    width: 96px;
+    children: [ listview ];
+}
+
+listview {
+    columns: 1;
+    lines: 6;
+    scrollbar: false;
+}
+
+prompt {
+    enabled: false;
+}
+
+element {
+    orientation: vertical;
+}
+
+
+element-text {
+    font: "SF Mono 24";
+    padding: 8px 6px 8px 0px;
+    horizontal-align: 0.5;
+}
+
+element-text selected {
+    color: @br-blue;
+}
+
+/* vim: set ft=css: */

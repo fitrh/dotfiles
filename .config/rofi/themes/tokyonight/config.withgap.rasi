@@ -1,0 +1,184 @@
+configuration {
+    show-icons: true;
+    icon-theme: "Reversal-black-dark";
+    cycle: true;
+    disable-history: true;
+    modi: "drun,run,window";
+    monitor: "-4";
+    pid: "/tmp/rofi.pid";
+}
+
+prompt {
+    enabled: false;
+}
+
+* {
+    dark: #16161E;
+    dark-1: #232433;
+    dark-2: #2a2b3d;
+    dark-3: #3b3d57;
+    background: #1a1b26;
+    foreground: #a9b1d6;
+    black: #32344a;
+    br-black: #444b6a;
+    white: #787c99;
+    br-white: #acb0d0;
+    red: #f7768e;
+    br-red: #ff7a93;
+    green: #9ece6a;
+    br-green: #b9f27c;
+    yellow: #e0af68;
+    br-yellow: #ff9e64;
+    blue: #7aa2f7;
+    br-blue: #7da6ff;
+    magenta: #ad8ee6;
+    br-magenta: #bb9af7;
+    cyan: #449dab;
+    br-cyan: #0db9d7;
+
+    accent:   @br-blue;
+    bg:       @background;
+    bg-light: @br-white;
+    bg-focus: @black;
+    bg-dark:  @dark;
+    fg:       @foreground;
+    fg-list:  @foreground;
+    on:       @br-green;
+    off:      @red;
+
+    text-font:      "SF Mono 14";
+    text-mono-font: "SF Mono 12";
+    icon-font:      "SFMono Nerd Font 22";
+
+    background-color: @bg;
+    text-color: @fg-list;
+    font: @text-font;
+    border-color: @bg-dark;
+}
+
+
+/**** Layout ****/
+window {
+    border: 1px;
+    border-radius: 6px;
+    children: [ inputbar, listview ];
+    location: center;
+    width: 30%;
+    x-offset: 0;
+    y-offset: -15%;
+}
+
+listview {
+    columns: 1;
+    dynamic: true;
+    fixed-height: false;
+    lines: 5;
+
+    /* Remove strange gap between listview and inputbar */
+    margin: -2px 0 0;
+    padding: 10px 0 8px 0;
+
+    scrollbar: true;
+    spacing: 0;
+}
+
+scrollbar {
+    handle-width: 1px;
+}
+
+inputbar {
+border: 0 0 0;
+children: [ textbox-icon, prompt, entry ];
+}
+
+textbox-icon, prompt {
+    padding: 11px;
+    expand: false;
+    border: 0 1px 0 0;
+    margin: 0 -2px 0 0;
+}
+
+textbox-icon {
+    padding: 4px 4px 0;
+}
+
+entry, element {
+    padding: 10px 13px;
+}
+
+element-icon {
+    size: 24px;
+    border: 0px;
+    background-color: @bg-dark;
+}
+
+element-icon selected {
+    background-color: @bg;
+}
+
+element-text {
+    padding: 0 4px;
+    vertical-align: 0.5;
+    background-color: @bg-dark;
+}
+
+element-text selected {
+    background-color: @bg;
+}
+
+textbox {
+    padding: 24px;
+    margin: 20px;
+}
+
+
+/**** Looks ****/
+scrollbar {
+    background-color: @bg-dark;
+    handle-color: @accent;
+    border-color: @bg-dark;
+}
+
+listview, inputbar {
+    background-color: @bg-dark;
+}
+
+textbox-icon, prompt, entry {
+    text-color: @accent;
+}
+
+prompt, entry {
+    background-color: @bg-focus;
+}
+
+textbox-icon, prompt {
+    background-color: @dark-1;
+}
+
+prompt {
+    background-color: @bg-focus;
+}
+
+textbox-icon {
+    font: @icon-font;
+    str: "  ";
+}
+
+entry {
+    font: @text-font-mono;
+    text-color: @fg;
+}
+
+element {
+    background-color: @bg-dark;
+    text-color: @fg;
+    margin: 0 8px;
+    border-radius: 6px;
+}
+
+element selected {
+    background-color: @bg;
+    text-color: @accent;
+}
+
+/* vim: set ft=css: */

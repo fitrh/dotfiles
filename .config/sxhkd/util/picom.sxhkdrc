@@ -1,0 +1,2 @@
+super + alt + shift + F12
+        $LOCAL_SCRIPT/picom-restart

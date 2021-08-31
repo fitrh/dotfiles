@@ -1,0 +1,7 @@
+alt + t
+        exec alacritty --class "Float Term","Float Term" \
+        --title "System Fetch" \
+        -o window.dimensions.columns=38 \
+        window.dimensions.lines=11 \
+        background_opacity=0.7 \
+        -e fish -C pfetch

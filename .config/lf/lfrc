@@ -1,0 +1,117 @@
+set drawbox!
+set icons!
+set info size:ctime
+set nopreview
+set number!
+set previewer ~/.config/lf/previewer/code
+set ratios 1:2
+set relativenumber!
+set wrapscroll!
+
+map <enter> shell
+map <f-2> :bulk-rename
+map a push :mkdir<space>
+map x $$f
+map X !$f
+map o &mimeiopen $f
+map O $mimeiopen --ask $f
+map P :{{ set preview!; set ratios 1:2:2; }}
+map R set reverse!
+map sa :{{ set sortby atime; set info size:atime; }}
+map sc :{{ set sortby ctime; set info size:ctime; }}
+map se :{{ set sortby ext; set info size:time; }}
+map sn :{{ set sortby natural; set info size:time; }}
+map ss :{{ set sortby size; set info size:time; }}
+map st :{{ set sortby time; set info size:time; }}
+
+cmd trash %set -f; mv $fx ~/.trash
+map <delete> trash
+map D delete
+
+# create directory and select created directory
+# :mkdir foo bar create a single directory named 'foo bar'
+# :mkdir foo/bar create a nested directory named 'foo/bar'
+cmd mkdir %{{
+    IFS=" "
+    mkdir -p -- "$*"
+    lf -remote "send $id select \"$*\""
+}}
+
+# bulk rename using $EDITOR
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    [ -n "$fs" ] && fs="$(ls)"
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l "$new")" -ne "$(wc -l "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
+
+# Select all files or dirs
+cmd select-files ${{
+    { echo "$fs"; find -L "$(pwd)" -mindepth 1 -maxdepth 1 -type f; } |
+        if [ "$lf_hidden" = "false" ]; then
+          # remove any hidden files so you only select files you can see.
+          grep -v '/\.[^/]\+$'
+        else
+          cat
+        fi |
+        sed '/^$/d' | sort | uniq -u |
+        xargs -d '\n' -r -I{} lf -remote "send $id toggle {}"
+}}
+
+cmd select-dirs ${{
+    { echo "$fs"; find -L "$(pwd)" -mindepth 1 -maxdepth 1 -type d; } |
+        if [ "$lf_hidden" = "false" ]; then
+          grep -v '/\.[^/]\+$'
+        else
+          cat
+        fi |
+        sed '/^$/d' | sort | uniq -u |
+        xargs -d '\n' -r -I{} lf -remote "send $id toggle {}"
+}}
+
+# extract the current file with the right command
+# (xkcd link: https://xkcd.com/1168/)
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
+# compress current file or selected files with tar and gunzip
+cmd tar ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    tar czf $1.tar.gz $1
+    rm -rf $1
+}}
+
+# compress current file or selected files with zip
+cmd zip ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
+
+# vim: ft=rc

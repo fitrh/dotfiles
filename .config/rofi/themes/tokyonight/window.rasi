@@ -1,0 +1,40 @@
+configuration {
+  modi: "window";
+  window-format: "{t}";
+  window-thumbnail: true;
+}
+
+window {
+  y-offset: -12%;
+  width: 720px;
+}
+
+listview {
+  columns: 5;
+  lines: 1;
+  scrollbar: false;
+}
+
+textbox-icon {
+  str: "  ";
+  padding: 4px 6px 0 0;
+}
+
+prompt {
+  enabled: false;
+}
+
+element {
+  orientation: vertical;
+}
+
+element-icon {
+    size: 64px;
+}
+
+element-text {
+  font: "SF Mono 10";
+  horizontal-align: 0.5;
+}
+
+/* vim: set ft=css: */

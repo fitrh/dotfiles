@@ -1,0 +1,24 @@
+configuration {
+    modi: "run";
+    show-icons: false;
+}
+
+window {
+    y-offset: -15%;
+}
+
+listview {
+    lines: 5;
+    scrollbar: false;
+}
+
+textbox-icon {
+    str: "  ";
+    text-color: @fg;
+}
+
+prompt {
+    enabled: false;
+}
+
+/* vim: set ft=css: */

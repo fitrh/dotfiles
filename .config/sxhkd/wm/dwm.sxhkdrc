@@ -1,0 +1,50 @@
+Caps_Lock
+        sigdwmblocks 6
+
+Num_Lock
+        sigdwmblocks 6
+
+super + F12
+        ~/.config/dwm/blocks/notif_handler.sh 1
+
+super + ctrl + F12
+        ~/.config/dwm/blocks/notif_handler.sh 2
+
+super + alt + F12
+        ~/.config/dwm/blocks/notif_handler.sh 3
+
+super + F11
+        ~/.config/dwm/blocks/clock_handler.sh 1
+
+super + ctrl + F11
+        ~/.config/dwm/blocks/clock_handler.sh 2
+
+super + alt + F11
+        ~/.config/dwm/blocks/clock_handler.sh 3
+
+super + F10
+        ~/.config/dwm/blocks/power_handler.sh 1
+
+super + ctrl + F10
+        ~/.config/dwm/blocks/power_handler.sh 2
+
+super + alt + F10
+        ~/.config/dwm/blocks/power_handler.sh 3
+
+super + F9
+        ~/.config/dwm/blocks/audio_handler.sh 1
+
+super + alt + F9
+        ~/.config/dwm/blocks/audio_handler.sh 3
+
+super + F8
+        ~/.config/dwm/blocks/net_handler.sh 1
+
+super + ctrl + F8
+        ~/.config/dwm/blocks/net_handler.sh 2
+
+super + alt + F8
+        ~/.config/dwm/blocks/net_handler.sh 3
+
+super + F7
+        ~/.config/dwm/blocks/net_speed_handler.sh 1

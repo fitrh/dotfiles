@@ -1,0 +1,54 @@
+Config { font = "xft:SF Mono:size=8:Medium:antialias=true"
+       , additionalFonts = [
+           "xft:Material Design Icons Desktop:size=8:Regular:antialias=true"
+       ]
+       , borderColor = "#1a1b26"
+       , border = FullB
+       , bgColor = "#1a1b26"
+       , fgColor = "#a9b1d6"
+       , alpha = 255
+       , position = Static { xpos = 8, ypos = 8, width = 1350, height = 30 }
+       , textOffset = 19
+       , iconOffset = 19
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+                        Run Date "%I<fc=#444b6a>:</fc>%M <fc=#7da6ff>%p</fc>" "date" 10
+                      , Run DynNetwork  [
+                                            "-t", "ﯲ <rx> ﯴ <tx>"
+                                        ,   "-m", "7"
+                                        ,   "-H", "1048576"
+                                        ,   "-h", "#7da6ff"
+                                        ,   "-L", "1024"
+                                        ,   "-l", "#787c99"
+                                        ,   "-S", "True"
+                                        ] 10
+                      , Run Wireless "" [
+                                            "-t", "<fc=#9ece6a> </fc> <ssid>"
+                                        ] 10
+                      , Run Volume "default" "Master" [
+                                                        "-t", "<status><volume>%"
+                                                      , "--", "-O", "墳 "
+                                                      ,       "-C", "#0db9d7"
+                                                      ,       "-o", "婢 "
+                                                      ,       "-c", "#444b6a"
+                                                      ] 10
+                      , Run BatteryP [ "BAT1" ]
+                                     [
+                                        "-t", "<acstatus> <left>%"
+                                     ,  "--", "-O", "<fc=#e0af68>ﮣ</fc>"
+                                     ,        "-o", "<fc=#ff9e64>ﮤ</fc>"
+                                     ,        "-i", "<fc=#e0af68>ﮣ</fc>"
+                                     ] 10
+                      , Run Locks
+                      , Run XMonadLog
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%XMonadLog% }{ %locks%   %dynnetwork% %wi%   %default:Master%   %battery%   %date%  "
+       }

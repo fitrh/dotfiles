@@ -1,0 +1,80 @@
+super + Escape
+        pkill -USR1 -x sxhkd
+
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+        exec volctl {"raise", "lower", "mute"}
+
+{_,shift + }XF86MonBrightness{Up,Down}
+        exec clightctl {backlight, gamma} {"raise", "lower"}
+
+super + alt + p
+        exec st \
+        -c "Float Term" \
+        -t "scrctl" \
+        -f "SF Mono:size=10" \
+        -e fish -C scrctl
+
+alt + space
+        exec rofi -theme-str '@import "themes/tokyonight/drun"' -show drun -no-default-config
+
+super + r
+        exec rofi -theme-str '@import "themes/tokyonight/run"' -show run -no-default-config
+
+super + shift + Tab
+        exec rofi -theme-str '@import "themes/tokyonight/window"' -show window -no-default-config
+
+alt + Delete
+        exec slock
+
+ctrl + alt + Delete
+        exec prompt-power
+
+alt + shift + c
+        exec dmenu-clipcat
+
+{_,super + ,shift + } Print
+        exec scrot {"full", "focus", "area"}
+
+alt + Return
+        exec alacritty --class "Float Term","Float Term" \
+        -o window.dimensions.columns=88 \
+        window.dimensions.lines=28 \
+        -e fish
+
+ctrl + alt + t
+        exec st -c "Float Term" -f "SF Mono:size=10"
+
+super + grave
+        exec st -f "SF Mono:size=10"
+
+alt + BackSpace
+        exec st \
+        -c "codespace" \
+        -t "Suckless Terminal" \
+        -f "SF Mono:size=10" \
+        -e tmux
+
+alt + shift + BackSpace
+        exec alacritty --class "codespace","codespace"
+
+alt + t
+        exec alacritty --class "Float Term","Float Term" \
+        --title "System Fetch" \
+        -o window.dimensions.columns=38 \
+        window.dimensions.lines=10 \
+        window.opacity=0.8 \
+        -e fish -C pfetch
+
+super + e
+        exec alacritty --class "File Manager","File Manager" \
+        --title "lf - File Manager" \
+        -o window.opacity=0.8 \
+        window.dimensions.columns=94 \
+        window.dimensions.lines=30 \
+        -e lf
+
+super + w
+        exec firefox-developer-edition --private-window
+
+super + shift + w
+        exec firefox-developer-edition
