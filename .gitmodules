@@ -4,3 +4,6 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = git@github.com:fitrh/init.nvim.git
+[submodule ".config/xmonad"]
+	path = .config/xmonad
+	url = git@github.com:fitrh/monadec.git
