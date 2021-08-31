@@ -1,0 +1,80 @@
+format = """
+$username\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$lua\
+$line_break\
+$jobs\
+$status\
+$character"""
+
+scan_timeout = 10
+
+add_newline = false
+
+[battery]
+disabled = true
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+
+[directory]
+truncation_length = 1
+format = "[$path]($style)[ $read_only]($read_only_style)"
+
+[git_status]
+conflicted = "[<](white)=[$count](bright-white bold)[>](white)"
+ahead = "[<](white)⇡[$count](bright-white bold)[>](white)"
+behind = "[<](white)⇣[$count](bright-white bold)[>](white)"
+diverged = "[<](white)⇕⇡[$ahead_count](bright-white bold)⇣[$behind_count](bright-white)[>](white)"
+untracked = "[<](white)?[$count](bright-white bold)[>](white)"
+stashed = "[<](white)$[$count](bright-white bold)[>](white)"
+modified = "[<](white)![$count](bright-white bold)[>](white)"
+staged = "[<](white)+[$count](bright-white bold)[>](white)"
+renamed = "[<](white)»[$count](bright-white bold)[>](white)"
+deleted = "[<](white)✗[$count](bright-white bold)[>](white)"
+
+[hostname]
+disabled = true
