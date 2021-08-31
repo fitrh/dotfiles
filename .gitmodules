@@ -7,3 +7,6 @@
 [submodule ".config/xmonad"]
 	path = .config/xmonad
 	url = git@github.com:fitrh/monadec.git
+[submodule ".config/fish"]
+	path = .config/fish
+	url = git@github.com:fitrh/effishient.git
