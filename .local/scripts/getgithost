@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+_get_host_icon() {
+    local URL="$1"
+
+    [[ -z "$URL" ]] && printf "" && return 0
+
+    local ICON=""
+
+    if [[ "$URL" =~ "github" ]]; then
+        ICON=""
+    elif [[ "$URL" =~ "gitlab" ]]; then
+        ICON=""
+    elif [[ "$URL" =~ "bitbucket" ]];then
+        ICON=""
+    elif [[ "$URL" =~ "kernel" ]];then
+        ICON=""
+    elif [[ "$URL" =~ "archlinux" ]];then
+        ICON=""
+    elif [[ "$URL" =~ "gnu" ]];then
+        ICON=""
+    fi
+
+    printf "%s" "$ICON"
+}
+
+_get_repository_url() {
+    local URL="$1"
+
+    [[ -z "$URL" ]] && printf "localhost" && return 0
+
+    for PATTERN in "https" "http" "git" "://" "@"; do
+        [[ "$URL" == "$PATTERN"* ]] && URL="${URL##"$PATTERN"}"
+    done
+
+    for PATTERN in "/" ".git"; do
+        [[ "$URL" == *"$PATTERN" ]] && URL="${URL%%"$PATTERN"}"
+    done
+
+    printf "%s" "$URL"
+}
+
+main() {
+    local URL ICON
+    URL=$(command git ls-remote --get-url 2> /dev/null)
+    ICON=$(_get_host_icon "$URL")
+    URL=$(_get_repository_url "$URL")
+    printf "%s %s" "$ICON" "$URL"
+}
+
+main "$@"
