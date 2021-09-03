@@ -30,6 +30,8 @@ element {
 
 element-icon {
     size: 64px;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
 }
 
 element-text {
