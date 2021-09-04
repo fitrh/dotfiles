@@ -28,6 +28,7 @@ element {
 
 element-text {
     font: "SF Mono 24";
+    color: @black;
     padding: 8px 6px 8px 0px;
     horizontal-align: 0.5;
 }
