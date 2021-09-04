@@ -11,13 +11,13 @@ _get_host_icon() {
         ICON=""
     elif [[ "$URL" =~ "gitlab" ]]; then
         ICON=""
-    elif [[ "$URL" =~ "bitbucket" ]];then
+    elif [[ "$URL" =~ "bitbucket" ]]; then
         ICON=""
-    elif [[ "$URL" =~ "kernel" ]];then
+    elif [[ "$URL" =~ "kernel" ]]; then
         ICON=""
-    elif [[ "$URL" =~ "archlinux" ]];then
+    elif [[ "$URL" =~ "archlinux" ]]; then
         ICON=""
-    elif [[ "$URL" =~ "gnu" ]];then
+    elif [[ "$URL" =~ "gnu" ]]; then
         ICON=""
     fi
 
@@ -42,7 +42,7 @@ _get_repository_url() {
 
 main() {
     local URL ICON
-    URL=$(command git ls-remote --get-url 2> /dev/null)
+    URL=$(command git ls-remote --get-url 2>/dev/null)
     ICON=$(_get_host_icon "$URL")
     URL=$(_get_repository_url "$URL")
     printf "%s %s" "$ICON" "$URL"
