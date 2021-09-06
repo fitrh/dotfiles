@@ -60,7 +60,7 @@ prompt {
 /**** Layout ****/
 window {
     border: 1px;
-    border-radius: 6px;
+    border-radius: 8px;
     children: [ inputbar, listview ];
     location: center;
     width: 30%;
@@ -173,7 +173,7 @@ element {
     background-color: @bg-dark;
     text-color: @fg;
     margin: 0 8px;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 element selected {
