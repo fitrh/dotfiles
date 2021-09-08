@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+prompt_power() {
+    local SELECTED="${1:-4}"
+    local ORIENTATION="${2:-"hor"}"
+    local POWER_OFF=""
+    local REBOOT=""
+    local SUSPEND=""
+    local HIBERNATE=""
+    local LOCK=""
+    local LOG_OUT=""
+    local OPTIONS="$POWER_OFF\n$REBOOT\n$SUSPEND\n$HIBERNATE\n$LOCK\n$LOG_OUT"
+    local ACTION
+    ACTION=$(printf '%b' "$OPTIONS" |
+        rofi -dmenu \
+            -theme-str '@import "themes/tokyonight/power.'"$ORIENTATION"'"' \
+            -selected-row "$SELECTED" -no-default-config)
+
+    case "$ACTION" in
+        "$POWER_OFF")
+            sleep 0.2s && systemctl poweroff
+            ;;
+        "$REBOOT")
+            sleep 0.2s && systemctl reboot
+            ;;
+        "$SUSPEND")
+            sleep 0.2s && systemctl suspend
+            ;;
+        "$HIBERNATE")
+            sleep 0.2s && systemctl hibernate
+            ;;
+        "$LOCK")
+            sleep 0.2s && slock
+            ;;
+        "$LOG_OUT")
+            sleep 0.2s && killall xinit
+            ;;
+    esac
+}
+
+prompt_power "$@"
