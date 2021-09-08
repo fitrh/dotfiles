@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+volctl() {
+    local PERCENTAGE IS_MUTED SINKS
+    mapfile -t SINKS < <(pactl list sinks short | cut -f 1)
+
+    case "$1" in
+        "raise")
+            PERCENTAGE=$(
+                pacmd list-sinks |
+                    grep -A 15 '* index' |
+                    awk '/volume: /{ print $5 }' |
+                    grep -m 1 % |
+                    sed 's/[%|,]//g'
+            )
+            if [[ "$PERCENTAGE" -lt 100 ]]; then
+                for sink in "${SINKS[@]}"; do
+                    pactl set-sink-mute "$sink" false
+                    pactl set-sink-volume "$sink" +5%
+                done
+                # pactl set-sink-mute "${SINKS[-1]}" false
+                # pactl set-sink-volume "${SINKS[-1]}" +5%
+            fi
+            ;;
+        "lower")
+            for sink in "${SINKS[@]}"; do
+                pactl set-sink-mute "$sink" false
+                pactl set-sink-volume "$sink" -5%
+            done
+            ;;
+        "mute")
+            for sink in "${SINKS[@]}"; do
+                pactl set-sink-mute "$sink" toggle
+            done
+            ;;
+    esac
+
+    PERCENTAGE=$(
+        pacmd list-sinks |
+            grep -A 15 '* index' |
+            awk '/volume: /{ print $5 }' |
+            grep -m 1 % |
+            sed 's/[%|,]//g'
+    )
+
+    IS_MUTED=$(
+        pacmd list-sinks |
+            grep -A 15 '* index' |
+            awk '/muted:/{ print $2 }'
+    )
+
+    local ICON="墳"
+    local APP_NAME="Audio"
+
+    if [[ "$IS_MUTED" == "yes" || "$PERCENTAGE" == 0 ]]; then
+        ICON="婢"
+        APP_NAME="Audio Mute"
+    else
+        if [[ "$PERCENTAGE" -ge 70 ]]; then
+            APP_NAME="Audio High"
+        elif [[ "$PERCENTAGE" -le 30 ]]; then
+            APP_NAME="Audio Low"
+        fi
+    fi
+
+    PERCENTAGE=$(printf "%3d" "$PERCENTAGE")
+
+    local TAG="${2:-volctl}"
+    dunstify -a "$APP_NAME" -t 3000 \
+        -h string:x-dunst-stack-tag:"$TAG" \
+        -h int:value:"$PERCENTAGE" \
+        "$ICON" "${PERCENTAGE}"
+}
+
+volctl "$@"
