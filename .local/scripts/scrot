@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+__scrot_notify() {
+    local SUMMARY="$1"
+    local FILE_NAME="$2"
+    local FILE_PATH="$3/$FILE_NAME"
+    local INDEX=("$3/"*.jpg)
+    local DEST_DIR="~/pictures/screenshot/menyoki"
+
+    FILE_NAME="  <i><span foreground='#a9b1d6'>$FILE_NAME</span></i>"
+    DEST_DIR="  <span foreground='#a9b1d6'><b>$DEST_DIR</b></span>"
+
+    local ACTION
+    ACTION=$(dunstify -a SCROT -u normal -t 10000 \
+        --action="default,Open" --action="edit,Edit" \
+        -i "$FILE_PATH" \
+        "$SUMMARY" "$DEST_DIR\n$FILE_NAME")
+
+    sigdwmblocks 5
+    case $ACTION in
+        "default")
+            sxiv -b -r "$3" -n "${#INDEX[@]}"
+            ;;
+        "edit")
+            gimp "$FILE"
+            ;;
+    esac
+}
+
+__scrot_take() {
+    local MODE="$1"
+    local ARG="$2"
+    local MSG="$3"
+    local DEST_DIR="$HOME/pictures/screenshot/menyoki"
+    local FILE_NAME
+    FILE_NAME=$(date +"%Y%m%d_%H%M%S")_"$MODE".jpg
+
+    menyoki capture --"$ARG" jpg -q 100 save "$DEST_DIR/$FILE_NAME"
+
+    local SUMMARY="$MSG Screenshot"
+
+    [[ -f "$DEST_DIR/$FILE_NAME" ]] &&
+        __scrot_notify "$SUMMARY" "$FILE_NAME" "$DEST_DIR"
+}
+
+scrot() {
+    local MODE="${1:-full}"
+    local ARG="root"
+    local MSG="Fullscreen"
+
+    case $MODE in
+        "area")
+            ARG="select"
+            MSG="Selected Area"
+            ;;
+        "focus")
+            ARG="focus"
+            MSG="Focus Window"
+            ;;
+        "*")
+            MODE="full"
+            ;;
+    esac
+
+    __scrot_take "$MODE" "$ARG" "$MSG"
+}
+
+scrot "$@"
