@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+HISTORY_LOG="/tmp/dwmblocks.notif.cache"
+NOTIFY_IGNORE="Audio \
+    clightctl \
+    dunstify \
+    dwmblocks \
+    notify-send \
+    starship \
+    Spotify \
+    uGet"
+SHOULD_IGNORE=false
+
+for VAR in $1; do
+    if [[ "$NOTIFY_IGNORE" == *"$VAR"* ]]; then
+        SHOULD_IGNORE=true
+        break
+    fi
+done
+unset VAR
+
+if ! "$SHOULD_IGNORE"; then
+    if [[ -f "$HISTORY_LOG" ]]; then
+        dunstctl count displayed >"$HISTORY_LOG"
+    else
+        dunstctl count history >"$HISTORY_LOG"
+    fi
+    sigdwmblocks 5
+fi
+unset SHOULD_IGNORE
+unset NOTIFY_IGNORE
+unset HISTORY_LOG
