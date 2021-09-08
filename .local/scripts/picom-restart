@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+run() {
+    picom --config "$PICOM_CONF" &
+    disown
+    sleep 0.5s
+    dunstify -t 2500 -i "compton" "Picom Restarted"
+}
+
+PID="$(pidof picom)"
+if [[ -z "$PID" ]]; then
+    run
+else
+    killall picom && run
+fi
