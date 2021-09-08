@@ -1,0 +1,192 @@
+#!/usr/bin/env bash
+
+__clightctl_notify() {
+    APP_NAME="${1:-clightctl}"
+    CHANGED_VALUE="${2:-string:none:none}"
+    TAG="${3:-clightctl}"
+
+    dunstify -a "$APP_NAME" -t 5000 \
+        -i "applications-education-preschool" \
+        -h string:x-dunst-stack-tag:"$TAG" \
+        -h "$CHANGED_VALUE" \
+        "Backlight : $(__clightctl_backlight_get)" \
+        "Gamma     : $(__clightctl_gamma_get)"
+}
+
+__clightctl_write_state() {
+    local DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
+    [[ -d "${DIR}/clightctl" ]] && mkdir -p "${DIR}/clightctl"
+    printf "%s" "$1" >"${DIR}/clightctl/${2}"
+}
+
+__clightctl_backlight_get() {
+    local PERCENTAGE
+    PERCENTAGE=$(busctl call org.clightd.clightd \
+        /org/clightd/clightd/Backlight2 \
+        org.clightd.clightd.Backlight2 \
+        Get | cut -d ' ' -f 4)
+
+    PERCENTAGE=$(bc <<<"$PERCENTAGE * 100")
+    printf "%.f%%\n" "$PERCENTAGE"
+}
+
+__clightctl_backlight_set() {
+    local PERCENTAGE="$1"
+    if [[ "$PERCENTAGE" -gt 0 && "$PERCENTAGE" -le 100 ]]; then
+        [[ "$PERCENTAGE" -gt 1 ]] &&
+            PERCENTAGE=$(bc <<<"scale=2; $PERCENTAGE / 100")
+
+        busctl call org.clightd.clightd \
+            /org/clightd/clightd/Backlight2 \
+            org.clightd.clightd.Backlight2 \
+            Set d\(du\) "$PERCENTAGE" 0 0
+
+        __clightctl_write_state "$PERCENTAGE" "backlight"
+    fi
+}
+
+__clightctl_backlight_raise() {
+    busctl call org.clightd.clightd \
+        /org/clightd/clightd/Backlight2 \
+        org.clightd.clightd.Backlight2 \
+        Raise d\(du\) 0.05 0 0
+
+    CHANGED_VALUE="$(__clightctl_backlight_get | cut -d '%' -f 1)"
+
+    __clightctl_write_state "$CHANGED_VALUE" "backlight"
+
+    CHANGED_VALUE="int:value:$CHANGED_VALUE"
+    __clightctl_notify "clightctl backlight" "$CHANGED_VALUE"
+}
+
+__clightctl_backlight_lower() {
+    busctl call org.clightd.clightd \
+        /org/clightd/clightd/Backlight2 \
+        org.clightd.clightd.Backlight2 \
+        Lower d\(du\) 0.05 0 0
+
+    CHANGED_VALUE="$(__clightctl_backlight_get | cut -d '%' -f 1)"
+
+    __clightctl_write_state "$CHANGED_VALUE" "backlight"
+
+    CHANGED_VALUE="int:value:$CHANGED_VALUE"
+    __clightctl_notify "clightctl backlight" "$CHANGED_VALUE"
+}
+
+__clightctl_backlight() {
+    local METHOD="$1"
+    case "$METHOD" in
+        "set")
+            __clightctl_backlight_set "$2"
+            ;;
+        "get")
+            __clightctl_backlight_get
+            ;;
+        "raise")
+            __clightctl_backlight_raise
+            ;;
+        "lower")
+            __clightctl_backlight_lower
+            ;;
+    esac
+}
+
+__clightctl_gamma_get() {
+    local TEMP
+    TEMP=$(busctl call org.clightd.clightd \
+        /org/clightd/clightd/Gamma \
+        org.clightd.clightd.Gamma \
+        Get ss "$DISPLAY" "$XAUTHORITY" | cut -d ' ' -f 2)
+
+    printf "%dK\n" "$TEMP"
+}
+
+__clightctl_gamma_set() {
+    local IS_VALID_TEMP="$1"
+    IS_VALID_TEMP=$((IS_VALID_TEMP % 50))
+
+    local TEMP=6500
+    [[ "$IS_VALID_TEMP" -eq 0 ]] &&
+        [[ "$1" -ge 1900 ]] && [[ "$1" -le 6500 ]] && TEMP="$1"
+
+    busctl call org.clightd.clightd \
+        /org/clightd/clightd/Gamma \
+        org.clightd.clightd.Gamma \
+        Set ssi\(buu\) "$DISPLAY" "$XAUTHORITY" "$TEMP" 0 0 0
+
+    __clightctl_write_state "$TEMP" "gamma"
+}
+
+__clightctl_gamma_raise() {
+    local CURRENT_TEMP TEMP
+    CURRENT_TEMP=$(__clightctl_gamma_get | cut -d 'K' -f 1)
+
+    TEMP=$((CURRENT_TEMP + 100))
+    __clightctl_gamma_set "$TEMP"
+    __clightctl_write_state "$TEMP" "gamma"
+
+    TEMP=$(bc <<<"scale=1;(($TEMP - 1900) / (6500 - 1900)) * 100")
+    TEMP="$(echo "$TEMP" | cut -d '.' -f 1)"
+    TEMP="int:value:$TEMP"
+    __clightctl_notify "clightctl gamma" "$TEMP"
+}
+
+__clightctl_gamma_lower() {
+    local CURRENT_TEMP TEMP
+    CURRENT_TEMP=$(__clightctl_gamma_get | cut -d 'K' -f 1)
+
+    TEMP=$((CURRENT_TEMP - 100))
+    __clightctl_gamma_set "$TEMP"
+    __clightctl_write_state "$TEMP" "gamma"
+
+    TEMP=$(bc <<<"scale=1;(($TEMP - 1900) / (6500 - 1900)) * 100")
+    TEMP="$(echo "$TEMP" | cut -d '.' -f 1)"
+    TEMP="int:value:$TEMP"
+    __clightctl_notify "clightctl gamma" "$TEMP"
+}
+
+__clightctl_gamma() {
+    local METHOD="$1"
+    case "$METHOD" in
+        "set")
+            __clightctl_gamma_set "$2"
+            ;;
+        "get")
+            __clightctl_gamma_get
+            ;;
+        "raise")
+            __clightctl_gamma_raise
+            ;;
+        "lower")
+            __clightctl_gamma_lower
+            ;;
+    esac
+}
+
+__clightctl_get() {
+    printf "Brightness : %5s\n" "$(__clightctl_backlight_get)"
+    printf "Gamma      : %s\n" "$(__clightctl_gamma_get)"
+}
+
+main() {
+    local MODULE="$1"
+    local METHOD="$2"
+    local VALUE="$3"
+
+    case "$MODULE" in
+        "backlight")
+            __clightctl_backlight "$METHOD" "$VALUE"
+            ;;
+        "gamma")
+            __clightctl_gamma "$METHOD" "$VALUE"
+            ;;
+        "get")
+            __clightctl_get
+            ;;
+        "notify")
+            __clightctl_notify "$METHOD" "$VALUE" "$4"
+            ;;
+    esac
+}
+
+main "$@"
