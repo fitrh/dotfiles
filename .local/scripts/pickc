@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec xcolor -s clipboard -S 16
