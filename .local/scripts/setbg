@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+_setbg_xwallpaper() {
+    xwallpaper --zoom "$1" &
+}
+
+_setbg_feh() {
+    feh --no-fehbg --bg-fill "$1" &
+}
+
+setbg() {
+    local BG_SRC="$HOME/pictures/wallpapers"
+    local BG
+
+    case "$1" in
+        "-p" | "--path")
+            BG="$2"
+            ;;
+        *)
+            BG="${BG_SRC}/$1"
+            ;;
+    esac
+
+    [[ -z "$1" ]] && BG="$BG_SRC/$DESKTOP_BG"
+    [[ -f "$BG" ]] && _setbg_feh "$BG"
+}
+
+setbg "$@"
