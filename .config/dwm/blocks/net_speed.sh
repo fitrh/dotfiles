@@ -5,8 +5,8 @@ parse_speed() {
     local BYTE CACHED_BYTE RAW_SPEED SPEED
     BYTE=$(<"$1")
     [[ -f "$CACHE" ]] && CACHED_BYTE=$(<"$CACHE") || CACHED_BYTE=0
-    printf "%d\n" "$BYTE" > "$CACHE"
-    RAW_SPEED=$(( BYTE - CACHED_BYTE ))
+    printf "%d\n" "$BYTE" >"$CACHE"
+    RAW_SPEED=$((BYTE - CACHED_BYTE))
     SPEED=$(numfmt --to=iec --format=%.1f "$RAW_SPEED")
     printf "%s" "$SPEED"
 }

@@ -21,15 +21,15 @@ left_handler() {
 
     if [[ "$IN_HISTORY_LOG" -eq 0 && "$DISPLAYED" -eq 0 ]]; then
         notify "Empty Notification" && sleep 2s
-        printf "%d" 0 > "$HISTORY_LOG"
+        printf "%d" 0 >"$HISTORY_LOG"
     elif [[ "$IN_HISTORY_LOG" -gt 0 ]]; then
         dunstctl history-pop
-        dunstctl count history > "$HISTORY_LOG"
+        dunstctl count history >"$HISTORY_LOG"
         sigdwmblocks 5
     elif [[ "$DISPLAYED" -gt 0 ]]; then
         dunstctl close-all
         notify "Close All Notification" 1000
-        printf "%d" 0 > "$HISTORY_LOG"
+        printf "%d" 0 >"$HISTORY_LOG"
         sigdwmblocks 5
     fi
 }
@@ -53,13 +53,13 @@ right_handler() {
 
     if [[ "$DISPLAYED" -eq 0 && "$IN_HISTORY_LOG" -eq 0 ]]; then
         notify "Empty Notification" && sleep 2s
-        printf "%d" 0 > "$HISTORY_LOG"
+        printf "%d" 0 >"$HISTORY_LOG"
     elif [[ "$DISPLAYED" -gt 0 ]]; then
         dunstctl close-all
         notify "Close All Notification"
     elif [[ "$(dunstctl count history)" -gt 0 ]]; then
         notify "Clear Notification History"
-        printf "%d" 0 > /tmp/dwmblocks.notif.cache && sigdwmblocks 5
+        printf "%d" 0 >/tmp/dwmblocks.notif.cache && sigdwmblocks 5
     fi
 }
 

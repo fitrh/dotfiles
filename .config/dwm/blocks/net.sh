@@ -16,7 +16,7 @@ get_carrier_changes() {
 }
 
 is_fully_connected() {
-    return $(( "$1" % 2 ))
+    return $(("$1" % 2))
 }
 
 net_wired_state() {
@@ -31,16 +31,16 @@ net_wired_state() {
     fi
 
     notify_net_speed "$SIGVAL"
-    printf "%b %s " "$COLOR"  "$ICON"
+    printf "%b %s " "$COLOR" "$ICON"
 }
 
 net_wireless_get_strength() {
     local FILE LAST_LINE VALUES QUALITY_LINK
-    mapfile -tn 0 FILE < "/proc/net/wireless"
+    mapfile -tn 0 FILE <"/proc/net/wireless"
     LAST_LINE="$(printf "%s" "${FILE[@]: -1}")"
-    read -ra VALUES <<< "${LAST_LINE[@]}"
-    QUALITY_LINK="$(printf "%d" "${VALUES[2]//.}")"
-    printf "%d" $(( QUALITY_LINK * 100 / 70 ))
+    read -ra VALUES <<<"${LAST_LINE[@]}"
+    QUALITY_LINK="$(printf "%d" "${VALUES[2]//./}")"
+    printf "%d" $((QUALITY_LINK * 100 / 70))
 }
 
 net_wireless_get_icon() {
@@ -65,7 +65,7 @@ net_wireless_state() {
     fi
 
     notify_net_speed "$SIGVAL"
-    printf "%b %s " "$COLOR"  "$ICON"
+    printf "%b %s " "$COLOR" "$ICON"
 }
 
 netb() {
@@ -96,7 +96,7 @@ net() {
 
     STATE="$(parse_terse "$GENERAL" 1)"
     [[ "$STATE" == "disconnected" ]] && sigdwmblocks 7
-    [[ "$STATE" =~ "connected" ]] && [[  "$STATE" != "disconnected" ]] && {
+    [[ "$STATE" =~ "connected" ]] && [[ "$STATE" != "disconnected" ]] && {
         CONNECTIVITY="$(parse_terse "$GENERAL" 2)"
         TYPE=$(nmcli -f TYPE -t connection show --active)
 

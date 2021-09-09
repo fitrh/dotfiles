@@ -16,17 +16,17 @@ net_wired_get_info() {
 
 net_wireless_get_strength() {
     local FILE LAST_LINE VALUES QUALITY_LINK
-    mapfile -tn 0 FILE < "/proc/net/wireless"
+    mapfile -tn 0 FILE <"/proc/net/wireless"
     LAST_LINE="$(printf "%s" "${FILE[@]: -1}")"
-    read -ra VALUES <<< "${LAST_LINE[@]}"
-    QUALITY_LINK="$(printf "%d" "${VALUES[2]//.}")"
-    printf '%d%%' $(( QUALITY_LINK * 100 / 70 ))
+    read -ra VALUES <<<"${LAST_LINE[@]}"
+    QUALITY_LINK="$(printf "%d" "${VALUES[2]//./}")"
+    printf '%d%%' $((QUALITY_LINK * 100 / 70))
 }
 
 net_wireless_get_ssid() {
     local TMP SSID
-    iw wlp2s0 info > /tmp/iw_wlp2s0.info
-    mapfile -tn 5 TMP < /tmp/iw_wlp2s0.info
+    iw wlp2s0 info >/tmp/iw_wlp2s0.info
+    mapfile -tn 5 TMP </tmp/iw_wlp2s0.info
     SSID="$(printf "%s" "${TMP[4]#"${TMP[4]%%[![:space:]]*}"}")"
     printf "%s" "${SSID##ssid }"
 }
@@ -48,10 +48,9 @@ left_handler() {
 }
 
 middle_handler() {
-    for INTERFACE in "enp3s0" "wlp2s0"
-    do
+    for INTERFACE in "enp3s0" "wlp2s0"; do
         if [[ "$(get_op_state "$INTERFACE")" == "up" ]]; then
-            exec st -c "Notify Term"  \
+            exec st -c "Notify Term" \
                 -t "Network Statistics" \
                 -f "SF Mono:size=10" \
                 -g 56x16 \

@@ -21,15 +21,13 @@ left_handler() {
     local DEVICES=("enp3s0" "wlp2s0")
     local UP_DEVICES
 
-    for DEVICE in "${DEVICES[@]}"
-    do
+    for DEVICE in "${DEVICES[@]}"; do
         local IS_UP
         IS_UP="$(<"$CLASS_PATH/$DEVICE/operstate")"
         [[ "$IS_UP" == "up" ]] && UP_DEVICES+=("$DEVICE")
     done
 
-    for DEVICE in "${UP_DEVICES[@]}"
-    do
+    for DEVICE in "${UP_DEVICES[@]}"; do
         local RX TX
         RX="$(<"$CLASS_PATH/$DEVICE/statistics/rx_bytes")"
         TX="$(<"$CLASS_PATH/$DEVICE/statistics/tx_bytes")"

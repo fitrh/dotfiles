@@ -31,7 +31,7 @@ middle_handler() {
     IS_NIGHT_MODE="$(<"$NIGHT_MODE")"
 
     if "$IS_NIGHT_MODE"; then
-        printf "%s" false > "$NIGHT_MODE"
+        printf "%s" false >"$NIGHT_MODE"
 
         clightctl gamma set 6500
         clightctl backlight set "$BACKLIGHT_LEVEL"
@@ -39,7 +39,7 @@ middle_handler() {
         APP_NAME="$APP_NAME daylight"
         MODE="Daylight"
     else
-        printf "%s" true > "$NIGHT_MODE"
+        printf "%s" true >"$NIGHT_MODE"
 
         [[ "$GAMMA_LEVEL" -gt 4500 ]] && GAMMA_LEVEL=4500
         [[ "$BACKLIGHT_LEVEL" -gt 60 ]] && BACKLIGHT_LEVEL=60
