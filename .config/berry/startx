@@ -12,9 +12,9 @@ exec dunst &
 exec sxhkd -c "$BERRY_SXHKD" "$DUNST_SXHKD" "$COMMON_SXHKD" &
 exec picom --config "$CONF_DIR/picom/berry.picom.conf" &
 exec unclutter --timeout 3 \
-  --ignore-scrolling \
-  --hide-on-touch \
-  --start-hidden &
+    --ignore-scrolling \
+    --hide-on-touch \
+    --start-hidden &
 feh --no-fehbg --bg-fill "$WALLPAPER"
 
 exec berry
