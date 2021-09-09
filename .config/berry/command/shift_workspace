@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+berry_shift_workspace() {
+  local SHIFT="$1"
+  local CURRENT_WORKSPACE
+  CURRENT_WORKSPACE=$(xprop -root _NET_CURRENT_DESKTOP | cut -d ' ' -f 3)
+
+  case "$SHIFT" in
+    "next")
+      CURRENT_WORKSPACE=$(((CURRENT_WORKSPACE + 1 + 9) % 9))
+      ;;
+    "prev")
+      CURRENT_WORKSPACE=$(((CURRENT_WORKSPACE - 1 + 9) % 9))
+      ;;
+  esac
+  berryc switch_workspace "$CURRENT_WORKSPACE"
+}
+
+berry_shift_workspace "$@"

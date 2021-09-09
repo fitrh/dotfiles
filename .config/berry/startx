@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+DISPLAY=":0"
+SXHKD_CONF="$CONF_DIR/sxhkd"
+BERRY_SXHKD="$SXHKD_CONF/wm/berry.sxhkdrc"
+DUNST_SXHKD="$SXHKD_CONF/util/dunst.sxhkdrc"
+COMMON_SXHKD="$SXHKD_CONF/common.sxhkdrc"
+WALLPAPER_DIR="$HOME/pictures/wallpapers"
+WALLPAPER="$WALLPAPER_DIR/Earth & The Satelite - Tokyo Night Darker.png"
+
+exec dunst &
+exec sxhkd -c "$BERRY_SXHKD" "$DUNST_SXHKD" "$COMMON_SXHKD" &
+exec picom --config "$CONF_DIR/picom/berry.picom.conf" &
+exec unclutter --timeout 3 \
+  --ignore-scrolling \
+  --hide-on-touch \
+  --start-hidden &
+feh --no-fehbg --bg-fill "$WALLPAPER"
+
+exec berry
