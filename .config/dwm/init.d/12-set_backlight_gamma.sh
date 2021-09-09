@@ -1,0 +1,1 @@
+/home/fitrh/.config/dwm/init.d.available/12-set_backlight_gamma.sh
