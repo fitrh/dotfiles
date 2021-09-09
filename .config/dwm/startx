@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+DISPLAY=":0"
+DWM_LOG="${XDG_CACHE_HOME:-$HOME/.cache}/dwm/log"
+CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+DWM_INIT_D="$CONF_DIR/dwm/init.d"
+PICOM_CONF="$CONF_DIR/picom/dwm.picom.conf"
+SXHKD_CONF="$CONF_DIR/sxhkd"
+COMMON_SXHKD="$SXHKD_CONF/common.sxhkdrc"
+DWM_SXHKD="$SXHKD_CONF/wm/dwm.sxhkdrc"
+DUNST_SXHKD="$SXHKD_CONF/util/dunst.sxhkdrc"
+PICOM_SXHKD="$SXHKD_CONF/util/picom.sxhkdrc"
+export PICOM_CONF
+
+for SCRIPT in "$DWM_INIT_D"/*.sh; do
+    # shellcheck source=/dev/null
+    [[ -x "$SCRIPT" ]] && . "$SCRIPT"
+done
+
+exec dwmblocks &
+exec dunst &
+exec sxhkd -c "$DWM_SXHKD" "$DUNST_SXHKD" "$PICOM_SXHKD" "$COMMON_SXHKD" &
+exec picom --config "$PICOM_CONF" &
+exec unclutter --timeout 3 \
+    --ignore-scrolling \
+    --hide-on-touch \
+    --start-hidden &
+
+while true; do
+    /usr/local/bin/dwm 2>"${DWM_LOG}/$(date +'%F_%H%M%S').log"
+done
