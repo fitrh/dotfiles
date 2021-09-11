@@ -51,6 +51,7 @@ $line_break\
 $jobs\
 $character"""
 
+command_timeout = 1000
 add_newline = false
 
 [battery]
