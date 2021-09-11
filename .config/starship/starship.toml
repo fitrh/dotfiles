@@ -7,6 +7,7 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
+$git_metrics\
 $hg_branch\
 $docker_context\
 $package\
@@ -77,6 +78,9 @@ symbol = " "
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[git_metrics]
+disabled = false
 
 [git_status]
 format = '(with [\(](bright-black) [$all_status$ahead_behind]($style)[\)](bright-black) )'
