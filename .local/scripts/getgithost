@@ -48,4 +48,4 @@ main() {
     printf "%s %s" "$ICON" "$URL"
 }
 
-main "$@"
+[[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] && main "$@"
