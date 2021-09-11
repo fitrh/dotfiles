@@ -56,6 +56,9 @@ add_newline = false
 [battery]
 disabled = true
 
+[hostname]
+disabled = true
+
 [character]
 success_symbol = "[](blue)"
 error_symbol = "[](bright-red)"
@@ -95,16 +98,10 @@ staged = '[ ](bright-green)[$count](bright-white bold) '
 renamed = '[ ](bright-cyan)[$count](bright-white bold) '
 deleted = ' [$count](bright-white bold) '
 
-[python]
-format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-
 [custom.git_host]
 command = 'getgithost'
 directories = [".git"]
-when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+when = 'git rev-parse --is-inside-work-tree 2>/dev/null'
 shell = ["sh","--norc","--noprofile"]
 style = "bright-yellow bold"
 format = "at [$output]($style) "
-
-[hostname]
-disabled = true
