@@ -23,6 +23,7 @@ $helm\
 $java\
 $julia\
 $kotlin\
+$lua\
 $nim\
 $nodejs\
 $ocaml\
@@ -46,7 +47,6 @@ $openstack\
 $env_var\
 $crystal\
 $cmd_duration\
-$lua\
 $line_break\
 $jobs\
 $character"""
