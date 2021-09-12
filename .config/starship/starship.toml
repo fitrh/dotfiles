@@ -51,8 +51,6 @@ $line_break\
 $jobs\
 $character"""
 
-right_format = """$shell"""
-
 command_timeout = 1000
 add_newline = false
 
@@ -108,8 +106,3 @@ when = 'git rev-parse --is-inside-work-tree 2>/dev/null'
 shell = ["sh","--norc","--noprofile"]
 style = "bright-yellow bold"
 format = "at [$output]($style) "
-
-[shell]
-disabled = false
-fish_indicator = "🐟"
-elvish_indicator = "🧝"
