@@ -57,14 +57,14 @@ super + grave
         exec st -f "SF Mono:size=10"
 
 alt + BackSpace
+        exec alacritty --class "codespace","codespace"
+
+alt + shift + BackSpace
         exec st \
         -c "codespace" \
         -t "Suckless Terminal" \
         -f "SF Mono:size=10" \
         -e tmux
-
-alt + shift + BackSpace
-        exec alacritty --class "codespace","codespace"
 
 alt + t
         exec alacritty --class "Float Term","Float Term" \
