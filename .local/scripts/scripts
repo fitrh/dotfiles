@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+CWD="$PWD"
+cd "$LOCAL_SCRIPT" &&
+    nvim -c "Telescope find_files" &&
+    cd "$CWD" || exit
