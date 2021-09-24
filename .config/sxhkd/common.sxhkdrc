@@ -45,10 +45,7 @@ alt + shift + c
         exec scrot {"full", "focus", "area"}
 
 alt + Return
-        exec alacritty --class "Float Term","Float Term" \
-        -o window.dimensions.columns=88 \
-        window.dimensions.lines=28 \
-        -e fish
+        exec alacritty --class "Float Term","Float Term"
 
 ctrl + alt + t
         exec st -c "Float Term" -f "SF Mono:size=10"
@@ -57,7 +54,7 @@ super + grave
         exec st -f "SF Mono:size=10"
 
 alt + BackSpace
-        exec alacritty --class "codespace","codespace"
+        exec alacritty --class "codespace","codespace" --command tmux
 
 alt + shift + BackSpace
         exec st \
