@@ -5,6 +5,7 @@ __scrot_notify() {
     local FILE_NAME="$2"
     local FILE_PATH="$3/$FILE_NAME"
     local INDEX=("$3/"*.jpg)
+    # shellcheck disable=SC2088
     local DEST_DIR="~/pictures/screenshot/menyoki"
 
     FILE_NAME="  <i><span foreground='#a9b1d6'>$FILE_NAME</span></i>"
