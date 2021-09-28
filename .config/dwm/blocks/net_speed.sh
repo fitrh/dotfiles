@@ -28,8 +28,8 @@ net_speed() {
     local RX TX
     RX=$(parse_speed "$STATISTICS/rx_bytes")
     TX=$(parse_speed "$STATISTICS/tx_bytes")
-    pretty_print "$(parse_color "$RX")" "ﯲ" "$RX"
-    pretty_print "$(parse_color "$TX")" "ﯴ" "$TX"
+    pretty_print "$(parse_color "$RX")" "" "$RX"
+    pretty_print "$(parse_color "$TX")" "" "$TX"
 }
 
 net_speed "$@"
