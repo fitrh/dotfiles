@@ -69,7 +69,7 @@ net_wireless_state() {
 }
 
 netb() {
-    local STATE="\x15   "
+    local STATE="\x15   "
 
     if [[ "$(get_op_state enp3s0)" == "up" ]]; then
         STATE="$(net_wired_state)"
