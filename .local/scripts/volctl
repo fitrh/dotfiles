@@ -50,24 +50,27 @@ volctl() {
     )
 
     local ICON="墳"
-    local APP_NAME="Audio"
+    local COLOR="#0db9d7"
 
     if [[ "$IS_MUTED" == "yes" || "$PERCENTAGE" == 0 ]]; then
         ICON="婢"
-        APP_NAME="Audio Mute"
+        COLOR="#444b6a"
     else
         if [[ "$PERCENTAGE" -ge 70 ]]; then
-            APP_NAME="Audio High"
+            COLOR="#ff7a93"
         elif [[ "$PERCENTAGE" -le 30 ]]; then
-            APP_NAME="Audio Low"
+            COLOR="#a9b1d6"
         fi
     fi
 
+    local FG="string:fgcolor:$COLOR"
+    local FR="string:frcolor:$COLOR"
+    local HL="string:hlcolor:$COLOR"
     PERCENTAGE=$(printf "%3d" "$PERCENTAGE")
 
-    local TAG="${2:-volctl}"
-    dunstify -a "$APP_NAME" -t 3000 \
-        -h string:x-dunst-stack-tag:"$TAG" \
+    dunstify -a "Audio Volume" -t 3000 \
+        -h string:x-dunst-stack-tag:volctl \
+        -h "$FG" -h "$FR" -h "$HL" \
         -h int:value:"$PERCENTAGE" \
         "$ICON" "${PERCENTAGE}"
 }
