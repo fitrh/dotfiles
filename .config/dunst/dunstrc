@@ -17,7 +17,7 @@
     # will be ignored.
     follow = mouse
 
-    width = (0, 376)
+    width = (0, 400)
     origin = "top-right"
     offset = 16x56
 
