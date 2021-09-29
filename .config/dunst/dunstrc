@@ -528,39 +528,12 @@
     appname = "uGet"
     history_ignore =yes
 
-[volume]
-    appname = "Audio"
+[audio volume]
+    appname = "Audio Volume"
     format = " <span font='32'>%s <span foreground='#a9b1d6'>%b</span>%%</span>"
     foreground = "#0db9d7"
     frame_color = "#0db9d7"
     highlight = "#0db9d7"
-    history_ignore = yes
-    new_icon = NONE
-
-[volume-high]
-    appname = "Audio High"
-    format = " <span font='32'>%s <span foreground='#a9b1d6'>%b</span>%%</span>"
-    foreground = "#ff7a93"
-    frame_color = "#ff7a93"
-    highlight = "#ff7a93"
-    history_ignore = yes
-    new_icon = NONE
-
-[volume-low]
-    appname = "Audio Low"
-    format = " <span font='32'>%s <span foreground='#a9b1d6'>%b</span>%%</span>"
-    foreground = "#a9b1d6"
-    frame_color = "#a9b1d6"
-    highlight = "#a9b1d6"
-    history_ignore = yes
-    new_icon = NONE
-
-[volume-mute]
-    appname = "Audio Mute"
-    format = " <span font='32'>%s %b%%</span>"
-    foreground = "#444b6a"
-    frame_color = "#444b6a"
-    highlight = "#444b6a"
     history_ignore = yes
     new_icon = NONE
 
