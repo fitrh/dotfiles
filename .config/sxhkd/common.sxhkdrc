@@ -11,7 +11,7 @@ super + alt + p
         exec st \
         -c "Float Term" \
         -t "scrctl" \
-        -f "SF Mono:size=10" \
+        -f "SF Mono:size=8.4" \
         -e fish -C scrctl
 
 alt + space
@@ -48,10 +48,10 @@ alt + Return
         exec alacritty --class "Float Term","Float Term"
 
 ctrl + alt + t
-        exec st -c "Float Term" -f "SF Mono:size=10"
+        exec st -c "Float Term" -f "SF Mono:size=8.4"
 
 super + grave
-        exec st -f "SF Mono:size=10"
+        exec st -f "SF Mono:size=8.4"
 
 alt + BackSpace
         exec alacritty --class "codespace","codespace" --command tmux
@@ -60,7 +60,7 @@ alt + shift + BackSpace
         exec st \
         -c "codespace" \
         -t "Suckless Terminal" \
-        -f "SF Mono:size=10" \
+        -f "SF Mono:size=8.4" \
         -e tmux
 
 alt + t
