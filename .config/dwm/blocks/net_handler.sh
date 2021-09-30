@@ -52,7 +52,7 @@ middle_handler() {
         if [[ "$(get_op_state "$INTERFACE")" == "up" ]]; then
             exec st -c "Notify Term" \
                 -t "Network Statistics" \
-                -f "SF Mono:size=10" \
+                -f "SF Mono:size=8.4" \
                 -g 56x16 \
                 -e btm --config ~/.config/bottom/net.toml
         fi
@@ -69,7 +69,7 @@ case "$1" in
         ;;
     3)
         exec st -c "Float Term" \
-            -f "SF Mono:size=10" \
+            -f "SF Mono:size=8.4" \
             -e nmtui
         ;;
 esac

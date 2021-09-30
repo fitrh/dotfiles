@@ -3,7 +3,7 @@
 right_handler() {
     sigdwmblocks 4
     st -c "Notify Term" -T "ncpamixer" \
-        -f "SF Mono:size=10" -g 61x20 \
+        -f "SF Mono:size=8.4" -g 61x20 \
         -e fish -c "ncpamixer -t o"
 }
 
