@@ -9,10 +9,10 @@ right_handler() {
 
 case "$1" in
     1)
-        volctl "" "dwmblocks"
+        volctl
         ;;
     2)
-        volctl "mute" "dwmblocks"
+        volctl "mute"
         ;;
     3)
         right_handler
