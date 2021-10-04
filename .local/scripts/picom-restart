@@ -7,9 +7,8 @@ run() {
     dunstify -t 2500 -i "compton" "Picom Restarted"
 }
 
-PID="$(pidof picom)"
-if [[ -z "$PID" ]]; then
-    run
+if (pgrep picom >/dev/null); then
+    kill -KILL "$(pgrep picom)" && run
 else
-    killall picom && run
+    run
 fi
