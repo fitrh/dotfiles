@@ -8,7 +8,7 @@ run() {
 }
 
 if (pgrep picom >/dev/null); then
-    kill -KILL "$(pgrep picom)" && run
-else
-    run
+    kill -KILL "$(pgrep picom)"
 fi
+
+run
