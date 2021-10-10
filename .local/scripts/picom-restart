@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-run() {
+main() {
     picom --config "$PICOM_CONF" &
     disown
     sleep 0.5s
@@ -11,4 +11,4 @@ if (pgrep picom >/dev/null); then
     kill -KILL "$(pgrep picom)"
 fi
 
-run
+main
