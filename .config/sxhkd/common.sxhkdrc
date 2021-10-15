@@ -1,5 +1,6 @@
 super + Escape
-        pkill -USR1 -x sxhkd
+        pkill -USR1 -x sxhkd && \
+        dunstify -i "preferences-desktop-keyboard" "SXHKD Restarted" -t 2000
 
 XF86Audio{RaiseVolume,LowerVolume,Mute}
         exec volctl {"raise", "lower", "mute"}
