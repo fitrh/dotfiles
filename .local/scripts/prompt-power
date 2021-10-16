@@ -5,7 +5,7 @@ prompt_power() {
     local ORIENTATION="${2:-"hor"}"
     local POWER_OFF=""
     local REBOOT=""
-    local SUSPEND=""
+    local SUSPEND=""
     local HIBERNATE=""
     local LOCK=""
     local LOG_OUT=""
