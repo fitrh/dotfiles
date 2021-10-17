@@ -469,7 +469,7 @@
 
 [dwmblocks network wireless]
     appname = "dwmblocks network wireless"
-    format = "<span foreground='#b9f27c'>󰤯 </span> <b>%s</b>\n<span foreground='#bb9af7'>󰢿 </span> <b>%b</b>"
+    format = "%b"
     history_ignore = yes
 
 [dwmblocks night mode]
