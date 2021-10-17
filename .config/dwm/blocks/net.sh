@@ -44,11 +44,10 @@ net_wireless_get_strength() {
 }
 
 net_wireless_get_icon() {
-    local ICON="󰤯"
-    [[ "$1" -gt 20 ]] && ICON="󰤟"
-    [[ "$1" -gt 50 ]] && ICON="󰤢"
-    [[ "$1" -gt 80 ]] && ICON="󰤥"
-    [[ "$1" -gt 95 ]] && ICON="󰤨"
+    local ICON="󰢿"
+    [[ "$1" -gt 30 ]] && ICON="󰢼"
+    [[ "$1" -gt 70 ]] && ICON="󰢽"
+    [[ "$1" -gt 90 ]] && ICON="󰢾"
     printf "%s" "$ICON"
 }
 
