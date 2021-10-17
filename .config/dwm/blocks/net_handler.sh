@@ -33,8 +33,17 @@ net_wireless_get_ssid() {
 
 net_wireless_get_info() {
     local SSID STRENGTH
+    local ICON="󰢿"
     SSID="$(net_wireless_get_ssid)"
     STRENGTH="$(net_wireless_get_strength)"
+
+    [[ "$STRENGTH" -gt 30 ]] && ICON="󰢼"
+    [[ "$STRENGTH" -gt 70 ]] && ICON="󰢽"
+    [[ "$STRENGTH" -gt 90 ]] && ICON="󰢾"
+
+    BODY="<span foreground='#b9f27c'>󰤯 </span> <b>$SSID</b>"
+    BODY="$BODY\n<span foreground='#bb9af7'>$ICON </span> <b>$STRENGTH%</b>\n"
+
     dunstify -a "dwmblocks network wireless" -u low \
         -h string:x-dunst-stack-tag:dwmblocks \
         -h string:hlcolor:"#bb9af7" \
