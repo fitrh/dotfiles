@@ -52,14 +52,14 @@ net_wireless_get_icon() {
 }
 
 net_wireless_state() {
+    local STRENGTH ICON
     local COLOR="\x13"
-    local ICON="󰤫"
     local SIGVAL=-1
+    STRENGTH="$(net_wireless_get_strength)"
+    ICON="$(net_wireless_get_icon "$STRENGTH")"
 
     if is_fully_connected "$(get_carrier_changes wlp2s0)"; then
         COLOR="\x17"
-        STRENGTH="$(net_wireless_get_strength)"
-        ICON="$(net_wireless_get_icon "$STRENGTH")"
         SIGVAL=1
     fi
 
