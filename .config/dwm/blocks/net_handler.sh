@@ -48,7 +48,7 @@ net_wireless_get_info() {
         -h string:x-dunst-stack-tag:dwmblocks \
         -h string:hlcolor:"#bb9af7" \
         -h int:value:"$STRENGTH" \
-        -i "network-wireless" "$SSID" "$STRENGTH"
+        -i "network-wireless" "$SSID" "$BODY"
 }
 
 left_handler() {
