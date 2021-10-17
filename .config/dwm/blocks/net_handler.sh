@@ -20,7 +20,7 @@ net_wireless_get_strength() {
     LAST_LINE="$(printf "%s" "${FILE[@]: -1}")"
     read -ra VALUES <<<"${LAST_LINE[@]}"
     QUALITY_LINK="$(printf "%d" "${VALUES[2]//./}")"
-    printf '%d%%' $((QUALITY_LINK * 100 / 70))
+    printf "%d" $((QUALITY_LINK * 100 / 70))
 }
 
 net_wireless_get_ssid() {
