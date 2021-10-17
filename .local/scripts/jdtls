@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-JAR="$JDTLS_HOME"/org.eclipse.jdt.ls.product/target/repository/plugins
+
+PLUGINS="$JDTLS_HOME"/org.eclipse.jdt.ls.product/target/repository/plugins
 CONFIG="$JDTLS_HOME"/org.eclipse.jdt.ls.product/target/repository
 
-GRADLE_HOME="$HOME"/.local/lib/gradle/bin/gradle "$JAVA_HOME"/bin/java \
+GRADLE_HOME="$LOCAL_LIB"/gradle/bin/gradle "$JAVA_HOME"/bin/java \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
     -Dosgi.bundles.defaultStartLevel=4 \
     -Declipse.product=org.eclipse.jdt.ls.core.product \
@@ -10,7 +11,7 @@ GRADLE_HOME="$HOME"/.local/lib/gradle/bin/gradle "$JAVA_HOME"/bin/java \
     -Dlog.level=ALL \
     -Xms1g \
     -Xmx2G \
-    -jar "$JAR"/org.eclipse.equinox.launcher_*.jar \
+    -jar "$PLUGINS"/org.eclipse.equinox.launcher_*.jar \
     -configuration "$CONFIG"/config_linux \
     -data "${1:-$JAVA_WORKSPACE}" \
     --add-modules=ALL-SYSTEM \
