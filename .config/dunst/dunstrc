@@ -164,7 +164,9 @@
     # Set to -1 to disable.
     show_age_threshold = 60
 
-    # When word_wrap is set to no, specify where to make an ellipsis in long lines.
+    word_wrap = false
+
+    # Specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
     ellipsize = end
 
