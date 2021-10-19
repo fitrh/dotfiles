@@ -4,7 +4,9 @@ main() {
     picom --config "$PICOM_CONF" &
     disown
     sleep 0.5s
-    dunstify -t 2500 -i "compton" "Picom Restarted"
+    dunstify -t 2500 -i "compton" -a "picom" \
+        -h string:x-dunst-stack-tag:picom \
+        "Picom Restarted"
 }
 
 if (pgrep picom >/dev/null); then
