@@ -507,6 +507,10 @@
     appname = "notify-send"
     history_ignore = yes
 
+[picom]
+    appname = "picom"
+    format = "<b>%s</b>"
+
 [scrot]
     appname = "SCROT"
     background = "#1a1b26"
