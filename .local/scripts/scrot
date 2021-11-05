@@ -12,7 +12,8 @@ __scrot_notify() {
     DEST_DIR="  <span foreground='#a9b1d6'><b>$DEST_DIR</b></span>"
 
     local ACTION
-    ACTION=$(dunstify -a SCROT -u normal -t 10000 \
+    ACTION=$(dunstify -a SCROT -u normal \
+        -h string:x-dunst-stack-tag:scrot \
         --action="default,Open" --action="edit,Edit" \
         -i "$FILE_PATH" \
         "$SUMMARY" "$DEST_DIR\n$FILE_NAME")
