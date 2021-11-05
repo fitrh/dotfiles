@@ -9,7 +9,7 @@ __scrot_notify() {
     local DEST_DIR="~/pictures/screenshot/menyoki"
 
     FILE_NAME="  <i><span foreground='#a9b1d6'>$FILE_NAME</span></i>"
-    DEST_DIR="  <span foreground='#a9b1d6'><b>$DEST_DIR</b></span>"
+    DEST_DIR="  <span foreground='#a9b1d6'><b>$DEST_DIR</b></span>"
 
     local ACTION
     ACTION=$(dunstify -a SCROT -u normal -t 10000 \
