@@ -11,9 +11,9 @@ GRADLE_HOME="$LOCAL_LIB"/gradle/bin/gradle "$JAVA_HOME"/bin/java \
     -Dlog.level=ALL \
     -Xms1g \
     -Xmx2G \
-    -jar "$PLUGINS"/org.eclipse.equinox.launcher_*.jar \
-    -configuration "$CONFIG"/config_linux \
-    -data "${1:-$JAVA_WORKSPACE}" \
     --add-modules=ALL-SYSTEM \
     --add-opens java.base/java.util=ALL-UNNAMED \
-    --add-opens java.base/java.lang=ALL-UNNAMED
+    --add-opens java.base/java.lang=ALL-UNNAMED \
+    -jar "$PLUGINS"/org.eclipse.equinox.launcher_*.jar \
+    -configuration "$CONFIG"/config_linux \
+    -data "${1:-$JAVA_WORKSPACE}"
