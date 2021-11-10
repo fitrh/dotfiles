@@ -26,7 +26,7 @@ right_handler() {
     sigdwmblocks 1
     exec st -c "Notify Term" \
         -f "SF Mono:size=8.4" \
-        -g 64x24 \
+        -g 64x41 \
         -e calcurse
 }
 
