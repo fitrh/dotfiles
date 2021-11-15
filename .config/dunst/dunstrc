@@ -19,10 +19,10 @@
 
     ### Geometry ###
 
-    # dynamic width from 0 to 300
-    # width = (0, 300)
-    # constant width of 300
+    # dynamic width from 0 to 400
     width = (0, 400)
+    # constant width of 400
+    # width = 400
 
     # The maximum height of a single notification, excluding the frame.
     height = 128
