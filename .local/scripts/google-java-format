@@ -2,4 +2,4 @@
 
 DIR="$HOME/git/google-java-format"
 FORMATTER="$DIR/core/target/google-java-format-HEAD-SNAPSHOT-all-deps.jar"
-java -jar "$FORMATTER" "$@"
+exec java -jar "$FORMATTER" "$@"
