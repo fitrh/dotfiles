@@ -76,16 +76,16 @@ __clightctl_backlight_lower() {
 __clightctl_backlight() {
     local METHOD="$1"
     case "$METHOD" in
-        "set")
+        "s" | "set")
             __clightctl_backlight_set "$2"
             ;;
-        "get")
+        "g" | "get")
             __clightctl_backlight_get
             ;;
-        "raise")
+        "r" | "raise")
             __clightctl_backlight_raise
             ;;
-        "lower")
+        "l" | "lower")
             __clightctl_backlight_lower
             ;;
     esac
@@ -148,16 +148,16 @@ __clightctl_gamma_lower() {
 __clightctl_gamma() {
     local METHOD="$1"
     case "$METHOD" in
-        "set")
+        "s" | "set")
             __clightctl_gamma_set "$2"
             ;;
-        "get")
+        "g" | "get")
             __clightctl_gamma_get
             ;;
-        "raise")
+        "r" | "raise")
             __clightctl_gamma_raise
             ;;
-        "lower")
+        "l" | "lower")
             __clightctl_gamma_lower
             ;;
     esac
