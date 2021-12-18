@@ -15,8 +15,8 @@ __clightctl_notify() {
 
 __clightctl_write_state() {
     local DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
-    [[ -d "${DIR}/clightctl" ]] && mkdir -p "${DIR}/clightctl"
-    printf "%s" "$1" >"${DIR}/clightctl/${2}"
+    [[ -d "$DIR/clightctl" ]] && mkdir -p "$DIR/clightctl"
+    printf "%s" "$1" >"$DIR/clightctl/${2}"
 }
 
 __clightctl_backlight_get() {
