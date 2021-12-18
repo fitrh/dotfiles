@@ -103,6 +103,6 @@ deleted = ' [$count](bright-white bold) '
 command = 'getgithost'
 directories = [".git"]
 when = 'git rev-parse --is-inside-work-tree 2>/dev/null'
-shell = ["sh","--norc","--noprofile"]
+shell = ["sh", "--norc", "--noprofile"]
 style = "bright-yellow bold"
 format = "at [$output]($style) "
