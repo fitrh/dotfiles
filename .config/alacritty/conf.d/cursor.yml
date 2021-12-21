@@ -1,5 +1,6 @@
 cursor:
   style:
-    shape: Block # Block, Beam, Underline
+    shape: Underline # Block, Beam, Underline
     blinking: Always
-  unfocused_hollow: true
+  unfocused_hollow: false
+  thickness: 0.25
