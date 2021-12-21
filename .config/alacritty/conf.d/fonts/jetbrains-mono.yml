@@ -1,15 +1,15 @@
 font:
   normal:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     style: Regular
   italic:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     style: Italic
   bold:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     style: Bold
   bold_italic:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     styel: Bold Italic
   size: 10.0
   offset:
