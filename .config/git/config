@@ -1,0 +1,33 @@
+[core]
+        pager = delta
+
+[commit]
+	gpgsign = true
+
+[delta]
+        navigate = true
+        line-numbers = true
+        side-by-side = true
+        features = decorations
+
+[diff]
+	submodule = short
+        colorMoved = default
+
+[help]
+	autcorrect = 5
+
+[init]
+	defaultBranch = main
+
+[interactive]
+        diffFilter = delta --color-only
+
+[merge]
+	tool = nvimdiff
+        conflictstyle = diff3
+
+[user]
+	name = fitrh
+	email = fitrahm17h@student.unhas.ac.id
+	signingkey = D2A41BC11275406C
