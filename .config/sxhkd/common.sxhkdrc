@@ -27,10 +27,7 @@ super + shift + Tab
 alt + Delete
         exec slock
 
-shift + Delete
-        exec prompt-power 4 "ver"
-
-alt + shift + Delete
+ctrl + Delete
         exec prompt-power 5 "ver"
 
 ctrl + alt + Delete
