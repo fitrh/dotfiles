@@ -8,7 +8,7 @@ set_backlight_gamma() (
     BACKLIGHT=$(bc <<<"scale=0; $BACKLIGHT * 100 / 1")
     GAMMA=$(<"$STATE/gamma")
 
-    if [[ "$HOUR" -gt 20 || "$HOUR" -lt 8 ]]; then
+    if [[ "$HOUR" -ge 20 || "$HOUR" -lt 8 ]]; then
         [[ "$GAMMA" -ge 6400 ]] && GAMMA=4500
         [[ "$BACKLIGHT" -ge 40 ]] && BACKLIGHT=20
     else
