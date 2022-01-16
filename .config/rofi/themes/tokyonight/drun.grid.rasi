@@ -118,5 +118,3 @@ element selected {
     border-radius: 6px;
     border-color: @accent;
 }
-
-/* vim: set filetype=css: */

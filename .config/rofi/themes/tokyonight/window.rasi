@@ -38,5 +38,3 @@ element-text {
   font: "SF Mono 10";
   horizontal-align: 0.5;
 }
-
-/* vim: set ft=css: */

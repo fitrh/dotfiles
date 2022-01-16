@@ -13,11 +13,11 @@ prompt {
 }
 
 * {
-    dark: #16161E;
+    dark: #16161E22;
     dark-1: #232433;
     dark-2: #2a2b3d;
     dark-3: #3b3d57;
-    background: #1a1b26;
+    background: #1a1b2688;
     foreground: #a9b1d6;
     black: #32344a;
     br-black: #444b6a;
@@ -87,14 +87,14 @@ scrollbar {
 }
 
 inputbar {
-border: 0 0 0;
-children: [ textbox-icon, prompt, entry ];
+    border: 0 0 0;
+    children: [ textbox-icon, prompt, entry ];
 }
 
 textbox-icon, prompt {
     padding: 11px;
     expand: false;
-    border: 0 1px 0 0;
+    border: 0 0 0 0;
     margin: 0 -2px 0 0;
 }
 
@@ -109,21 +109,22 @@ entry, element {
 element-icon {
     size: 24px;
     border: 0px;
-    background-color: @bg-dark;
+    background-color: #0000;
 }
 
 element-icon selected {
-    background-color: @bg;
+    background-color: #0000;
 }
 
 element-text {
     padding: 0 4px;
     vertical-align: 0.5;
-    background-color: @bg-dark;
+    background-color: #0000;
 }
 
 element-text selected {
-    background-color: @bg;
+    text-color: @accent;
+    background-color: #0000;
 }
 
 textbox {
@@ -148,11 +149,11 @@ textbox-icon, prompt, entry {
 }
 
 prompt, entry {
-    background-color: @bg-focus;
+    background-color: #0000;
 }
 
 textbox-icon, prompt {
-    background-color: @dark-1;
+    background-color: #0000;
 }
 
 prompt {
@@ -170,7 +171,7 @@ entry {
 }
 
 element {
-    background-color: @bg-dark;
+    background-color: #0000;
     text-color: @fg;
     margin: 0 8px;
     border-radius: 8px;

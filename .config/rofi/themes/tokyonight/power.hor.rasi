@@ -36,5 +36,3 @@ element-text {
 element-text selected {
     color: @br-blue;
 }
-
-/* vim: set ft=css: */

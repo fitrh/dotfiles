@@ -20,5 +20,3 @@ textbox-icon {
 prompt {
     enabled: false;
 }
-
-/* vim: set ft=css: */

@@ -175,5 +175,3 @@ element selected {
     background-color: @bg-dark;
     text-color: @accent;
 }
-
-/* vim: set ft=css: */
