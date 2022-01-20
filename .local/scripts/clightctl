@@ -36,6 +36,12 @@ __clightctl_backlight() (
         "l" | "lower")
             __clightctl_backlight_lower
             ;;
+        "ma" | "max")
+            __clightctl_backlight_set 100
+            ;;
+        "mi" | "min")
+            __clightctl_backlight_set 10
+            ;;
     esac
 )
 
@@ -107,6 +113,12 @@ __clightctl_gamma() (
             ;;
         "l" | "lower")
             __clightctl_gamma_lower
+            ;;
+        "ma" | "max")
+            __clightctl_gamma_set 6400
+            ;;
+        "mi" | "min")
+            __clightctl_gamma_set 1900
             ;;
     esac
 )
