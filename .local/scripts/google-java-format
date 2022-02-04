@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-DIR="$HOME/git/google-java-format"
-FORMATTER="$DIR/core/target/google-java-format-HEAD-SNAPSHOT-all-deps.jar"
-exec java -jar "$FORMATTER" "$@"
+REPO="${MAVEN_USER_HOME:-$HOME/.m2}/repository"
+PACKAGE="com/google/googlejavaformat/google-java-format"
+JAR="google-java-format-HEAD-SNAPSHOT-all-deps.jar"
+exec java -jar "$REPO/$PACKAGE/HEAD-SNAPSHOT/$JAR" "$@"
