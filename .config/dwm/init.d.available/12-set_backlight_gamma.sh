@@ -3,7 +3,7 @@
 set_backlight_gamma() (
     local BACKLIGHT GAMMA HOUR
     local STATE="${XDG_STATE_HOME:-$HOME/.local/state}"
-    local NIGHT_MODE="$STATE/dwm/night_mode"
+    local NIGHT_MODE="$STATE/clightctl/is_night_mode"
     local CLIGHT_STATE="$STATE/clightctl"
     HOUR=$(date +"%-H")
     BACKLIGHT=$(<"$CLIGHT_STATE/backlight")

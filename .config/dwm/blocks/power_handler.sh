@@ -21,8 +21,8 @@ left_handler() {
 
 middle_handler() {
     local STATE="${XDG_STATE_HOME:-$HOME/.local/state}"
-    local NIGHT_MODE="${STATE}/dwm/night_mode"
-    local CLIGHT_STATE="${STATE}/clightctl"
+    local CLIGHT_STATE="${CLIGHT_STATE}/clightctl"
+    local NIGHT_MODE="${STATE}/is_night_mode"
     local APP_NAME="dwmblocks power handler"
     local IS_NIGHT_MODE MODE BACKLIGHT_LEVEL GAMMA_LEVEL
 
