@@ -47,7 +47,7 @@ prompt {
     off:      @red;
 
     text-font:      "SF Mono 14";
-    text-mono-font: "SF Mono 12";
+    text-font-mono: "SF Mono 12";
     icon-font:      "SFMono Nerd Font 22";
 
     background-color: @bg;
