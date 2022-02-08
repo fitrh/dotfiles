@@ -27,5 +27,5 @@ exec unclutter --timeout 3 \
     --start-hidden &
 
 while true; do
-    /usr/local/bin/dwm 2>"${DWM_LOG}/$(date +'%F_%H%M%S').log"
+    /usr/local/bin/dwm 2>"$DWM_LOG/$(date +'%F_%H%M%S').log"
 done
