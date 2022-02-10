@@ -1,7 +1,7 @@
 super + {h, j, k, l}
         berryc window_move {-8 0, 0 8, 0 -8, 8 0}
 
-super + shift +  {h, j, k, l}
+super + shift + {h, j, k, l}
         berryc window_resize {-8 0, 0 8, 0 -8, 8 0}
 
 super + {1-9}
@@ -11,7 +11,7 @@ super + shift + {1-9}
         berryc send_to_workspace {0-9}
 
 alt + shift + {braceleft, braceright}
-        ~/.config/berry/command/shift_workspace {"prev", "next"}
+        "$BERRYC"shift_workspace {"prev", "next"}
 
 super + m
         berryc window_monocle

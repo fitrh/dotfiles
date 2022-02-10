@@ -5,8 +5,15 @@ SXHKD_CONF="$CONF_DIR/sxhkd"
 BERRY_SXHKD="$SXHKD_CONF/wm/berry.sxhkdrc"
 DUNST_SXHKD="$SXHKD_CONF/util/dunst.sxhkdrc"
 COMMON_SXHKD="$SXHKD_CONF/common.sxhkdrc"
-WALLPAPER_DIR="$HOME/pictures/wallpapers"
-WALLPAPER="$WALLPAPER_DIR/Earth & The Satelite - Tokyo Night Darker.png"
+BERRYC="$CONF_DIR/berry/command/"
+STARTXD="$CONF_DIR/berry/startx.d/"
+
+export BERRYC
+
+for SCRIPT in "$STARTXD"*.sh; do
+    # shellcheck source=/dev/null
+    [[ -x "$SCRIPT" ]] && . "$SCRIPT"
+done
 
 exec dunst &
 exec sxhkd -c "$BERRY_SXHKD" "$DUNST_SXHKD" "$COMMON_SXHKD" &
@@ -15,6 +22,5 @@ exec unclutter --timeout 3 \
     --ignore-scrolling \
     --hide-on-touch \
     --start-hidden &
-feh --no-fehbg --bg-fill "$WALLPAPER"
 
 exec berry
