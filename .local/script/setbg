@@ -17,7 +17,7 @@ setbg() {
             BG="$2"
             ;;
         *)
-            BG="${BG_SRC}/$1"
+            BG="$BG_SRC/$1"
             ;;
     esac
 
