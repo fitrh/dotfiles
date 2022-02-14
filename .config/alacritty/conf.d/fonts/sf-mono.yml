@@ -10,7 +10,7 @@ font:
     style: Bold
   bold_italic:
     family: SF Mono
-    styel: Bold Italic
+    style: Bold Italic
   size: 8.5
   offset:
     x: 0

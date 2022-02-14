@@ -10,7 +10,7 @@ font:
     style: Bold
   bold_italic:
     family: Iosevka Term Extended
-    styel: Bold Italic
+    style: Bold Italic
   size: 10.0
   offset:
     x: 0
