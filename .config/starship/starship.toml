@@ -8,7 +8,6 @@ $git_commit\
 $git_state\
 $git_status\
 $git_metrics\
-$hg_branch\
 $docker_context\
 $package\
 $cmake\
