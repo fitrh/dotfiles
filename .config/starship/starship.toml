@@ -45,7 +45,6 @@ $gcloud\
 $openstack\
 $env_var\
 $crystal\
-$cmd_duration\
 $line_break\
 $jobs\
 $character"""
@@ -63,10 +62,6 @@ disabled = true
 success_symbol = "[](blue)"
 error_symbol = "[](bright-red)"
 vicmd_symbol = "[](black)"
-
-[cmd_duration]
-show_notifications = true
-min_time_to_notify = 60_000
 
 [directory]
 truncation_length = 1
