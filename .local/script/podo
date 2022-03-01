@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+main() (
+    local REST=1
+    local WORK=1
+    local ROUND=1
+    while true; do
+        __podo_notify "braindump" "Work" "#ff4f8f" " W O R K "
+        printf "[ W O R K ] Iteration: %d\n" "$WORK"
+        sleep 25m
+        WORK=$((WORK + 1))
+        if [[ "$REST" -eq 4 ]]; then
+            __podo_notify "caffeine" "Rest" "#EEEEEE" "LONG REST"
+            printf "[LONG REST] Round: %d\n" "$ROUND"
+            REST=1
+            WORK=1
+            sleep 15m
+            ROUND=$((ROUND + 1))
+        else
+            __podo_notify "caffeine" "Rest" "#EEEEEE" " R E S T "
+            printf "[ R E S T ] Iteration: %d\n" "$REST"
+            sleep 5m
+            REST=$((REST + 1))
+        fi
+    done
+)
+
+__podo_notify() (
+    local ICON="$1"
+    local SUMMARY="$2"
+    local MESSAGE="<span font='16' foreground='$3'><b>$4</b></span>"
+    notify-send \
+        -a "Pomodopomodo" \
+        -h string:x-dunst-stack-tag:Pomodopomodo \
+        -i "$ICON" \
+        -t 10000 \
+        "$SUMMARY" "$MESSAGE"
+)
+
+main "$@"
