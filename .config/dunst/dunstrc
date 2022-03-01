@@ -517,6 +517,11 @@
     appname = "picom"
     format = "<b>%s</b>"
 
+[pomodopomodo]
+    appname = "Pomodopomodo"
+    format = "%b"
+    history_ignore = yes
+
 [scrot]
     appname = "SCROT"
     background = "#1a1b26"
