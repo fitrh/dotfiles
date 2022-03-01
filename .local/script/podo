@@ -28,10 +28,11 @@ main() (
 __podo_notify() (
     local ICON="$1"
     local SUMMARY="$2"
-    local MESSAGE="<span font='16' foreground='$3'><b>$4</b></span>"
+    local MESSAGE="<span font='16'><b>$4</b></span>"
     notify-send \
         -a "Pomodopomodo" \
         -h string:x-dunst-stack-tag:Pomodopomodo \
+        -h string:fgcolor:"$3" \
         -i "$ICON" \
         -t 10000 \
         "$SUMMARY" "$MESSAGE"
