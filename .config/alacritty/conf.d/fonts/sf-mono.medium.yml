@@ -1,0 +1,20 @@
+font:
+  normal:
+    family: SF Mono
+    style: Medium
+  italic:
+    family: SF Mono
+    style: Medium Italic
+  bold:
+    family: SF Mono
+    style: Bold
+  bold_italic:
+    family: SF Mono
+    style: Bold
+  size: 8.5
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
