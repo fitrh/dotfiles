@@ -9,7 +9,7 @@ _setbg_feh() {
 }
 
 setbg() {
-    local BG_SRC="$HOME/pictures/wallpapers"
+    local BG_SRC="$HOME/picture/wallpaper"
     local BG
 
     case "$1" in

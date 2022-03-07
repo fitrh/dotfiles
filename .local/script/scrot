@@ -6,7 +6,7 @@ __scrot_notify() {
     local FILE_PATH="$3/$FILE_NAME"
     local INDEX=("$3/"*.jpg)
     # shellcheck disable=SC2088
-    local DEST_DIR="~/pictures/screenshot/menyoki"
+    local DEST_DIR="~/picture/screenshot/menyoki"
 
     FILE_NAME="  <i><span foreground='#a9b1d6'>$FILE_NAME</span></i>"
     DEST_DIR="  <span foreground='#a9b1d6'><b>$DEST_DIR</b></span>"
@@ -33,7 +33,7 @@ __scrot_take() {
     local MODE="$1"
     local ARG="$2"
     local MSG="$3"
-    local DEST_DIR="$HOME/pictures/screenshot/menyoki"
+    local DEST_DIR="$HOME/picture/screenshot/menyoki"
     local FILE_NAME
     FILE_NAME=$(date +"%Y%m%d_%H%M%S")_"$MODE".jpg
 
