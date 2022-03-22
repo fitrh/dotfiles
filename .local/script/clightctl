@@ -15,6 +15,12 @@ main() (
         "get")
             __clightctl_get
             ;;
+        "r" | "restore")
+            __clightctl_restore
+            ;;
+        "re" | "restart")
+            __clightctl_restart
+            ;;
         "notify")
             __clightctl_notify "$METHOD" "$VALUE" "$4"
             ;;
@@ -181,6 +187,26 @@ __clightctl_gamma_lower() (
 __clightctl_get() (
     printf "Brightness : %5s\n" "$(__clightctl_backlight_get)"
     printf "Gamma      : %s\n" "$(__clightctl_gamma_get)"
+)
+
+__clightctl_restore() (
+    local BACKLIGHT GAMMA
+    local DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
+    local CLIGHT_STATE="$DIR/clightctl"
+
+    [[ -f "$CLIGHT_STATE/backlight" ]] &&
+        BACKLIGHT="$(<"$CLIGHT_STATE/backlight")"
+
+    [[ -f "$CLIGHT_STATE/gamma" ]] &&
+        GAMMA="$(<"$CLIGHT_STATE/gamma")"
+
+    __clightctl_backlight_set "$BACKLIGHT"
+    __clightctl_gamma_set "$GAMMA"
+)
+
+__clightctl_restart() (
+    sudo systemctl restart clightd.service
+    __clightctl_restore
 )
 
 __clightctl_notify() (
