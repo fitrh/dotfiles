@@ -511,6 +511,7 @@
 
 [notify-send]
     appname = "notify-send"
+    format = "<b>%s</b>"
     history_ignore = yes
 
 [picom]
