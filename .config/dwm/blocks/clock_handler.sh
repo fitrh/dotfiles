@@ -8,7 +8,7 @@ left_handler() {
     DATE="<span foreground='#7da6ff'>$(date +'%-d')</span>"
     YEAR="$(date +'%Y')"
     TIMEZONE="$(date +'%Z')"
-    dunstify -a "dwmblocks clock handler" \
+    notify-send -a "dwmblocks clock handler" \
         -h string:x-dunst-stack-tag:dwmblocks \
         "$(date +'%H:%M %p')" "$DAY, $MONTH $DATE $YEAR ($TIMEZONE)"
 }

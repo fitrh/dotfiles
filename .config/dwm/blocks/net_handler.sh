@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 notify() {
-    dunstify -a "dwmblocks" -u low -t 1000 \
+    notify-send -a "dwmblocks" -u low -t 1000 \
         -h string:x-dunst-stack-tag:dwmblocks \
         "Network Handler" "$1"
 }
@@ -44,7 +44,7 @@ net_wireless_get_info() {
     BODY="<span foreground='#b9f27c'>󰤯 </span> <b>$SSID</b>"
     BODY="$BODY\n<span foreground='#bb9af7'>$ICON </span> <b>$STRENGTH%</b>\n"
 
-    dunstify -a "dwmblocks network wireless" -u low \
+    notify-send -a "dwmblocks network wireless" -u low \
         -h string:x-dunst-stack-tag:dwmblocks \
         -h string:hlcolor:"#bb9af7" \
         -h int:value:"$STRENGTH" \

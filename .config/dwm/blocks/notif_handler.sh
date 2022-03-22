@@ -3,7 +3,7 @@
 notify() {
     local MESSAGE="$1"
     local TIMEOUT="${2:-2000}"
-    dunstify -i "preferences-desktop-notification" \
+    notify-send -i "preferences-desktop-notification" \
         -h string:x-dunst-stack-tag:dwmblocks \
         -t "$TIMEOUT" "$MESSAGE"
     sigdwmblocks 5

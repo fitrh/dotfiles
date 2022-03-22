@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 notify() {
-    dunstify -a "dwmblocks" -u low -t 1000 \
+    notify-send -a "dwmblocks" -u low -t 1000 \
         -h string:x-dunst-stack-tag:dwmblocks \
         "Network Speed Handler" "$1"
 }
@@ -33,7 +33,7 @@ left_handler() {
         TX="$(<"$CLASS_PATH/$DEVICE/statistics/tx_bytes")"
         RX="$(pretty_print "$RX" "Received   " "#bb9af7")"
         TX="$(pretty_print "$TX" "Transferred" "#ff9e64")"
-        dunstify -a "dwmblocks network traffic" -u low \
+        notify-send -a "dwmblocks network traffic" -u low \
             -h string:x-dunst-stack-tag:dwmblocks \
             -i "network-wireless" "$DEVICE" "$RX\n$TX"
     done

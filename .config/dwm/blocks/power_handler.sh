@@ -13,7 +13,7 @@ left_handler() {
         TAG="charging"
     fi
 
-    dunstify -a "$APP_NAME $TAG" -t 5000 \
+    notify-send -a "$APP_NAME $TAG" -t 5000 \
         -i "$ICON" \
         -h string:x-dunst-stack-tag:dwmblocks \
         -h int:value:"$CAPACITY" "$CAPACITY%"
@@ -53,7 +53,7 @@ middle_handler() {
     fi
 
     clightctl notify
-    dunstify -a "$APP_NAME" -t 4900 \
+    notify-send -a "$APP_NAME" -t 4900 \
         -h string:x-dunst-stack-tag:dwmblocks \
         "$MODE"
 }
