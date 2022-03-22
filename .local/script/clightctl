@@ -56,6 +56,7 @@ __clightctl_backlight_set() (
             org.clightd.clightd.Backlight2 \
             Set d\(du\) "$PERCENTAGE" 0 0
 
+        PERCENTAGE=$(printf "%.f" "$(bc <<<"$PERCENTAGE * 100")")
         __clightctl_write_state "$PERCENTAGE" "backlight"
     fi
 )
