@@ -52,14 +52,15 @@ super + grave
         exec st -f "SF Mono:size=8.4"
 
 alt + BackSpace
-        exec alacritty --class "codespace","codespace" --command tmux
+        exec alacritty --class "codespace","codespace" \
+        --command tmux new -As $TMUX_DEFAULT_SESSION
 
 alt + shift + BackSpace
         exec st \
         -c "codespace" \
         -t "Suckless Terminal" \
         -f "SF Mono:size=8.4" \
-        -e tmux
+        -e tmux new -As $TMUX_DEFAULT_SESSION
 
 alt + t
         exec alacritty --class "Float Term","Float Term" \
