@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PLUGINS="$JDTLS_HOME"/org.eclipse.jdt.ls.product/target/repository/plugins
-CONFIG="$JDTLS_HOME"/org.eclipse.jdt.ls.product/target/repository
+PLUGINS="$JDTLS_HOME"/plugins
+CONFIG="$JDTLS_HOME"/config_linux
 
 GRADLE_HOME="$LOCAL_LIB"/gradle/bin/gradle exec "$JAVA_HOME"/bin/java \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
@@ -15,5 +15,5 @@ GRADLE_HOME="$LOCAL_LIB"/gradle/bin/gradle exec "$JAVA_HOME"/bin/java \
     --add-opens java.base/java.util=ALL-UNNAMED \
     --add-opens java.base/java.lang=ALL-UNNAMED \
     -jar "$PLUGINS"/org.eclipse.equinox.launcher_*.jar \
-    -configuration "$CONFIG"/config_linux \
+    -configuration "$CONFIG" \
     -data "${1:-$JAVA_WORKSPACE}"
