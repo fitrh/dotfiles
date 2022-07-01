@@ -24,7 +24,34 @@ main() (
         "notify")
             __clightctl_notify "$METHOD" "$VALUE" "$4"
             ;;
+        "h" | "help")
+            __clightctl_usage
+            ;;
     esac
+)
+
+__clightctl_usage() (
+    echo "
+Usage: clightctl [module|option] [method] [value]
+
+    module:
+        - backlight : Adjust screen brightness
+        - gamma     : Adjust screen temperature
+
+    option:
+        - get        : Print current brightness and temperature
+        - r|restore  : Set brightness and temperature from \$XDG_STATE_HOME/clightctl
+        - re|restart : Restart clightd.service
+        - h|help     : Show this help
+
+    method:
+        - s|set   : Set [module] value
+        - g|get   : Get [module] current value
+        - r|raise : Raise [module] value
+        - l|lower : Lower [module] value
+        - ma|max  : Set [module] value to it's maximum value
+        - mi|min  : Set [module] value to it's minimum value
+"
 )
 
 __clightctl_backlight() (
