@@ -17,6 +17,7 @@ for SCRIPT in "$DWM_INIT_D"/*.sh; do
     [[ -x "$SCRIPT" ]] && . "$SCRIPT"
 done
 
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec dwmblocks &
 exec dunst &
 exec sxhkd -c "$DWM_SXHKD" "$DUNST_SXHKD" "$PICOM_SXHKD" "$COMMON_SXHKD" &
