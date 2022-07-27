@@ -70,6 +70,14 @@ alt + t
         window.dimensions.lines=10 \
         -e fish -C pfetch
 
+alt + shift + t
+        exec alacritty --class "Float Term","Float Term" \
+        --title "System Fetch Alt" \
+        -o font.size=10 \
+        window.dimensions.columns=18 \
+        window.dimensions.lines=10 \
+        -e fish -C fet
+
 super + e
         exec alacritty --class "File Manager","File Manager" \
         --title "lf - File Manager" \
