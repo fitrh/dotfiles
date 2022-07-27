@@ -66,17 +66,15 @@ alt + t
         exec alacritty --class "Float Term","Float Term" \
         --title "System Fetch" \
         -o font.size=10 \
-        window.dimensions.columns=36 \
+        window.dimensions.columns=40 \
         window.dimensions.lines=10 \
-        window.opacity=0.8 \
         -e fish -C pfetch
 
 super + e
         exec alacritty --class "File Manager","File Manager" \
         --title "lf - File Manager" \
-        -o window.opacity=0.8 \
-        window.dimensions.columns=94 \
-        window.dimensions.lines=30 \
+        -o window.dimensions.columns=94 \
+        window.dimensions.lines=24 \
         -e lf
 
 super + w
