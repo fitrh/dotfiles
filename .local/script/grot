@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+# grot: grim (+slurp) screenshot
+
+usage() (
+    echo -e "
+Usage: grot \e[3mscope\e[0m
+
+    \e[3mscope\e[0m:
+        - r|region
+        - f|full
+        - p|pick
+"
+)
+
+notify() (
+    SCOPE="$1"
+    PATH="$2"
+    FILENAME="$3"
+
+    # FIX: notify-send not found in here or if with `if` block
+    [[ -f "{$PATH}/$FILENAME" ]] &&
+        notify-send "$SCOPE Screenshot" "$FILENAME" \
+            -t 2500 \
+            -i "$PATH/$FILENAME"
+)
+
+shot() (
+    grim -t jpeg -q 100 "$@"
+)
+
+region() (
+    shot -g "$(slurp)" "$@"
+)
+
+full() (
+    shot "$@"
+)
+
+pick() (
+    grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-
+)
+
+main() (
+    SCOPE="$1"
+    FN="$1"
+    FILENAME="$(date +'%Y%m%d_%H%M%S').jpeg"
+    SAVEPATH="${GRIM_DEFAULT_DIR:-$XDG_PICTURES_DIR:-$HOME/picture}"
+
+    case $SCOPE in
+        "r" | "region")
+            SCOPE="Region"
+            FN="region"
+            ;;
+        "f" | "full")
+            SCOPE="Fullscreen"
+            FN="full"
+            ;;
+        "p" | "pick")
+            pick
+            return 0
+            ;;
+        "h" | "help")
+            usage
+            return 0
+            ;;
+        *)
+            printf "\e[0;91m%s\e[0m " "$SCOPE"
+            printf "invalid argument.\n"
+            usage
+            return 1
+            ;;
+    esac
+
+    "$FN" "$SAVEPATH/$FILENAME"
+    notify-send "$SCOPE Screenshot" "$FILENAME" \
+        -t 2500 \
+        -i "$SAVEPATH/$FILENAME"
+)
+
+main "$@"
