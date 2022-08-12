@@ -3,6 +3,7 @@
 PLUGINS="$JDTLS_HOME"/plugins
 CONFIG="$JDTLS_HOME"/config_linux
 
+unset JAVA_TOOL_OPTIONS
 GRADLE_HOME="$LOCAL_LIB"/gradle/bin/gradle exec "$JAVA_HOME"/bin/java \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
     -Dosgi.bundles.defaultStartLevel=4 \
