@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=river
+export XDG_CURRENT_DESKTOP=river
+
+export GDK_BACKEND=wayland
+export GTK_THEME=Adwaita:dark
+
+export QT_QPA_PLATFORM="wayland;xcb"
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+export AWT_TOOLKIT=MToolkit
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+export PYTHON_TYPE_STUBS="$HOME/git/python-type-stubs/"
+export TMUX_STATUSBAR_THEME="tokyonight/bgless"
+
+LOG=/tmp/river-"$(date +%F_%s)".log
+exec river -log-level debug >"$LOG" 2>&1

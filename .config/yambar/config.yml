@@ -1,0 +1,342 @@
+font: &font SF Pro Text:style=Bold:pixelsize=11
+icon-font: &icon-font SF Mono:style=Regular:pixelsize=11
+fg: &fg a9b1d6ff
+background-focus: &background-focus
+  background:
+    color: 16161eff
+
+bar:
+  height: 24
+  location: top
+  background: 1a1b26cc
+  layer: bottom
+  right-spacing: 16
+  font: *font
+  foreground: *fg
+
+  left:
+    - river:
+        anchors:
+          - base: &river_base
+              margin: 10
+              default:
+                string:
+                  text: '{id}'
+                  font: *font
+              conditions:
+                id > 9:
+                  string:
+                    text: 'x'
+                    font: *font
+          - view-title: &view-title
+              string:
+                text: "{title}"
+                max: 40
+        title:
+          map:
+            margin: 10
+            default: *view-title
+            conditions:
+              mode != "normal":
+                string:
+                  on-click:
+                    left: riverctl enter-mode normal
+                  text: "{mode}"
+                  foreground: f7768eff
+        content:
+          map:
+            on-click:
+              left: sh -c "riverctl set-focused-tags $((1 << ({id} - 1)))"
+              right: sh -c "riverctl toggle-focused-tags $((1 << ({id} -1)))"
+              middle: sh -c "riverctl toggle-view-tags $((1 << ({id} -1)))"
+            conditions:
+              id > 9:
+                empty: {}
+              state == urgent:
+                map:
+                  <<: *river_base
+                  foreground: f7768eff
+                  deco:
+                    background:
+                      color: 414868ff
+              state == focused:
+                map:
+                  <<: *river_base
+                  deco: *background-focus
+              state == visible:
+                map:
+                  conditions:
+                    ~occupied:
+                      map:
+                        <<: *river_base
+                    occupied:
+                      map:
+                        <<: *river_base
+                        deco: *background-focus
+              state == unfocused:
+                map:
+                  <<: *river_base
+              state == invisible:
+                map:
+                  foreground: 414868ff
+                  conditions:
+                    ~occupied:
+                      empty: {}
+                    occupied:
+                      map:
+                        <<: *river_base
+
+  center:
+    - clock:
+        time-format: "%I:%M %p"
+        date-format: "%c"
+        content:
+          string:
+            on-click:
+              left: sh -c "notify-send '{date}'"
+            text: "{time}"
+
+  right:
+    - network:
+        anchors:
+          - dl-speed: &dl-speed
+              list:
+                on-click:
+                  left: notify-net-data-usage
+                spacing: 6
+                items:
+                  - string:
+                      font: *icon-font
+                      text: ""
+                  - map:
+                      default:
+                        string:
+                          text: "{dl-speed} Bit/s"
+                      conditions:
+                        dl-speed >= 1000000:
+                          string:
+                            text: "{dl-speed:mib} MiB/s"
+                        dl-speed >= 1000:
+                          string:
+                            text: "{dl-speed:kib} KiB/s"
+          - ul-speed: &ul-speed
+              list:
+                on-click:
+                  left: notify-net-data-usage
+                spacing: 6
+                items:
+                  - string:
+                      font: *icon-font
+                      text: ""
+                  - map:
+                      default:
+                        string:
+                          text: "{ul-speed} Bit/s"
+                      conditions:
+                        dl-speed >= 1000000:
+                          string:
+                            text: "{ul-speed:mib} MiB/s"
+                        dl-speed >= 1000:
+                          string:
+                            text: "{ul-speed:kib} KiB/s"
+        name: wlp2s0
+        poll-interval: 1
+        content:
+          map:
+            conditions:
+              ~carrier:
+                empty: {}
+              carrier:
+                map:
+                  default:
+                    list:
+                      spacing: 4
+                      items:
+                        - string:
+                            font: *icon-font
+                            text: "ﯳ"
+                            foreground: ff9e64ff
+                        - string:
+                            text: "{state}"
+                  conditions:
+                    state == up:
+                      map:
+                        default:
+                          list:
+                            spacing: 8
+                            items:
+                              - *dl-speed
+                              - *ul-speed
+                              - list:
+                                  on-click:
+                                    left: sh -c "notify-send 'SIGNAL {signal}dBm'"
+                                  spacing: 6
+                                  items:
+                                    - string:
+                                        font: *icon-font
+                                        text: ""
+                                    - string:
+                                        text: "{ssid}"
+                                        max: 10
+                        conditions:
+                          ssid == "":
+                            list:
+                              spacing: 8
+                              items:
+                                - *dl-speed
+                                - *ul-speed
+                                - list:
+                                    spacing: 4
+                                    items:
+                                      - string:
+                                          font: *icon-font
+                                          text: ""
+                                      - string:
+                                          text: "{ipv4}"
+                    state == dormant:
+                      map:
+                        default:
+                          list:
+                            spacing: 6
+                            items:
+                              - string:
+                                  font: *icon-font
+                                  text: ""
+                                  foreground: ff9e64ff
+                              - string:
+                                  text: "{ssid}"
+                                  max: 10
+                        conditions:
+                          ssid == "":
+                            list:
+                              spacing: 4
+                              items:
+                                - string:
+                                    font: *icon-font
+                                    text: ""
+                                    foreground: ff9e64ff
+                                - string:
+                                    text: "{ipv4}"
+
+    - alsa:
+        card: default
+        mixer: Master
+        content:
+          map:
+            on-click:
+              middle: volctl mute
+              wheel-up: volctl raise
+              wheel-down: volctl lower
+            default:
+              list:
+                foreground: 7aa2f7ff
+                spacing: 4
+                items:
+                  - string:
+                      font: *icon-font
+                      text: "墳"
+                      foreground: *fg
+                  - string:
+                      text: "{percent}%"
+                      foreground: *fg
+            conditions:
+              muted:
+                list:
+                  foreground: 737aa2ff
+                  spacing: 4
+                  items:
+                    - string:
+                        font: *icon-font
+                        text: "ﱝ"
+                    - string:
+                        text: "{percent}%"
+
+    - battery:
+        anchors:
+          - capacity-ramp: &capacity-ramp
+              ramp:
+                tag: capacity
+                font: *icon-font
+                items:
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+                  - string:
+                      text: " "
+        name: BAT1
+        content:
+          map:
+            on-click:
+              wheel-up: clightctl backlight raise
+              wheel-down: clightctl backlight lower
+            default:
+              list:
+                spacing: 2
+                items:
+                  - string:
+                      text: "ﮣ"
+                      font: *icon-font
+                  - string:
+                      text: "{capacity}% {state}"
+            conditions:
+              state == unknown:
+                list:
+                  spacing: 3
+                  items:
+                    - string:
+                        text: "ﮣ"
+                        font: *icon-font
+                    - *capacity-ramp
+                    - string:
+                        text: "{capacity}%"
+              state == full:
+                string:
+                  text: " "
+                  font: *icon-font
+              state == charging:
+                list:
+                  spacing: 3
+                  items:
+                    - string:
+                        text: ""
+                        font: *icon-font
+                    - *capacity-ramp
+                    - string:
+                        text: "{capacity}%"
+              state == not charging:
+                list:
+                  spacing: 3
+                  items:
+                    - string:
+                        text: ""
+                        font: *icon-font
+                    - *capacity-ramp
+                    - string:
+                        text: "{capacity}%"
+              state == discharging:
+                list:
+                  spacing: 3
+                  items:
+                    - *capacity-ramp
+                    - string:
+                        text: "{capacity}%"
+
+    - label:
+        content:
+          empty:
+            margin: 1

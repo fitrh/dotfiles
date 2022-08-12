@@ -1,0 +1,145 @@
+#!/usr/bin/env sh
+
+# Appearence
+riverctl background-color 0x16161eff
+riverctl border-width 1
+riverctl border-color-focused 0x414868ff # 0x1a1b261a
+riverctl border-color-unfocused 0x16161eff # 0x16161e80
+
+# Layout
+riverctl attach-mode bottom                                # New view attached to the bottom of view stack
+"${XDG_CONFIG_HOME:-$HOME/.config}/river/layout/stacktile" # Spawn layout generator
+
+# Autostart
+riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
+riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
+riverctl spawn "systemctl --user start xdg-desktop-portal.service"
+riverctl spawn /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+riverctl spawn "wlr-randr --output VGA-2 --off"
+riverctl spawn mako
+riverctl spawn yambar
+riverctl spawn "wlsunset -l -5.1 -L 119.4" # Makassar
+
+# Input
+riverctl set-repeat 50 250                                        # Set keyboard repeat rate (rate/second, delay(ms))
+riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touchpad tap-to-click
+
+# Filter
+## Make certain views start floating
+riverctl float-filter-add title "Firefox — Sharing Indicator"
+riverctl float-filter-add app-id float-term
+riverctl float-filter-add app-id imv
+riverctl float-filter-add app-id jetbrains-studio
+riverctl float-filter-add app-id mpv
+riverctl float-filter-add app-id telegramdesktop
+riverctl float-filter-add app-id thunar
+riverctl float-filter-add title "Tor Browser"
+riverctl float-filter-add app-id wev
+
+# Mapping
+## Mouse
+riverctl map-pointer normal Super BTN_LEFT move-view    # Super + Left Mouse Button to move views
+riverctl map-pointer normal Super BTN_RIGHT resize-view # Super + Right Mouse Button to resize views
+
+## Key
+riverctl map normal Super+Shift E exit             # Super+Shift+E to exit river
+riverctl map normal Super+Shift C close            # Super+Shift+C to close the focused view
+riverctl map normal Super Return zoom              # Super+Return to bump the focused view to the top of the layout stack
+riverctl map normal Super+Shift Space toggle-float # Super+Space to toggle float
+riverctl map normal Super F toggle-fullscreen      # Super+F to toggle fullscreen
+
+### View management
+#### Super+{J,K} to focus the next/previous view in the layout stack
+riverctl map normal Super J focus-view next
+riverctl map normal Super K focus-view previous
+
+#### Super+Shift+{J,K} to swap the focused view with the next/previous view in the layout stack
+riverctl map normal Super+Shift J swap next
+riverctl map normal Super+Shift K swap previous
+
+#### Super+Alt+{H,J,K,L} to move views
+STEP=4
+riverctl map -repeat normal Super+Alt H move left "$STEP"
+riverctl map -repeat normal Super+Alt J move down "$STEP"
+riverctl map -repeat normal Super+Alt K move up "$STEP"
+riverctl map -repeat normal Super+Alt L move right "$STEP"
+
+#### Super+Alt+Shift+{H,J,K,L} to resize views
+riverctl map -repeat normal Super+Alt+Shift H resize horizontal -"$STEP"
+riverctl map -repeat normal Super+Alt+Shift J resize vertical -"$STEP"
+riverctl map -repeat normal Super+Alt+Shift K resize vertical "$STEP"
+riverctl map -repeat normal Super+Alt+Shift L resize horizontal "$STEP"
+
+#### Super+Alt+Control+{H,J,K,L} to snap views to screen edges
+riverctl map normal Super+Alt+Control H snap left
+riverctl map normal Super+Alt+Control J snap down
+riverctl map normal Super+Alt+Control K snap up
+riverctl map normal Super+Alt+Control L snap right
+
+### Output management
+#### Super+{Period,Comma} to focus the next/previous output
+riverctl map normal Super Period focus-output next
+riverctl map normal Super Comma focus-output previous
+
+#### Super+Shift+{Period,Comma} to send the focused view to the next/previous output
+riverctl map normal Super+Shift Period send-to-output next
+riverctl map normal Super+Shift Comma send-to-output previous
+
+### Tag management
+USED_TAGS=9
+
+for i in $(seq 1 "$USED_TAGS"); do
+    tag=$((1 << (i - 1)))
+    riverctl map normal Super "$i" set-focused-tags $tag               # Super+[1-9] to focus tag [0-8]
+    riverctl map normal Super+Shift "$i" set-view-tags $tag            # Super+Shift+[1-9] to tag focused view with tag [0-8]
+    riverctl map normal Super+Control "$i" toggle-focused-tags $tag    # Super+Ctrl+[1-9] to toggle focus of tag [0-8]
+    riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tag # Super+Shift+Ctrl+[1-9] to toggle tag [0-8] of focused view
+done
+
+ALL_TAGS=$(((1 << USED_TAGS) - 1))
+riverctl map normal Super 0 set-focused-tags $ALL_TAGS    # Super+0 to focus all tags
+riverctl map normal Super+Shift 0 set-view-tags $ALL_TAGS # Super+Shift+0 to tag focused view with all tags
+riverctl map normal Super Tab focus-previous-tags
+riverctl map normal Super+Shift Tab send-to-previous-tags
+
+SCRATCH_TAG=$((1 << (USED_TAGS + 1)))
+riverctl map normal Super P toggle-focused-tags $SCRATCH_TAG
+riverctl map normal Super+Shift P set-view-tags $SCRATCH_TAG
+riverctl spawn-tagmask $(( ALL_TAGS ^ SCRATCH_TAG ))
+
+### Media key
+for mode in normal locked; do
+    riverctl map $mode None XF86AudioRaiseVolume spawn "volctl raise"
+    riverctl map $mode None XF86AudioLowerVolume spawn "volctl lower"
+    riverctl map $mode None XF86AudioMute spawn "volctl mute"
+
+    riverctl map $mode None XF86MonBrightnessUp spawn "light r"
+    riverctl map $mode None XF86MonBrightnessDown spawn "light l"
+done
+
+### App
+APP_LAUNCHER="fuzzel --prompt ''"
+TERMINAL=alacritty
+ALT_TERMINAL=foot
+WEB_BROWSER=firefox-developer-edition
+FILE_MANAGER="$TERMINAL --class float-term -e lf" # thunar
+SESSION_LOCKER=gtklock
+
+riverctl map normal Alt Space spawn "$APP_LAUNCHER"
+riverctl map normal Super Space spawn "$TERMINAL"
+riverctl map normal Super+Shift Return spawn "$ALT_TERMINAL"
+riverctl map normal Alt Return spawn "$TERMINAL --class float-term"
+riverctl map normal Alt BackSpace spawn "$TERMINAL -e tmux new -As scratch"
+riverctl map normal Alt Delete spawn "$SESSION_LOCKER"
+riverctl map normal Control+Alt Delete spawn "fuzzel-power-prompt"
+riverctl map normal None Print spawn "grot f"
+riverctl map normal Super Print spawn "grot r"
+
+riverctl declare-mode launcher
+riverctl map normal Super R enter-mode launcher
+riverctl map launcher None F spawn "$WEB_BROWSER"
+riverctl map launcher Shift F spawn "$WEB_BROWSER --private-window"
+riverctl map launcher None E spawn "$FILE_MANAGER"
+riverctl map launcher Shift E spawn thunar
+riverctl map launcher None Escape enter-mode normal
+riverctl map launcher Control bracketleft enter-mode normal

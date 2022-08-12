@@ -1,0 +1,16 @@
+background-color=#16161EEE
+text-color=#A9B1D6FF
+padding=8
+border-size=1
+border-color=#414868EE
+icon-path=/usr/share/icons/Reversal-black-dark
+default-timeout=5000
+
+[urgency=low]
+background-color=#292E42EE
+border-color=#292E42EE
+default-timeout=2500
+
+[urgency=critical]
+border-color=#F7768EEE
+default-timeout=0

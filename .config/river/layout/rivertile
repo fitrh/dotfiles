@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+LAYOUT="rivertile"
+
+riverctl spawn "$LAYOUT -view-padding 2 -outer-padding 2 -main-ratio 0.55"
+riverctl default-layout "$LAYOUT"
+
+riverctl map normal Super H send-layout-cmd "$LAYOUT" "main-ratio -0.01"
+riverctl map normal Super L send-layout-cmd "$LAYOUT" "main-ratio +0.01"
+
+riverctl map normal Super+Shift H send-layout-cmd "$LAYOUT" "main-count +1"
+riverctl map normal Super+Shift L send-layout-cmd "$LAYOUT" "main-count -1"
+
+riverctl map normal Super Up send-layout-cmd "$LAYOUT" "main-location top"
+riverctl map normal Super Right send-layout-cmd "$LAYOUT" "main-location right"
+riverctl map normal Super Down send-layout-cmd "$LAYOUT" "main-location bottom"
+riverctl map normal Super Left send-layout-cmd "$LAYOUT" "main-location left"
