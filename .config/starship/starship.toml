@@ -10,7 +10,11 @@ $git_status\
 $git_metrics\
 $docker_context\
 $package\
+$buf\
+$bun\
+$c\
 $cmake\
+$container\
 $dart\
 $deno\
 $dotnet\
