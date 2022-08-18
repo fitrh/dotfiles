@@ -28,6 +28,7 @@ riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touch
 ## Make certain views start floating
 riverctl float-filter-add title "Firefox — Sharing Indicator"
 riverctl float-filter-add app-id float-term
+riverctl float-filter-add app-id discord
 riverctl float-filter-add app-id imv
 riverctl float-filter-add app-id jetbrains-studio
 riverctl float-filter-add app-id mpv
