@@ -1,19 +1,17 @@
-font: &font SF Pro Text:style=Bold:pixelsize=11
+font: &font SF Pro Text:style=Semibold:pixelsize=11
 icon-font: &icon-font SF Mono:style=Regular:pixelsize=11
 fg: &fg a9b1d6ff
 background-focus: &background-focus
   background:
     color: 16161eff
-
 bar:
-  height: 24
+  height: 26
   location: top
   background: 1a1b26cc
   layer: bottom
   right-spacing: 16
   font: *font
   foreground: *fg
-
   left:
     - river:
         anchors:
@@ -22,12 +20,10 @@ bar:
               default:
                 string:
                   text: '{id}'
-                  font: *font
               conditions:
                 id > 9:
                   string:
                     text: 'x'
-                    font: *font
           - view-title: &view-title
               string:
                 text: "{title}"
@@ -85,7 +81,6 @@ bar:
                     occupied:
                       map:
                         <<: *river_base
-
   center:
     - clock:
         time-format: "%I:%M %p"
@@ -95,7 +90,6 @@ bar:
             on-click:
               left: sh -c "notify-send '{date}'"
             text: "{time}"
-
   right:
     - network:
         anchors:
@@ -217,7 +211,6 @@ bar:
                                     foreground: ff9e64ff
                                 - string:
                                     text: "{ipv4}"
-
     - alsa:
         card: default
         mixer: Master
@@ -335,7 +328,6 @@ bar:
                     - *capacity-ramp
                     - string:
                         text: "{capacity}%"
-
     - label:
         content:
           empty:
