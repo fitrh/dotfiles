@@ -133,7 +133,7 @@ bar:
                         dl-speed >= 1000:
                           string:
                             text: "{ul-speed:kib} KiB/s"
-        name: wlp2s0
+        name: wlan0
         poll-interval: 1
         content:
           map:
