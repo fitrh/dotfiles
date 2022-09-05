@@ -143,4 +143,5 @@ riverctl map launcher Shift F spawn "$WEB_BROWSER --private-window"
 riverctl map launcher None E spawn "$FILE_MANAGER"
 riverctl map launcher Shift E spawn thunar
 riverctl map launcher None Escape enter-mode normal
+riverctl map launcher None C enter-mode normal
 riverctl map launcher Control bracketleft enter-mode normal
