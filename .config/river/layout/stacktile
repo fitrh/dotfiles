@@ -18,8 +18,8 @@ riverctl map -repeat normal Super L send-layout-cmd "$LAYOUT" "primary_ratio +0.
 riverctl map normal Super M send-layout-cmd "$LAYOUT" "all_primary toggle"
 riverctl map normal Super+Shift H send-layout-cmd "$LAYOUT" "primary_count +1"
 riverctl map normal Super+Shift L send-layout-cmd "$LAYOUT" "primary_count -1"
-riverctl map normal Alt+Shift H send-layout-cmd "$LAYOUT" "secondary_count +1"
-riverctl map normal Alt+Shift L send-layout-cmd "$LAYOUT" "secondary_count -1"
+riverctl map normal Alt+Shift K send-layout-cmd "$LAYOUT" "secondary_count +1"
+riverctl map normal Alt+Shift J send-layout-cmd "$LAYOUT" "secondary_count -1"
 
 riverctl map normal Super Up send-layout-cmd "$LAYOUT" "primary_position top"
 riverctl map normal Super Right send-layout-cmd "$LAYOUT" "primary_position right"
