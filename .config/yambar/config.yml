@@ -9,7 +9,7 @@ bar:
   location: top
   background: 1a1b26cc
   layer: bottom
-  right-spacing: 16
+  right-spacing: 24
   font: *font
   foreground: *fg
   left:
@@ -274,6 +274,7 @@ bar:
         name: BAT1
         content:
           map:
+            right-margin: 8
             on-click:
               wheel-up: clightctl backlight raise
               wheel-down: clightctl backlight lower
@@ -328,7 +329,3 @@ bar:
                     - *capacity-ramp
                     - string:
                         text: "{capacity}%"
-    - label:
-        content:
-          empty:
-            margin: 1
