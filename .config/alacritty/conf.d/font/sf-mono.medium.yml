@@ -11,10 +11,10 @@ font:
   bold_italic:
     family: SF Mono
     style: Bold
-  size: 8.5
+  size: 10.0
   offset:
     x: 0
-    y: 6
+    y: 8
   glyph_offset:
     x: 0
-    y: 3
+    y: 4
