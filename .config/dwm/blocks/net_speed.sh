@@ -23,7 +23,7 @@ pretty_print() {
 
 net_speed() {
     [[ "$1" == -1 || -z "$1" ]] && return
-    local DEVICES=("enp3s0" "wlp2s0")
+    local DEVICES=("enp3s0" "wlan0")
     local STATISTICS="/sys/class/net/${DEVICES["$1"]}/statistics"
     local RX TX
     RX=$(parse_speed "$STATISTICS/rx_bytes")

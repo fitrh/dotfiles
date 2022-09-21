@@ -18,7 +18,7 @@ pretty_print() {
 
 left_handler() {
     local CLASS_PATH="/sys/class/net"
-    local DEVICES=("enp3s0" "wlp2s0")
+    local DEVICES=("enp3s0" "wlan0")
     local UP_DEVICES
 
     for DEVICE in "${DEVICES[@]}"; do

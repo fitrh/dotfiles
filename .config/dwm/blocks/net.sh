@@ -58,7 +58,7 @@ net_wireless_state() {
     STRENGTH="$(net_wireless_get_strength)"
     ICON="$(net_wireless_get_icon "$STRENGTH")"
 
-    if is_fully_connected "$(get_carrier_changes wlp2s0)"; then
+    if is_fully_connected "$(get_carrier_changes wlan0)"; then
         COLOR="\x17"
         SIGVAL=1
     fi
@@ -72,7 +72,7 @@ netb() {
 
     if [[ "$(get_op_state enp3s0)" == "up" ]]; then
         STATE="$(net_wired_state)"
-    elif [[ "$(get_op_state wlp2s0)" == "up" ]]; then
+    elif [[ "$(get_op_state wlan0)" == "up" ]]; then
         STATE="$(net_wireless_state)"
     else
         notify_net_speed -1

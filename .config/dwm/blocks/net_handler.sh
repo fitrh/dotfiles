@@ -25,8 +25,8 @@ net_wireless_get_strength() {
 
 net_wireless_get_ssid() {
     local TMP SSID
-    iw wlp2s0 info >/tmp/iw_wlp2s0.info
-    mapfile -tn 5 TMP </tmp/iw_wlp2s0.info
+    iw wlan0 info >/tmp/iw_wlan0.info
+    mapfile -tn 5 TMP </tmp/iw_wlan0.info
     SSID="$(printf "%s" "${TMP[4]#"${TMP[4]%%[![:space:]]*}"}")"
     printf "%s" "${SSID##ssid }"
 }
@@ -53,11 +53,11 @@ net_wireless_get_info() {
 
 left_handler() {
     [[ "$(get_op_state enp3s0)" == "up" ]] && net_wired_get_info
-    [[ "$(get_op_state wlp2s0)" == "up" ]] && net_wireless_get_info
+    [[ "$(get_op_state wlan0)" == "up" ]] && net_wireless_get_info
 }
 
 middle_handler() {
-    for INTERFACE in "enp3s0" "wlp2s0"; do
+    for INTERFACE in "enp3s0" "wlan0"; do
         if [[ "$(get_op_state "$INTERFACE")" == "up" ]]; then
             exec st -c "Notify Term" \
                 -t "Network Statistics" \
