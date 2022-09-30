@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if
+    [[ -z "$LUA_LS" ||
+        ! -d "$LUA_LS" ||
+        ! -f "$LUA_LS/bin/lua-language-server" ||
+        ! -x "$LUA_LS/bin/lua-language-server" ]]
+then
+    exit 1
+fi
+
+exec "$LUA_LS/bin/lua-language-server" "$@"
