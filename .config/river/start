@@ -17,7 +17,6 @@ export MOZ_ENABLE_WAYLAND=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 export PYTHON_TYPE_STUBS="$HOME/git/python-type-stubs/"
-export TMUX_STATUSBAR_THEME="tokyonight/bgless"
 
 LOG=/tmp/river-"$(date +%F_%s)".log
 exec river -log-level debug >"$LOG" 2>&1
