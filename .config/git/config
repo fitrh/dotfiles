@@ -1,24 +1,24 @@
 [core]
-        pager = delta
+	pager = delta
 
 [commit]
 	gpgsign = true
 
 [delta]
-        navigate = true
-        features = decorations
-        line-numbers = true
-        line-numbers-minus-style = "red dim black"
-        line-numbers-plus-style = "green black"
-        line-numbers-zero-style = "normal"
-        minus-style = "red dim black"
-        minus-emph-style = "red bold brightblack"
-        plus-style = "green black"
-        plus-emph-style = "green bold brightblack"
+	navigate = true
+	features = decorations
+	line-numbers = true
+	line-numbers-minus-style = "red dim black"
+	line-numbers-plus-style = "green black"
+	line-numbers-zero-style = "normal"
+	minus-style = "red dim black"
+	minus-emph-style = "red bold brightblack"
+	plus-style = "green black"
+	plus-emph-style = "green bold brightblack"
 
 [diff]
 	submodule = short
-        colorMoved = default
+	colorMoved = default
 
 [help]
 	autcorrect = 5
@@ -27,11 +27,11 @@
 	defaultBranch = main
 
 [interactive]
-        diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [merge]
 	tool = nvimdiff
-        conflictstyle = diff3
+	conflictstyle = diff3
 
 [user]
 	name = "Fitrah Muhammad"
