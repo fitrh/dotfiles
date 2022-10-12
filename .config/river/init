@@ -32,6 +32,7 @@ riverctl float-filter-add app-id discord
 riverctl float-filter-add app-id imv
 riverctl float-filter-add app-id jetbrains-studio
 riverctl float-filter-add app-id mpv
+riverctl float-filter-add title "Picture-in-Picture"
 riverctl float-filter-add app-id telegramdesktop
 riverctl float-filter-add app-id thunar
 riverctl float-filter-add title "Tor Browser"
