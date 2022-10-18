@@ -27,6 +27,7 @@ $java\
 $julia\
 $kotlin\
 $lua\
+$meson\
 $nim\
 $nodejs\
 $ocaml\
