@@ -3,8 +3,8 @@
 # Appearence
 riverctl background-color 0x16161eff
 riverctl border-width 1
-riverctl border-color-focused 0x414868ff # 0x1a1b261a
-riverctl border-color-unfocused 0x16161eff # 0x16161e80
+riverctl border-color-focused 0x414868ff
+riverctl border-color-unfocused 0x16161eff
 
 # Layout
 riverctl attach-mode bottom                                # New view attached to the bottom of view stack
@@ -26,9 +26,9 @@ riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touch
 
 # Filter
 ## Make certain views start floating
+riverctl float-filter-add app-id discord
 riverctl float-filter-add title "Firefox — Sharing Indicator"
 riverctl float-filter-add app-id float-term
-riverctl float-filter-add app-id discord
 riverctl float-filter-add app-id imv
 riverctl float-filter-add app-id jetbrains-studio
 riverctl float-filter-add app-id mpv
@@ -107,7 +107,7 @@ riverctl map normal Super+Shift Tab send-to-previous-tags
 SCRATCH_TAG=$((1 << (USED_TAGS + 1)))
 riverctl map normal Super P toggle-focused-tags $SCRATCH_TAG
 riverctl map normal Super+Shift P set-view-tags $SCRATCH_TAG
-riverctl spawn-tagmask $(( ALL_TAGS ^ SCRATCH_TAG ))
+riverctl spawn-tagmask $((ALL_TAGS ^ SCRATCH_TAG))
 
 ### Media key
 for mode in normal locked; do
