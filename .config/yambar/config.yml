@@ -41,10 +41,6 @@ bar:
                   foreground: f7768eff
         content:
           map:
-            on-click:
-              left: sh -c "riverctl set-focused-tags $((1 << ({id} - 1)))"
-              right: sh -c "riverctl toggle-focused-tags $((1 << ({id} -1)))"
-              middle: sh -c "riverctl toggle-view-tags $((1 << ({id} -1)))"
             conditions:
               id > 9:
                 empty: {}
