@@ -1,6 +1,22 @@
-#!/usr/bin/env bash
+#!/bin/sh -e
+
+set -o errexit
+set -o nounset
 
 CWD="$PWD"
-cd "$LOCAL_SCRIPT" &&
-    nvim -c "Telescope find_files" &&
-    cd "$CWD" || exit
+
+if [ "$1" = "" ]; then
+    cd "$LOCAL_SCRIPT"
+    nvim +"Telescope find_files"
+    cd "$CWD"
+    exit
+fi
+
+if [ ! -f "$LOCAL_SCRIPT/$1" ]; then
+    printf "\e[0;91;40m %s \e[0m No such file\n" "$1"
+    exit 1
+fi
+
+cd "$LOCAL_SCRIPT"
+nvim "$1"
+cd "$CWD"
