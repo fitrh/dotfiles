@@ -295,9 +295,14 @@ bar:
                     - string:
                         text: "{capacity}%"
               state == full:
-                string:
-                  text: " "
-                  font: *icon-font
+                list:
+                  spacing: 3
+                  items:
+                    - string:
+                        text: " "
+                        font: *icon-font
+                    - string:
+                        text: "{capacity}%"
               state == charging:
                 list:
                   spacing: 3
