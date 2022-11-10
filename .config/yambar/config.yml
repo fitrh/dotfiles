@@ -7,7 +7,7 @@ background-focus: &background-focus
 bar:
   height: 26
   location: top
-  background: 1a1b26cc
+  background: 1a1b26ff
   layer: bottom
   right-spacing: 24
   font: *font
