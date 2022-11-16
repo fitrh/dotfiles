@@ -1,4 +1,4 @@
-ctrl + space
+ctrl + alt + space
         exec dunstctl close
 
 ctrl + shift + space
