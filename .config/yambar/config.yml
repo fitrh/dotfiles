@@ -84,7 +84,7 @@ bar:
         content:
           string:
             on-click:
-              left: sh -c "notify-send '{date}'"
+              left: sh -c "notify-send -a notify-datetime '{date}'"
             text: "{time}"
   right:
     - network:
