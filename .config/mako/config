@@ -14,3 +14,8 @@ default-timeout=2500
 [urgency=critical]
 border-color=#F7768EEE
 default-timeout=0
+
+[app-name=notify-datetime]
+width=314
+text-alignment=center
+anchor=top-center
