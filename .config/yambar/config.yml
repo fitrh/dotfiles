@@ -89,6 +89,10 @@ bar:
   right:
     - network:
         anchors:
+          - ssid: &ssid
+              string:
+                text: "{ssid}"
+                max: 15
           - dl-speed: &dl-speed
               list:
                 on-click:
@@ -165,9 +169,7 @@ bar:
                                     - string:
                                         font: *icon-font
                                         text: ""
-                                    - string:
-                                        text: "{ssid}"
-                                        max: 10
+                                    - *ssid
                         conditions:
                           ssid == "":
                             list:
@@ -193,9 +195,7 @@ bar:
                                   font: *icon-font
                                   text: ""
                                   foreground: ff9e64ff
-                              - string:
-                                  text: "{ssid}"
-                                  max: 10
+                              - *ssid
                         conditions:
                           ssid == "":
                             list:
