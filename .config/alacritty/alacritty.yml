@@ -5,4 +5,5 @@ import:
   - ~/.config/alacritty/conf.d/selection.yml
   - ~/.config/alacritty/conf.d/cursor.yml
   - ~/.config/alacritty/conf.d/mouse.yml
+  - ~/.config/alacritty/conf.d/hints.yml
   - ~/.config/alacritty/conf.d/key_bindings.yml
