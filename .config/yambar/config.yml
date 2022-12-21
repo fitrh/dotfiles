@@ -313,7 +313,7 @@ bar:
                     - *capacity-ramp
                     - string:
                         text: "{capacity}%"
-              state == not charging:
+              state == "not charging":
                 list:
                   spacing: 3
                   items:
