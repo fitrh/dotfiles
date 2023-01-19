@@ -1,6 +1,6 @@
 import:
   - ~/.config/alacritty/conf.d/window.yml
-  - ~/.config/alacritty/conf.d/font/sf-mono.medium.yml
+  - ~/.config/alacritty/conf.d/font/sf-mono.yml
   - ~/.config/alacritty/conf.d/colorschemes.yml
   - ~/.config/alacritty/conf.d/selection.yml
   - ~/.config/alacritty/conf.d/cursor.yml
