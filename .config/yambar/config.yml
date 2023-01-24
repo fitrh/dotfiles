@@ -107,14 +107,14 @@ bar:
                   - map:
                       default:
                         string:
-                          text: "{dl-speed} B/s"
+                          text: "{dl-speed:6.0} B/s"
                       conditions:
                         dl-speed >= 1000000:
                           string:
-                            text: "{dl-speed:mib} MB/s"
+                            text: "{dl-speed:mib:5.1} MB/s"
                         dl-speed >= 1000:
                           string:
-                            text: "{dl-speed:kib} KB/s"
+                            text: "{dl-speed:kib:5.1} KB/s"
           - ul-speed: &ul-speed
               list:
                 on-click:
@@ -127,14 +127,14 @@ bar:
                   - map:
                       default:
                         string:
-                          text: "{ul-speed} B/s"
+                          text: "{ul-speed:6.0} B/s"
                       conditions:
-                        dl-speed >= 1000000:
+                        ul-speed >= 1000000:
                           string:
-                            text: "{ul-speed:mib} MB/s"
-                        dl-speed >= 1000:
+                            text: "{ul-speed:mib:5.1} MB/s"
+                        ul-speed >= 1000:
                           string:
-                            text: "{ul-speed:kib} KB/s"
+                            text: "{ul-speed:kib:5.1} KB/s"
         name: wlan0
         poll-interval: 1000
         content:
@@ -228,7 +228,7 @@ bar:
                       text: "墳"
                       foreground: *fg
                   - string:
-                      text: "{percent}%"
+                      text: "{percent:3}%"
                       foreground: *fg
             conditions:
               muted:
@@ -240,10 +240,13 @@ bar:
                         font: *icon-font
                         text: "ﱝ"
                     - string:
-                        text: "{percent}%"
+                        text: "{percent:3}%"
 
     - battery:
         anchors:
+          - cap-perc: &cap-perc
+              string:
+                text: "{capacity:3}%"
           - capacity-ramp: &capacity-ramp
               ramp:
                 tag: capacity
@@ -283,8 +286,12 @@ bar:
                   - string:
                       text: "ﮣ"
                       font: *icon-font
-                  - string:
-                      text: "{capacity}% {state}"
+                  - list:
+                      spacing: 2
+                      items:
+                        - *cap-perc
+                        - string:
+                            text: "{state}"
             conditions:
               state == unknown:
                 list:
@@ -294,8 +301,7 @@ bar:
                         text: "ﮣ"
                         font: *icon-font
                     - *capacity-ramp
-                    - string:
-                        text: "{capacity}%"
+                    - *cap-perc
               state == full:
                 list:
                   spacing: 3
@@ -303,8 +309,7 @@ bar:
                     - string:
                         text: " "
                         font: *icon-font
-                    - string:
-                        text: "{capacity}%"
+                    - *cap-perc
               state == charging:
                 list:
                   spacing: 3
@@ -313,8 +318,7 @@ bar:
                         text: ""
                         font: *icon-font
                     - *capacity-ramp
-                    - string:
-                        text: "{capacity}%"
+                    - *cap-perc
               state == "not charging":
                 list:
                   spacing: 3
@@ -323,12 +327,10 @@ bar:
                         text: ""
                         font: *icon-font
                     - *capacity-ramp
-                    - string:
-                        text: "{capacity}%"
+                    - *cap-perc
               state == discharging:
                 list:
                   spacing: 3
                   items:
                     - *capacity-ramp
-                    - string:
-                        text: "{capacity}%"
+                    - *cap-perc
