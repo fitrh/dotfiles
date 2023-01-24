@@ -1,15 +1,17 @@
 font: &font SF Pro Text:style=Semibold:pixelsize=11
 icon-font: &icon-font SF Mono:style=Regular:pixelsize=11
-fg: &fg a9b1d6ff
+fg: &fg 737aa2ff
 background-focus: &background-focus
   background:
     color: 16161eff
 bar:
-  height: 26
+  height: 24
   location: top
-  background: 1a1b26ff
+  background: 16161eff
   layer: bottom
   right-spacing: 24
+  border:
+    width: 1
   font: *font
   foreground: *fg
   left:
@@ -50,7 +52,7 @@ bar:
                   foreground: f7768eff
                   deco:
                     background:
-                      color: 414868ff
+                      color: 292e42ff
               state == focused:
                 map:
                   <<: *river_base
@@ -70,7 +72,7 @@ bar:
                   <<: *river_base
               state == invisible:
                 map:
-                  foreground: 414868ff
+                  foreground: 3b4261ff
                   conditions:
                     ~occupied:
                       empty: {}
