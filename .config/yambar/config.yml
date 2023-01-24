@@ -136,7 +136,7 @@ bar:
                           string:
                             text: "{ul-speed:kib} KB/s"
         name: wlan0
-        poll-interval: 1
+        poll-interval: 1000
         content:
           map:
             conditions:
