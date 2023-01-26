@@ -133,7 +133,8 @@ APP_LAUNCHER="fuzzel --prompt ''"
 TERMINAL=alacritty
 ALT_TERMINAL=foot
 WEB_BROWSER=firefox-developer-edition
-FILE_MANAGER="$TERMINAL --class float-term -e lf" # thunar
+TERM_FILE_MANAGER="$TERMINAL --class float-term -e lf"
+FILE_MANAGER=thunar
 SESSION_LOCKER=gtklock
 
 riverctl map normal Alt Space spawn "$APP_LAUNCHER"
@@ -150,8 +151,8 @@ riverctl declare-mode launcher
 riverctl map normal Super R enter-mode launcher
 riverctl map launcher None F spawn "$WEB_BROWSER"
 riverctl map launcher Shift F spawn "$WEB_BROWSER --private-window"
-riverctl map launcher None E spawn "$FILE_MANAGER"
-riverctl map launcher Shift E spawn thunar
+riverctl map launcher None E spawn "$TERM_FILE_MANAGER"
+riverctl map launcher Shift E spawn "$FILE_MANAGER"
 riverctl map launcher None Escape enter-mode normal
 riverctl map launcher None C enter-mode normal
 riverctl map launcher Control bracketleft enter-mode normal
