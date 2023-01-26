@@ -26,7 +26,7 @@ riverctl map normal Super Right send-layout-cmd "$LAYOUT" "primary_position righ
 riverctl map normal Super Down send-layout-cmd "$LAYOUT" "primary_position bottom"
 riverctl map normal Super Left send-layout-cmd "$LAYOUT" "primary_position left"
 
-riverctl map normal Super+Alt Space send-layout-cmd "$LAYOUT" "primary_sublayout full,stack,rows"
+riverctl map normal Super+Alt Space send-layout-cmd "$LAYOUT" "primary_sublayout full,columns,rows"
 riverctl map normal Super+Shift+Alt Space send-layout-cmd "$LAYOUT" "secondary_sublayout rows,columns,stack,full"
 riverctl map normal Super+Control+Alt Space send-layout-cmd "$LAYOUT" "remainder_sublayout stack,grid,full"
 
