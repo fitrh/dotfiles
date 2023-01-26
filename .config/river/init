@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# Appearence
+# Appearance
 riverctl background-color 0x16161eff
 riverctl border-width 1
-riverctl border-color-focused 0x414868ff
+riverctl border-color-focused 0x292e42ff
 riverctl border-color-unfocused 0x16161eff
+riverctl xcursor-theme capitaine-cursors 24
 
 # Layout
 riverctl attach-mode bottom                                # New view attached to the bottom of view stack
