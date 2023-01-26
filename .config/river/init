@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 # Appearence
 riverctl background-color 0x16161eff
