@@ -21,6 +21,14 @@ riverctl spawn mako
 riverctl spawn yambar
 riverctl spawn "wlsunset -l -5.1 -L 119.4" # Makassar
 
+## GTK
+riverctl spawn "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+riverctl spawn "gsettings set org.gnome.desktop.interface gtk-theme Adwaita"
+riverctl spawn "gsettings set org.gnome.desktop.interface icon-theme Reversal-black-dark"
+riverctl spawn "gsettings set org.gnome.desktop.interface cursor-theme capitaine-cursors"
+riverctl spawn "gsettings set org.gnome.desktop.interface cursor-size 24"
+riverctl spawn "gsettings set org.gnome.desktop.interface font-name 'SF Pro Display, Medium 10'"
+
 # Input
 riverctl set-repeat 50 250                                        # Set keyboard repeat rate (rate/second, delay(ms))
 riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touchpad tap-to-click
