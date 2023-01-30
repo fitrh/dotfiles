@@ -107,14 +107,14 @@ bar:
                   - map:
                       default:
                         string:
-                          text: "{dl-speed:6.0} B/s"
+                          text: "{dl-speed:-6.0} B/s"
                       conditions:
                         dl-speed >= 1000000:
                           string:
-                            text: "{dl-speed:mib:5.1} MB/s"
+                            text: "{dl-speed:mib:-5.1} MB/s"
                         dl-speed >= 1000:
                           string:
-                            text: "{dl-speed:kib:5.1} KB/s"
+                            text: "{dl-speed:kib:-5.1} KB/s"
           - ul-speed: &ul-speed
               list:
                 on-click:
@@ -127,14 +127,14 @@ bar:
                   - map:
                       default:
                         string:
-                          text: "{ul-speed:6.0} B/s"
+                          text: "{ul-speed:-6.0} B/s"
                       conditions:
                         ul-speed >= 1000000:
                           string:
-                            text: "{ul-speed:mib:5.1} MB/s"
+                            text: "{ul-speed:mib:-5.1} MB/s"
                         ul-speed >= 1000:
                           string:
-                            text: "{ul-speed:kib:5.1} KB/s"
+                            text: "{ul-speed:kib:-5.1} KB/s"
         name: wlan0
         poll-interval: 1000
         content:
