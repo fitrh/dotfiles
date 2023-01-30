@@ -136,7 +136,7 @@ ALT_TERMINAL=foot
 WEB_BROWSER=firefox-developer-edition
 TERM_FILE_MANAGER="$TERMINAL --class float-term -e lf"
 FILE_MANAGER=thunar
-SESSION_LOCKER="waylock -init-color 0x16161E -input-color 0x1A1B26 -fail-color 0xF7768E"
+SESSION_LOCKER="waylock -fork-on-lock -init-color 0x16161E -input-color 0x1A1B26 -fail-color 0xF7768E"
 
 riverctl map normal Alt Space spawn "$APP_LAUNCHER"
 riverctl map normal Super Space spawn "$TERMINAL"
