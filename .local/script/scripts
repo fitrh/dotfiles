@@ -1,8 +1,5 @@
 #!/bin/sh -e
 
-set -o errexit
-set -o nounset
-
 CWD="$PWD"
 
 if [ "$1" = "" ]; then
