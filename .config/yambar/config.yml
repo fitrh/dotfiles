@@ -1,11 +1,11 @@
-font: &font SF Pro Text:style=Semibold:pixelsize=11
-icon-font: &icon-font SF Mono:style=Regular:pixelsize=11
+font: &font SF Mono:style=Semibold:pixelsize=10
+icon-font: &icon-font SF Mono:style=Regular:pixelsize=10
 fg: &fg 737aa2ff
 background-focus: &background-focus
   background:
     color: 16161eff
 bar:
-  height: 24
+  height: 22
   location: top
   background: 16161eff
   layer: bottom
@@ -18,7 +18,7 @@ bar:
     - river:
         anchors:
           - base: &river_base
-              margin: 10
+              margin: 8
               default:
                 string:
                   text: '{id}'
