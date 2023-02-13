@@ -130,7 +130,7 @@ for mode in normal locked; do
 done
 
 ### App
-APP_LAUNCHER="fuzzel --prompt ''"
+APP_LAUNCHER=fuzzel
 TERMINAL=alacritty
 ALT_TERMINAL=foot
 WEB_BROWSER=firefox-developer-edition
