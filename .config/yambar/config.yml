@@ -102,8 +102,7 @@ bar:
                 spacing: 6
                 items:
                   - string:
-                      font: *icon-font
-                      text: ""
+                      text: "↓"
                   - map:
                       default:
                         string:
@@ -122,8 +121,7 @@ bar:
                 spacing: 6
                 items:
                   - string:
-                      font: *icon-font
-                      text: ""
+                      text: "↑"
                   - map:
                       default:
                         string:
