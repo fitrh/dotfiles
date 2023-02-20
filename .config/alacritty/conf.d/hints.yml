@@ -18,6 +18,6 @@ hints:
       action: Copy
       post_processing: true
       binding:
-        key: U
-        mods: Control|Alt
+        key: Y
+        mods: Control|Shift
 
