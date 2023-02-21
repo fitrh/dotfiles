@@ -77,10 +77,11 @@ riverctl map -repeat normal Super+Alt K move up "$STEP"
 riverctl map -repeat normal Super+Alt L move right "$STEP"
 
 #### Super+Alt+Shift+{H,J,K,L} to resize views
-riverctl map -repeat normal Super+Alt+Shift H resize horizontal -"$STEP"
-riverctl map -repeat normal Super+Alt+Shift J resize vertical -"$STEP"
-riverctl map -repeat normal Super+Alt+Shift K resize vertical "$STEP"
-riverctl map -repeat normal Super+Alt+Shift L resize horizontal "$STEP"
+DELTA=2
+riverctl map -repeat normal Super+Alt+Shift H resize horizontal -"$DELTA"
+riverctl map -repeat normal Super+Alt+Shift J resize vertical -"$DELTA"
+riverctl map -repeat normal Super+Alt+Shift K resize vertical "$DELTA"
+riverctl map -repeat normal Super+Alt+Shift L resize horizontal "$DELTA"
 
 #### Super+Alt+Control+{H,J,K,L} to snap views to screen edges
 riverctl map normal Super+Alt+Control H snap left
