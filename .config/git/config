@@ -4,6 +4,7 @@
 [diff]
 	submodule = short
 	colorMoved = default
+	noprefix = true
 
 [help]
 	autcorrect = 5
