@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh -e
 
 IFS=. read -r uptime _ </proc/uptime
 DAY=$((uptime / 60 / 60 / 24))
 UPTIME=$(printf "%d h %d m" $((uptime / 60 / 60 % 24)) $((uptime / 60 % 60)))
-[[ "$DAY" -gt 0 ]] && UPTIME="$DAY d $UPTIME"
+[ "$DAY" -gt 0 ] && UPTIME="$DAY d $UPTIME"
 
 printf "%s\n" "$UPTIME"
