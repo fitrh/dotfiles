@@ -79,4 +79,19 @@ main() (
 		-i "$SAVEPATH/$FILENAME"
 )
 
+# Required dependencies
+for DEP in grim slurp; do
+	if ! command -v "$DEP" >/dev/null; then
+		printf "Missing dependencies: %s\n" "$DEP"
+		exit 1
+	fi
+done
+
+# Optional dependencies
+for DEP in convert notify-send; do
+	if ! command -v "$DEP" >/dev/null; then
+		printf "Missing optional dependencies: %s\n" "$DEP"
+	fi
+done
+
 main "$@"
