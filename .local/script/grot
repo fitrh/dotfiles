@@ -1,15 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/sh -e
 
 # grot: grim (+slurp) screenshot
 
 usage() (
-    echo -e "
-Usage: grot \e[3mscope\e[0m
+    printf "Usage: grot \e[3mscope\e[0m
 
-    \e[3mscope\e[0m:
-        - r|region
-        - f|full
-        - p|pick
+\e[3mscope\e[0m:
+  - r|region
+  - f|full
+  - p|pick
 "
 )
 
@@ -19,7 +18,7 @@ notify() (
     FILENAME="$3"
 
     # FIX: notify-send not found in here or if with `if` block
-    [[ -f "{$PATH}/$FILENAME" ]] &&
+    [ -f "{$PATH}/$FILENAME" ] &&
         notify-send "$SCOPE Screenshot" "$FILENAME" \
             -t 2500 \
             -i "$PATH/$FILENAME"
@@ -58,17 +57,17 @@ main() (
             ;;
         "p" | "pick")
             pick
-            return 0
+            exit
             ;;
         "h" | "help")
             usage
-            return 0
+            exit
             ;;
         *)
             printf "\e[0;91m%s\e[0m " "$SCOPE"
-            printf "invalid argument.\n"
+            printf "is an invalid argument.\n"
             usage
-            return 1
+            exit 1
             ;;
     esac
 
