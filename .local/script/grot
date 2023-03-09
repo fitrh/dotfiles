@@ -13,6 +13,10 @@ usage() (
 )
 
 notify() (
+	if ! command -v notify-send >/dev/null; then
+		exit
+	fi
+
 	SCOPE="$1"
 	PATH="$2"
 	FILENAME="$3"
@@ -37,6 +41,11 @@ full() (
 )
 
 pick() (
+	if ! command -v convert >/dev/null; then
+		printf "aborted: convert command not found\n"
+		exit
+	fi
+
 	grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-
 )
 
@@ -74,6 +83,10 @@ main() (
 	esac
 
 	"$FN" "$SAVEPATH/$FILENAME"
+	if ! command -v notify-send >/dev/null; then
+		exit
+	fi
+
 	notify-send "$SCOPE Screenshot" "$FILENAME" \
 		-t 2500 \
 		-i "$SAVEPATH/$FILENAME"
