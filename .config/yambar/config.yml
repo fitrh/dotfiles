@@ -86,7 +86,7 @@ bar:
         content:
           string:
             on-click:
-              left: sh -c "notify-send -a notify-datetime '{date}'"
+              left: sh -c "notify-send -a notify-datetime '{date}' -h string:x-canonical-private-synchronous:notify-datetime"
             text: "{time}"
   right:
     - network:
@@ -163,7 +163,7 @@ bar:
                               - *ul-speed
                               - list:
                                   on-click:
-                                    left: sh -c "notify-send 'SIGNAL {signal}dBm'"
+                                    left: sh -c "notify-send 'SIGNAL {signal}dBm' -h string:x-canonical-private-synchronous:notify-signal"
                                   spacing: 6
                                   items:
                                     - string:
