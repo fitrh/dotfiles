@@ -12,9 +12,9 @@ riverctl attach-mode bottom                                # New view attached t
 "${XDG_CONFIG_HOME:-$HOME/.config}/river/layout/stacktile" # Spawn layout generator
 
 # Autostart
-riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
-riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
-riverctl spawn "systemctl --user start xdg-desktop-portal.service"
+ENV="PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE"
+riverctl spawn "systemctl --user import-environment $ENV"
+riverctl spawn "dbus-update-activation-environment --systemd $ENV"
 riverctl spawn /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 riverctl spawn "wlr-randr --output VGA-2 --off"
 riverctl spawn mako
