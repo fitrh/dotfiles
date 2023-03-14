@@ -37,17 +37,19 @@ riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touch
 
 # Filter
 ## Make certain views start floating
-riverctl float-filter-add app-id discord
-riverctl float-filter-add title "Firefox — Sharing Indicator"
-riverctl float-filter-add app-id float-term
-riverctl float-filter-add app-id imv
-riverctl float-filter-add app-id jetbrains-studio
-riverctl float-filter-add app-id mpv
-riverctl float-filter-add title Picture-in-Picture
-riverctl float-filter-add app-id org.telegram.desktop
-riverctl float-filter-add app-id thunar
-riverctl float-filter-add title "Tor Browser"
-riverctl float-filter-add app-id wev
+riverctl rule-add float -app-id discord
+riverctl rule-add float -app-id "firefox*" -title "Firefox — Sharing Indicator"
+riverctl rule-add float -app-id "firefox*" -title "Library"
+riverctl rule-add float -app-id "firefox*" -title "Picture-in-Picture"
+riverctl rule-add float -app-id float-term
+riverctl rule-add float -app-id imv
+riverctl rule-add float -app-id jetbrains-studio
+riverctl rule-add float -app-id mpv
+riverctl rule-add float -app-id org.telegram.desktop
+riverctl rule-add float -app-id thunar
+riverctl rule-add float -app-id "Tor Bowser"
+riverctl rule-add float -app-id wev
+riverctl rule-add ssd -app-id "Tor Bowser"
 
 # Mapping
 ## Mouse
