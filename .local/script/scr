@@ -1,0 +1,89 @@
+#!/bin/sh -e
+
+help() (
+	printf "
+scr - Local Script Manager
+
+Usage: \e[1;32mscr \e[96m<action> \e[94m<action-arg>\e[0m
+
+Availabe \e[1;96maction\e[0m:
+	- g|gen : Generate a script
+	- e|ed : Edit an existing script
+
+\e[1;96mg|gen\e[0m action-arg: \e[1;94m<shebang>\e[0m \e[1m<filename>\e[0m
+	Available \e[34mshebang\e[0m
+		- sh
+		- bash
+		- node
+		- python
+
+\e[1;96me|ed\e[0m action-arg: \e[1m<filename>\e[0m
+
+"
+)
+
+gen() (
+	[ -z "$1" ] && help && exit
+
+	SHELL="sh"
+	case "$1" in
+		"bash") SHELL="bash" ;;
+		"sh") SHELL="sh" ;;
+		"node") SHELL="node" ;;
+		"python") SHELL="python" ;;
+		*)
+			printf "\e[1;91m%s\e[0m shebang not available\n" "$1"
+			help
+			exit 1
+			;;
+	esac
+
+	[ -z "$2" ] && printf "Please specify \e[1;34mfilename\e[0m\n" && exit 1
+
+	case "$SHELL" in
+		"sh")
+			echo "#!/bin/sh -e" >"$2"
+			;;
+		*)
+			echo "#!/usr/bin/env $SHELL" >"$2"
+			;;
+	esac
+)
+
+ed() (
+	CWD="$PWD"
+	if [ "$1" = "" ]; then
+		cd "$LOCAL_SCRIPT"
+		"$EDITOR"
+		cd "$CWD"
+		exit
+	fi
+
+	if [ ! -f "$LOCAL_SCRIPT/$1" ]; then
+		printf "\e[0;91;40m %s \e[0m No such file\n" "$1"
+		exit 1
+	fi
+
+	cd "$LOCAL_SCRIPT"
+	"$EDITOR" "$1"
+	cd "$CWD"
+)
+
+main() (
+	[ -z "$1" ] && help && exit
+
+	case "$1" in
+		"g" | "gen")
+			gen "$2" "$3"
+			;;
+		"e" | "ed")
+			ed "$2"
+			;;
+		*)
+			help
+			exit 1
+			;;
+	esac
+)
+
+main "$@"
