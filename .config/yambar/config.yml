@@ -81,13 +81,12 @@ bar:
                         <<: *river_base
   center:
     - clock:
-        time-format: "%I:%M %p"
-        date-format: "%c"
+        date-format: "%A %d %b %Y"
         content:
           string:
             on-click:
-              left: sh -c "notify-send -a notify-datetime '{date}' -h string:x-canonical-private-synchronous:notify-datetime"
-            text: "{time}"
+              left: notify-datetime
+            text: "{time} {date}"
   right:
     - network:
         anchors:
