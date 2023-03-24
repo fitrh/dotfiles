@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+DATE="$(date +'%A, %d %B %Y %H:%M:%S %Z')"
+
+notify-send "$DATE" \
+	-a notify-datetime \
+	-h string:x-canonical-private-synchronous:notify-datetime
