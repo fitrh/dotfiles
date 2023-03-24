@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+WIDTH=80
+COL=$(tput cols)
+[ "$COL" -lt "$WIDTH" ] && WIDTH="$COL"
+
+MANPAGER="nvim +Man!" MANWIDTH="$WIDTH" command man "$@"
