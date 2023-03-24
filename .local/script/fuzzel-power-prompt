@@ -1,0 +1,45 @@
+#!/bin/sh -e
+
+main() (
+	LOCK="  Lock"
+	SUSPEND="  Suspend"
+	HIBERNATE="  Hibernate"
+	POWER_OFF="  Poweroff"
+	REBOOT="  Reboot"
+	LOG_OUT="  Exit"
+	OPTIONS="$LOCK\n$SUSPEND\n$HIBERNATE\n$POWER_OFF\n$REBOOT\n$LOG_OUT"
+
+	IFS=. read -r uptime _ </proc/uptime
+	DAY=$((uptime / 60 / 60 / 24))
+	UPTIME=$(printf "%02d hours %02d minutes" $((uptime / 60 / 60 % 24)) $((uptime / 60 % 60)))
+	[ "$DAY" -gt 0 ] && UPTIME="$DAY days $UPTIME"
+	ACTION=$(printf '%b' "$OPTIONS" |
+		fuzzel \
+			--prompt "$UPTIME " \
+			--no-icons \
+			--lines 6 \
+			--width 24 \
+			--dmenu)
+	case "$ACTION" in
+		"$POWER_OFF")
+			sleep 0.2s && systemctl poweroff
+			;;
+		"$REBOOT")
+			sleep 0.2s && systemctl reboot
+			;;
+		"$SUSPEND")
+			sleep 0.2s && systemctl suspend
+			;;
+		"$HIBERNATE")
+			sleep 0.2s && systemctl hibernate
+			;;
+		"$LOCK")
+			sleep 0.2s && gtklock
+			;;
+		"$LOG_OUT")
+			sleep 0.2s && riverctl exit
+			;;
+	esac
+)
+
+main "$@"
