@@ -22,5 +22,12 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 export PYTHON_TYPE_STUBS="$HOME/git/python-type-stubs/"
 
+export SESSION_LOCKER="waylock -fork-on-lock -init-color 0x16161E -input-color 0x1A1B26 -fail-color 0xF7768E"
+export SESSION_EXIT_CMD="riverctl exit"
+export SYSTEM_SHUTDOWN_CMD="systemctl poweroff"
+export SYSTEM_REBOOT_CMD="systemctl reboot"
+export SYSTEM_SUSPEND_CMD="systemctl suspend"
+export SYSTEM_HIBERNATE_CMD="systemctl hibernate"
+
 LOG=/tmp/river-"$(date +%F_%s)".log
 exec river -log-level debug >"$LOG" 2>&1
