@@ -18,6 +18,6 @@ border-color=#F7768EEE
 default-timeout=0
 
 [app-name=notify-datetime]
-width=314
+width=400
 text-alignment=center
 anchor=top-center
