@@ -22,22 +22,22 @@ main() (
 			--dmenu)
 	case "$ACTION" in
 		"$POWER_OFF")
-			sleep 0.2s && systemctl poweroff
+			sleep 0.2s && $SYSTEM_SHUTDOWN_CMD
 			;;
 		"$REBOOT")
-			sleep 0.2s && systemctl reboot
+			sleep 0.2s && $SYSTEM_REBOOT_CMD
 			;;
 		"$SUSPEND")
-			sleep 0.2s && systemctl suspend
+			sleep 0.2s && $SYSTEM_SUSPEND_CMD
 			;;
 		"$HIBERNATE")
-			sleep 0.2s && systemctl hibernate
+			sleep 0.2s && $SYSTEM_HIBERNATE_CMD
 			;;
 		"$LOCK")
-			sleep 0.2s && gtklock
+			sleep 0.2s && $SESSION_LOCKER
 			;;
 		"$LOG_OUT")
-			sleep 0.2s && riverctl exit
+			sleep 0.2s && $SESSION_EXIT_CMD
 			;;
 	esac
 )
