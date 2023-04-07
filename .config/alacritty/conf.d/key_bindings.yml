@@ -2,4 +2,4 @@ key_bindings:
   - {key: Return, mods: Shift, chars: "\e[13;2u"}
   - {key: Return, mods: Control, chars: "\e[13;5u"}
   - {key: N, mods: Control|Shift, action: SpawnNewInstance}
-  - {key: N, mods: Control|Alt, action: CreateNewWindow}
+  - {key: Return, mods: Control|Shift, action: CreateNewWindow}
