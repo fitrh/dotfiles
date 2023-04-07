@@ -49,6 +49,8 @@ riverctl rule-add float -app-id org.telegram.desktop
 riverctl rule-add float -app-id thunar
 riverctl rule-add float -app-id "Tor Bowser"
 riverctl rule-add float -app-id wev
+## Make ceratian view use server-side decoration
+riverctl rule-add ssd -app-id "firefox*"
 riverctl rule-add ssd -app-id "Tor Bowser"
 
 # Mapping
