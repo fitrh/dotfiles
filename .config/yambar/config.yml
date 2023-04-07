@@ -29,7 +29,7 @@ bar:
           - view-title: &view-title
               string:
                 text: "{title}"
-                max: 40
+                max: 50
         title:
           map:
             margin: 10
