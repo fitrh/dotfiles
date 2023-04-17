@@ -77,6 +77,9 @@ disabled = true
 success_symbol = "[%](white)"
 error_symbol = "[✗](bright-red)"
 vimcmd_symbol = "[%](bright-black)"
+vimcmd_visual_symbol = "[V](magenta)"
+vimcmd_replace_symbol = "[R](yellow)"
+vimcmd_replace_one_symbol = "[r](yellow)"
 
 [directory]
 truncation_length = 1
