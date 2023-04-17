@@ -111,6 +111,9 @@ staged = '[ ](bright-green)[$count](bright-white bold) '
 renamed = '[ ](bright-cyan)[$count](bright-white bold) '
 deleted = ' [$count](bright-white bold) '
 
+[gradle]
+symbol = " "
+
 [custom.git_host]
 command = 'getgithost'
 directories = [".git"]
