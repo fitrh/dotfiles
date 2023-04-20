@@ -274,8 +274,9 @@ bar:
           map:
             right-margin: 8
             on-click:
-              wheel-up: clightctl backlight raise
-              wheel-down: clightctl backlight lower
+              left: notify-uptime-brightness
+              wheel-up: sh -c "light -A 5.0 && notify-uptime-brightness"
+              wheel-down: sh -c "light -U 5.0 && notify-uptime-brightness"
             default:
               list:
                 spacing: 2
