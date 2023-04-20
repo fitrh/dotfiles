@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+APP="notify-uptime-brightness"
+
+notify-send -a "$APP" \
+	"Power Management" \
+	"Brightness: <b>$(light)%</b>\nUptime    : <b>$(up)</b>" \
+	-h string:x-canonical-private-synchronous:"$APP"
