@@ -131,8 +131,8 @@ for mode in normal locked; do
 	riverctl map $mode None XF86AudioLowerVolume spawn "volctl lower"
 	riverctl map $mode None XF86AudioMute spawn "volctl mute"
 
-	riverctl map $mode None XF86MonBrightnessUp spawn "light r"
-	riverctl map $mode None XF86MonBrightnessDown spawn "light l"
+	riverctl map $mode None XF86MonBrightnessUp spawn "light -A 5.0 && notify-uptime-brightness"
+	riverctl map $mode None XF86MonBrightnessDown spawn "light -U 5.0 && notify-uptime-brightness"
 done
 
 ### App
