@@ -1,0 +1,35 @@
+#!/bin/sh -e
+
+if ! command -v light >/dev/null; then
+	printf "light: commmand not found\n"
+	exit 1
+fi
+
+NIGHT_TIME="${LIGHT_NIGHT_TIME:-20}"
+NIGHT_BRIGHTNESS="${LIGHT_NIGHT_BRIGHTNESS:-40.01}"
+DAY_TIME="${LIGHT_DAY_TIME:-8}"
+DAY_BRIGHTNESS="${LIGHT_DAY_BRIGHTNESS:-60}"
+
+if [ "$NIGHT_TIME" -gt 24 ] || [ "$NIGHT_TIME" -lt 1 ]; then
+	NIGHT_TIME=20
+fi
+
+if [ "$NIGHT_BRIGHTNESS" -gt 100 ] || [ "$NIGHT_BRIGHTNESS" -lt 10 ]; then
+	NIGHT_BRIGHTNESS="40.01"
+fi
+
+if [ "$DAY_TIME" -gt 24 ] || [ "$DAY_TIME" -lt 1 ]; then
+	DAY_TIME=8
+fi
+
+if [ "$DAY_BRIGHTNESS" -gt 100 ] || [ "$DAY_BRIGHTNESS" -lt 10 ]; then
+	DAY_BRIGHTNESS=60
+fi
+
+NOW=$(date +"%-H")
+if [ "$NOW" -ge "$NIGHT_TIME" ] || [ "$NOW" -lt "$DAY_TIME" ]; then
+	light -S "$NIGHT_BRIGHTNESS"
+	exit
+fi
+
+light -S "$DAY_BRIGHTNESS"
