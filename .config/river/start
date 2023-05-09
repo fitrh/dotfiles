@@ -20,6 +20,11 @@ export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export LIGHT_DAY_TIME=8
+export LIGHT_DAY_BRIGHTNESS=70
+export LIGHT_NIGHT_TIME=18
+export LIGHT_NIGHT_BRIGHTNESS=50
+
 export PYTHON_TYPE_STUBS="$HOME/git/python-type-stubs/"
 
 export SESSION_LOCKER="waylock -fork-on-lock -init-color 0x16161E -input-color 0x1A1B26 -fail-color 0xF7768E"
