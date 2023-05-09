@@ -20,6 +20,7 @@ riverctl spawn "wlr-randr --output VGA-2 --off"
 riverctl spawn mako
 riverctl spawn yambar
 riverctl spawn "wlsunset -l -5.1 -L 119.4" # Makassar
+riverctl spawn lightsunset
 
 ## GTK
 riverctl spawn "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
