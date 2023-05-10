@@ -1,0 +1,8 @@
+#!/bin/sh -eu
+
+if pgrep yambar; then
+	pkill -2 yambar
+	exit
+fi
+
+exec yambar &
