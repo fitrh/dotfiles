@@ -154,6 +154,7 @@ riverctl map normal Alt Delete spawn "$SESSION_LOCKER"
 riverctl map normal Control+Alt Delete spawn "fuzzel-power-prompt"
 riverctl map normal None Print spawn "grot f"
 riverctl map normal Super Print spawn "grot r"
+riverctl map normal Super b spawn ybar
 
 riverctl declare-mode launcher
 riverctl map normal Super R enter-mode launcher
