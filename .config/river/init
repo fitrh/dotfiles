@@ -42,6 +42,7 @@ riverctl rule-add float -app-id discord
 riverctl rule-add float -app-id "firefox*" -title "Firefox — Sharing Indicator"
 riverctl rule-add float -app-id "firefox*" -title "Library"
 riverctl rule-add float -app-id "firefox*" -title "Picture-in-Picture"
+riverctl rule-add float -app-id "firefox*" -title "*Tor Browser"
 riverctl rule-add float -app-id float-term
 riverctl rule-add float -app-id imv
 riverctl rule-add float -app-id jetbrains-studio
