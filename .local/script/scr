@@ -4,7 +4,7 @@ help() (
 	printf "
 scr - Local Script Manager
 
-Usage: \e[1;32mscr \e[96m<action> \e[94m<action-arg>\e[0m
+Usage: \e[1;32mscr \e[96m<action> \e[94m<action-arg>\e[0m \e[3m[DEST_DIR]\e[0m
 
 Availabe \e[1;96maction\e[0m:
 	- g|gen : Generate a script
@@ -18,6 +18,10 @@ Availabe \e[1;96maction\e[0m:
 		- python
 
 \e[1;96me|ed\e[0m action-arg: \e[1m<filename>\e[0m
+
+\e[3mDEST_DIR\e[0m is optional, if not provided, fallback to
+	- \$LOCAL_SCRIPT
+	- \$HOME/.local/script
 
 "
 )
@@ -40,31 +44,40 @@ gen() (
 
 	[ -z "$2" ] && printf "Please specify \e[1;34mfilename\e[0m\n" && exit 1
 
+	DEST_DIR="${LOCAL_SCRIPT:-$HOME/.local/script}"
+	[ -n "$3" ] && DEST_DIR="$3"
+	[ ! -d "$DEST_DIR" ] && mkdir -p "$DEST_DIR"
+
 	case "$SHELL" in
 		"sh")
-			echo "#!/bin/sh -e" >"$2"
+			echo "#!/bin/sh -e" >"$DEST_DIR/$2"
 			;;
 		*)
-			echo "#!/usr/bin/env $SHELL" >"$2"
+			echo "#!/usr/bin/env $SHELL" >"$DEST_DIR/$2"
 			;;
 	esac
 )
 
 ed() (
 	CWD="$PWD"
+
+	DEST_DIR="${LOCAL_SCRIPT:-$HOME/.local/script}"
+	[ -n "$2" ] && DEST_DIR="$2"
+	[ ! -d "$DEST_DIR" ] && mkdir -p "$DEST_DIR"
+
 	if [ "$1" = "" ]; then
-		cd "$LOCAL_SCRIPT"
+		cd "$DEST_DIR"
 		"$EDITOR"
 		cd "$CWD"
 		exit
 	fi
 
-	if [ ! -f "$LOCAL_SCRIPT/$1" ]; then
+	if [ ! -f "$DEST_DIR/$1" ]; then
 		printf "\e[0;91;40m %s \e[0m No such file\n" "$1"
 		exit 1
 	fi
 
-	cd "$LOCAL_SCRIPT"
+	cd "$DEST_DIR"
 	"$EDITOR" "$1"
 	cd "$CWD"
 )
@@ -74,10 +87,10 @@ main() (
 
 	case "$1" in
 		"g" | "gen")
-			gen "$2" "$3"
+			gen "$2" "$3" "$4"
 			;;
 		"e" | "ed")
-			ed "$2"
+			ed "$2" "$3"
 			;;
 		*)
 			help
