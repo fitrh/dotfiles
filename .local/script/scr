@@ -10,11 +10,7 @@ Availabe \e[1;96maction\e[0m:
 	- e|ed : Edit an existing script
 
 \e[1;96mg|gen\e[0m action-arg: \e[1;94m<shebang>\e[0m \e[1m<filename>\e[0m
-	Available \e[34mshebang\e[0m
-		- sh
-		- bash
-		- node
-		- python
+	Run without an argument to see the available \e[34mshebang\e[0m
 
 \e[1;96me|ed\e[0m action-arg: \e[1m<filename>\e[0m
 
@@ -25,7 +21,15 @@ Availabe \e[1;96maction\e[0m:
 )
 
 gen() (
-	[ -z "$1" ] && help && exit
+	if [ -z "$1" ]; then
+		printf "Available \e[34mshebang\e[0m
+	- sh
+	- bash
+	- node
+	- python
+"
+		exit
+	fi
 
 	SHELL="sh"
 	case "$1" in
@@ -35,7 +39,7 @@ gen() (
 		"python") SHELL="python" ;;
 		*)
 			printf "\e[1;91m%s\e[0m shebang is not available\n" "$1"
-			help
+			gen
 			exit 1
 			;;
 	esac
