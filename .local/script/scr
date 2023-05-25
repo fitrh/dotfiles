@@ -34,7 +34,7 @@ gen() (
 		"node") SHELL="node" ;;
 		"python") SHELL="python" ;;
 		*)
-			printf "\e[1;91m%s\e[0m shebang not available\n" "$1"
+			printf "\e[1;91m%s\e[0m shebang is not available\n" "$1"
 			help
 			exit 1
 			;;
@@ -71,7 +71,7 @@ ed() (
 	fi
 
 	if [ ! -f "$DEST_DIR/$1" ]; then
-		printf "\e[0;91;40m %s \e[0m No such file\n" "$1"
+		printf "\e[0;91;40m %s \e[0m No such file in %s\n" "$1" "$DEST_DIR"
 		exit 1
 	fi
 
