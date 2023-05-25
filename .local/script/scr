@@ -1,8 +1,7 @@
 #!/bin/sh -e
 
 help() (
-	printf "
-scr - Local Script Manager
+	printf "scr - Local Script Manager
 
 Usage: \e[1;32mscr \e[96m<action> \e[94m<action-arg>\e[0m \e[3m[DEST_DIR]\e[0m
 
@@ -22,7 +21,6 @@ Availabe \e[1;96maction\e[0m:
 \e[3mDEST_DIR\e[0m is optional, if not provided, fallback to
 	- \$LOCAL_SCRIPT
 	- \$HOME/.local/script
-
 "
 )
 
