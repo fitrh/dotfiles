@@ -22,7 +22,9 @@ Availabe \e[1;96maction\e[0m:
 
 gen() (
 	if [ -z "$1" ]; then
-		printf "Available \e[34mshebang\e[0m
+		printf "Usage: \e[1;32mscr \e[96m<g|gen> \e[94m<shebang>\e[0m \e[1m<filename>\e[0m \e[3m[DEST_DIR]\e[0m
+
+Available \e[34mshebang\e[0m
 	- sh
 	- bash
 	- node
