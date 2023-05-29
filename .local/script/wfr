@@ -1,0 +1,40 @@
+#!/bin/sh -e
+
+APP_NAME="wfr"
+
+main() (
+	DEST_DIR="$(xdg-user-dir VIDEOS)/record/wf-recorder"
+	if [ ! -d "$DEST_DIR" ]; then
+		mkdir -p "$DEST_DIR"
+	fi
+
+	FILENAME="$(date +'%Y%m%d_%H%M%S')_wf.mp4"
+
+	case "$1" in
+		"record")
+			record "$DEST_DIR" "$FILENAME" &
+			;;
+		"save")
+			save "$DEST_DIR" "$FILENAME" &
+			;;
+	esac
+)
+
+record() (
+	notify-send "Recording" "$2" -t 4000 \
+		-h string:x-canonical-private-synchronous:"$APP_NAME"
+	sleep 5s
+	wf-recorder -c libx264rgb -f "$1/$2" --force-yuv
+)
+
+save() (
+	pkill -2 wf-recorder
+	DIR=$(printf '%s\n' "${1##/home}")
+	DIR=$(printf '%s\n' "${DIR##/"$USER"}")
+	DIR=" <i>~$DIR</i>"
+	FILE=" <b>$2</b>"
+	notify-send "Recorded" "$DIR\n$FILE" \
+		-h string:x-canonical-private-synchronous:"$APP_NAME"
+)
+
+main "$@"
