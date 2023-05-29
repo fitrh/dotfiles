@@ -166,3 +166,11 @@ riverctl map launcher Shift E spawn "$FILE_MANAGER"
 riverctl map launcher None Escape enter-mode normal
 riverctl map launcher None C enter-mode normal
 riverctl map launcher Control bracketleft enter-mode normal
+
+riverctl declare-mode screenrecord
+riverctl map normal Super+Shift R enter-mode screenrecord
+riverctl map screenrecord Shift R spawn "wfr record && riverctl enter-mode normal"
+riverctl map screenrecord Shift Q spawn "wfr save && riverctl enter-mode normal"
+riverctl map screenrecord None Escape enter-mode normal
+riverctl map screenrecord None C enter-mode normal
+riverctl map screenrecord Control bracketleft enter-mode normal
