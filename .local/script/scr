@@ -52,6 +52,11 @@ Available \e[34mshebang\e[0m
 	[ -n "$3" ] && DEST_DIR="$3"
 	[ ! -d "$DEST_DIR" ] && mkdir -p "$DEST_DIR"
 
+	if [ -f "$DEST_DIR/$2" ]; then
+		printf "\e[0;92;40m %s \e[0m already exist\n" "$DEST_DIR/$2"
+		exit
+	fi
+
 	case "$SHELL" in
 		"sh")
 			echo "#!/bin/sh -e" >"$DEST_DIR/$2"
