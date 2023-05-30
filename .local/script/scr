@@ -94,12 +94,14 @@ ed() (
 main() (
 	[ -z "$1" ] && help && exit
 
-	case "$1" in
+	ACTION="$1"
+	shift
+	case "$ACTION" in
 		"g" | "gen")
-			gen "$2" "$3" "$4"
+			gen "$@"
 			;;
 		"e" | "ed")
-			ed "$2" "$3"
+			ed "$@"
 			;;
 		*)
 			help
