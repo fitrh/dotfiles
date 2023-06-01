@@ -159,10 +159,10 @@ riverctl map normal Super b spawn ybar
 
 riverctl declare-mode launcher
 riverctl map normal Super R enter-mode launcher
-riverctl map launcher None F spawn "$WEB_BROWSER"
-riverctl map launcher Shift F spawn "$WEB_BROWSER --private-window"
-riverctl map launcher None E spawn "$TERM_FILE_MANAGER"
-riverctl map launcher Shift E spawn "$FILE_MANAGER"
+riverctl map launcher None F spawn "$WEB_BROWSER && riverctl enter-mode normal"
+riverctl map launcher Shift F spawn "$WEB_BROWSER --private-window && riverctl enter-mode normal"
+riverctl map launcher None E spawn "$TERM_FILE_MANAGER && riverctl enter-mode normal"
+riverctl map launcher Shift E spawn "$FILE_MANAGER && riverctl enter-mode normal"
 
 riverctl declare-mode screenrecord
 riverctl map normal Super+Shift R enter-mode screenrecord
