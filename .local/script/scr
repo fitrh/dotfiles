@@ -6,13 +6,14 @@ help() (
 Usage: \e[1;32mscr \e[96m<action> \e[94m<action-arg>\e[0m \e[3m[DEST_DIR]\e[0m
 
 Availabe \e[1;96maction\e[0m:
-	- g|gen : Generate a script
-	- e|ed : Edit an existing script
+	- g|gen: Generate a script
+	- e|ed: Edit an existing script
+	- ex: Make a script executable
 
 \e[1;96mg|gen\e[0m action-arg: \e[1;94m<shebang>\e[0m \e[1m<filename>\e[0m
 	Run without an argument to see the available \e[34mshebang\e[0m
 
-\e[1;96me|ed\e[0m action-arg: \e[1m<filename>\e[0m
+\e[1;96me|ed\e[0m,\e[1;96mex\e[0m action-arg: \e[1m<filename>\e[0m
 
 \e[3mDEST_DIR\e[0m is optional, if not provided, fallback to
 	- \$LOCAL_SCRIPT
@@ -91,6 +92,29 @@ ed() (
 	cd "$CWD"
 )
 
+ex() (
+	DEST_DIR="${LOCAL_SCRIPT:-$HOME/.local/script}"
+	[ -n "$2" ] && DEST_DIR="$2"
+	[ ! -d "$DEST_DIR" ] && mkdir -p "$DEST_DIR"
+
+	if [ ! -f "$DEST_DIR/$1" ]; then
+		printf "\e[0;91;40m %s \e[0m No such file in %s\n" "$1" "$DEST_DIR"
+		exit 1
+	fi
+
+	if [ -x "$DEST_DIR/$1" ]; then
+		printf "%s/%s already executable\n" "$DEST_DIR" "$1"
+		exit
+	fi
+
+	if ! chmod 744 "$DEST_DIR/$1"; then
+		printf "Can not make %s/%s executable\n" "$DEST_DIR" "$1"
+		exit 1
+	fi
+
+	printf "%s/%s is now executable\n" "$DEST_DIR" "$1"
+)
+
 main() (
 	[ -z "$1" ] && help && exit
 
@@ -102,6 +126,9 @@ main() (
 			;;
 		"e" | "ed")
 			ed "$@"
+			;;
+		"ex")
+			ex "$@"
 			;;
 		*)
 			help
