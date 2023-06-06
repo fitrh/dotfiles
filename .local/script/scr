@@ -1,5 +1,27 @@
 #!/bin/sh -e
 
+main() (
+	[ -z "$1" ] && help && exit
+
+	ACTION="$1"
+	shift
+	case "$ACTION" in
+		"e" | "ed")
+			ed "$@"
+			;;
+		"ex")
+			ex "$@"
+			;;
+		"g" | "gen")
+			gen "$@"
+			;;
+		*)
+			help
+			exit 1
+			;;
+	esac
+)
+
 help() (
 	printf "scr - Local Script Manager
 
@@ -113,28 +135,6 @@ ex() (
 	fi
 
 	printf "%s/%s is now executable\n" "$DEST_DIR" "$1"
-)
-
-main() (
-	[ -z "$1" ] && help && exit
-
-	ACTION="$1"
-	shift
-	case "$ACTION" in
-		"g" | "gen")
-			gen "$@"
-			;;
-		"e" | "ed")
-			ed "$@"
-			;;
-		"ex")
-			ex "$@"
-			;;
-		*)
-			help
-			exit 1
-			;;
-	esac
 )
 
 main "$@"
