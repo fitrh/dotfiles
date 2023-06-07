@@ -28,10 +28,14 @@ main() (
 			sleep 0.2s && $SYSTEM_REBOOT_CMD
 			;;
 		"$SUSPEND")
-			sleep 0.2s && $SYSTEM_SUSPEND_CMD
+			sleep 0.2s &&
+				$SESSION_LOCKER &&
+				$SYSTEM_SUSPEND_CMD
 			;;
 		"$HIBERNATE")
-			sleep 0.2s && $SYSTEM_HIBERNATE_CMD
+			sleep 0.2s &&
+				$SESSION_LOCKER &&
+				$SYSTEM_HIBERNATE_CMD
 			;;
 		"$LOCK")
 			sleep 0.2s && $SESSION_LOCKER
