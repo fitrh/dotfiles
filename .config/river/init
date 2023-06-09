@@ -48,7 +48,7 @@ riverctl rule-add float -app-id imv
 riverctl rule-add float -app-id jetbrains-studio
 riverctl rule-add float -app-id mpv
 riverctl rule-add float -app-id org.telegram.desktop
-riverctl rule-add float -app-id thunar
+riverctl rule-add float -app-id Thunar
 riverctl rule-add float -app-id "Tor Browser"
 riverctl rule-add float -app-id wev
 ## Make ceratian view use server-side decoration
