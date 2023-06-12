@@ -8,7 +8,7 @@ riverctl border-color-unfocused 0x16161eff
 riverctl xcursor-theme capitaine-cursors 24
 
 # Layout
-riverctl attach-mode bottom                                # New view attached to the bottom of view stack
+riverctl attach-mode bottom # New view attached to the bottom of view stack
 "${XDG_CONFIG_HOME:-$HOME/.config}/river/layout/stacktile" # Spawn layout generator
 
 # Autostart
@@ -33,7 +33,7 @@ riverctl spawn "gsettings set org.gnome.desktop.interface font-name 'SF Pro Disp
 # Input
 riverctl hide-cursor timeout 2500 # Hide the cursor if it wasn't moved in the last n milliseconds
 riverctl set-cursor-warp on-focus-change
-riverctl set-repeat 50 250                                        # Set keyboard repeat rate (rate/second, delay(ms))
+riverctl set-repeat 50 250 # Set keyboard repeat rate (rate/second, delay(ms))
 riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touchpad tap-to-click
 
 # Filter
@@ -52,21 +52,21 @@ riverctl rule-add float -app-id Thunar
 riverctl rule-add float -app-id "Tor Browser"
 riverctl rule-add float -app-id wev
 riverctl rule-add float -app-id xdg-desktop-portal-gtk
-## Make ceratian view use server-side decoration
+## Make certain view use server-side decoration
 riverctl rule-add ssd -app-id "firefox*"
 riverctl rule-add ssd -app-id "Tor Browser"
 
 # Mapping
 ## Mouse
-riverctl map-pointer normal Super BTN_LEFT move-view    # Super + Left Mouse Button to move views
+riverctl map-pointer normal Super BTN_LEFT move-view # Super + Left Mouse Button to move views
 riverctl map-pointer normal Super BTN_RIGHT resize-view # Super + Right Mouse Button to resize views
 
 ## Key
-riverctl map normal Super+Shift E exit             # Super+Shift+E to exit river
-riverctl map normal Super+Shift C close            # Super+Shift+C to close the focused view
-riverctl map normal Super Return zoom              # Super+Return to bump the focused view to the top of the layout stack
+riverctl map normal Super+Shift E exit # Super+Shift+E to exit river
+riverctl map normal Super+Shift C close # Super+Shift+C to close the focused view
+riverctl map normal Super Return zoom  # Super+Return to bump the focused view to the top of the layout stack
 riverctl map normal Super+Shift Space toggle-float # Super+Space to toggle float
-riverctl map normal Super F toggle-fullscreen      # Super+F to toggle fullscreen
+riverctl map normal Super F toggle-fullscreen # Super+F to toggle fullscreen
 
 ### View management
 #### Super+{J,K} to focus the next/previous view in the layout stack
@@ -111,14 +111,14 @@ USED_TAGS=9
 
 for i in $(seq 1 "$USED_TAGS"); do
 	tag=$((1 << (i - 1)))
-	riverctl map normal Super "$i" set-focused-tags $tag               # Super+[1-9] to focus tag [0-8]
-	riverctl map normal Super+Shift "$i" set-view-tags $tag            # Super+Shift+[1-9] to tag focused view with tag [0-8]
-	riverctl map normal Super+Control "$i" toggle-focused-tags $tag    # Super+Ctrl+[1-9] to toggle focus of tag [0-8]
+	riverctl map normal Super "$i" set-focused-tags $tag # Super+[1-9] to focus tag [0-8]
+	riverctl map normal Super+Shift "$i" set-view-tags $tag # Super+Shift+[1-9] to tag focused view with tag [0-8]
+	riverctl map normal Super+Control "$i" toggle-focused-tags $tag # Super+Ctrl+[1-9] to toggle focus of tag [0-8]
 	riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tag # Super+Shift+Ctrl+[1-9] to toggle tag [0-8] of focused view
 done
 
 ALL_TAGS=$(((1 << USED_TAGS) - 1))
-riverctl map normal Super 0 set-focused-tags $ALL_TAGS    # Super+0 to focus all tags
+riverctl map normal Super 0 set-focused-tags $ALL_TAGS # Super+0 to focus all tags
 riverctl map normal Super+Shift 0 set-view-tags $ALL_TAGS # Super+Shift+0 to tag focused view with all tags
 riverctl map normal Super Tab focus-previous-tags
 riverctl map normal Super+Shift Tab send-to-previous-tags
