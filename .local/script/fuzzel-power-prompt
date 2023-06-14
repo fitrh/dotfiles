@@ -22,28 +22,86 @@ main() (
 			--dmenu)
 	case "$ACTION" in
 		"$POWER_OFF")
-			sleep 0.2s && $SYSTEM_SHUTDOWN_CMD
+			sleep 0.2s
+
+			if [ -z "${SYSTEM_SHUTDOWN_CMD-}" ]; then
+				printf "SYSTEM_SHUTDOWN_CMD is not set\n"
+				exit 1
+			fi
+
+			if ! runnable "$SYSTEM_SHUTDOWN_CMD"; then
+				exit 1
+			fi
 			;;
 		"$REBOOT")
-			sleep 0.2s && $SYSTEM_REBOOT_CMD
+			sleep 0.2s
+
+			if [ -z "${SYSTEM_REBOOT_CMD-}" ]; then
+				printf "SYSTEM_REBOOT_CMD is not set\n"
+				exit 1
+			fi
+
+			if ! runnable "$SYSTEM_REBOOT_CMD"; then
+				exit 1
+			fi
 			;;
 		"$SUSPEND")
-			sleep 0.2s &&
-				$SESSION_LOCKER &&
-				$SYSTEM_SUSPEND_CMD
+			sleep 0.2s && $SESSION_LOCKER
+
+			if [ -z "${SYSTEM_SUSPEND_CMD-}" ]; then
+				printf "SYSTEM_SUSPEND_CMD is not set\n"
+				exit 1
+			fi
+
+			if ! runnable "$SYSTEM_SUSPEND_CMD"; then
+				exit 1
+			fi
 			;;
 		"$HIBERNATE")
-			sleep 0.2s &&
-				$SESSION_LOCKER &&
-				$SYSTEM_HIBERNATE_CMD
+			sleep 0.2s && $SESSION_LOCKER
+
+			if [ -z "${SYSTEM_HIBERNATE_CMD-}" ]; then
+				printf "SYSTEM_HIBERNATE_CMD is not set\n"
+				exit 1
+			fi
+
+			if ! runnable "$SYSTEM_HIBERNATE_CMD"; then
+				exit 1
+			fi
 			;;
 		"$LOCK")
-			sleep 0.2s && $SESSION_LOCKER
+			sleep 0.2s
+			if [ -z "${SESSION_LOCKER-}" ]; then
+				printf "SESSION_LOCKER is not set\n"
+				exit 1
+			fi
+
+			if ! runnable "$SESSION_LOCKER"; then
+				exit 1
+			fi
 			;;
 		"$LOG_OUT")
-			sleep 0.2s && $SESSION_EXIT_CMD
+			sleep 0.2s
+			if [ -z "${SESSION_EXIT_CMD-}" ]; then
+				printf "SESSION_EXIT_CMD is not set\n"
+				exit 1
+			fi
+
+			if ! runnable "$SESSION_EXIT_CMD"; then
+				exit 1
+			fi
 			;;
 	esac
+)
+
+runnable() (
+	if ! $1; then
+		notify-send "fuzzel-power-prompt" "error when running $2"
+		printf "error when running %s\n" "$2"
+		return 1
+	fi
+
+	return 0
 )
 
 main "$@"
