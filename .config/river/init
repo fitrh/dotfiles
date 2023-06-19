@@ -37,7 +37,8 @@ riverctl set-repeat 50 250 # Set keyboard repeat rate (rate/second, delay(ms))
 riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touchpad tap-to-click
 
 # Filter
-## Make certain views start floating
+
+## Float
 riverctl rule-add float -app-id discord
 riverctl rule-add float -app-id "firefox*" -title "Firefox — Sharing Indicator"
 riverctl rule-add float -app-id "firefox*" -title "Library"
@@ -53,11 +54,13 @@ riverctl rule-add float -app-id Thunar
 riverctl rule-add float -app-id "Tor Browser"
 riverctl rule-add float -app-id wev
 riverctl rule-add float -app-id xdg-desktop-portal-gtk
-## Make certain view use server-side decoration
+
+## Server-side decoration
 riverctl rule-add ssd -app-id "firefox*"
 riverctl rule-add ssd -app-id "Tor Browser"
 
 # Mapping
+
 ## Mouse
 riverctl map-pointer normal Super BTN_LEFT move-view # Super + Left Mouse Button to move views
 riverctl map-pointer normal Super BTN_RIGHT resize-view # Super + Right Mouse Button to resize views
@@ -70,6 +73,7 @@ riverctl map normal Super+Shift Space toggle-float # Super+Space to toggle float
 riverctl map normal Super F toggle-fullscreen # Super+F to toggle fullscreen
 
 ### View management
+
 #### Super+{J,K} to focus the next/previous view in the layout stack
 riverctl map normal Super J focus-view next
 riverctl map normal Super K focus-view previous
@@ -99,6 +103,7 @@ riverctl map normal Super+Alt+Control K snap up
 riverctl map normal Super+Alt+Control L snap right
 
 ### Output management
+
 #### Super+{Period,Comma} to focus the next/previous output
 riverctl map normal Super Period focus-output next
 riverctl map normal Super Comma focus-output previous
