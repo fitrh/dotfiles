@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+if [ -z "$1" ]; then
+	printf "Missing delta value\n"
+	exit 1
+fi
+
+DELTA="$1"
+riverctl map -repeat normal Super+Alt H move left "$DELTA"
+riverctl map -repeat normal Super+Alt J move down "$DELTA"
+riverctl map -repeat normal Super+Alt K move up "$DELTA"
+riverctl map -repeat normal Super+Alt L move right "$DELTA"

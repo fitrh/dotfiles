@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+if [ -z "$1" ]; then
+	printf "Missing delta value\n"
+	exit 1
+fi
+
+DELTA="$1"
+riverctl map -repeat normal Super+Alt+Shift H resize horizontal -"$DELTA"
+riverctl map -repeat normal Super+Alt+Shift J resize vertical -"$DELTA"
+riverctl map -repeat normal Super+Alt+Shift K resize vertical "$DELTA"
+riverctl map -repeat normal Super+Alt+Shift L resize horizontal "$DELTA"
