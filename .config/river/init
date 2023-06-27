@@ -115,7 +115,7 @@ riverctl map normal Super+Shift Comma send-to-output previous
 ### Tag management
 USED_TAGS=9
 
-for i in $(seq 1 "$USED_TAGS"); do
+for i in $(seq "$USED_TAGS"); do
 	tag=$((1 << (i - 1)))
 	riverctl map normal Super "$i" set-focused-tags $tag # Super+[1-9] to focus tag [0-8]
 	riverctl map normal Super+Shift "$i" set-view-tags $tag # Super+Shift+[1-9] to tag focused view with tag [0-8]
