@@ -59,6 +59,12 @@ riverctl rule-add float -app-id xdg-desktop-portal-gtk
 riverctl rule-add ssd -app-id "firefox*"
 riverctl rule-add ssd -app-id "Tor Browser"
 
+## Tag
+riverctl rule-add tag -app-id "firefox*" $((1 << 2))
+riverctl rule-add tag -app-id org.telegram.desktop $((1 << 6))
+riverctl rule-add tag -app-id thunar $((1 << 3))
+riverctl rule-add tag -app-id Thunar $((1 << 3))
+
 # Mapping
 
 ## Mouse
