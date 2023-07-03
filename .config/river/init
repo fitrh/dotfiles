@@ -178,6 +178,7 @@ riverctl map screenrecord Shift Q spawn "wfr save && riverctl enter-mode normal"
 
 for MODE in launcher screenrecord; do
 	riverctl map "$MODE" None Escape enter-mode normal
-	riverctl map "$MODE" None C enter-mode normal
+	riverctl map "$MODE" None Q enter-mode normal
+	riverctl map "$MODE" Control C enter-mode normal
 	riverctl map "$MODE" Control bracketleft enter-mode normal
 done
