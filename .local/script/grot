@@ -3,12 +3,17 @@
 # grot: grim (+slurp) screenshot
 
 usage() (
-	printf "Usage: grot \e[3mscope\e[0m
+	printf "Usage: grot \e[1mscope\e[0m \e[3m[EXT]\e[0m
 
-\e[3mscope\e[0m:
+\e[1mscope\e[0m:
   - r|region
   - f|full
   - p|pick
+
+\e[3m[EXT]\e[0m (optional, default: jpeg):
+  - jpeg
+  - png
+  - ppm
 "
 )
 
@@ -28,18 +33,6 @@ notify() (
 			-i "$PATH/$FILENAME"
 )
 
-shot() (
-	grim -t jpeg -q 100 "$@"
-)
-
-region() (
-	shot -g "$(slurp)" "$@"
-)
-
-full() (
-	shot "$@"
-)
-
 pick() (
 	if ! command -v convert >/dev/null; then
 		printf "aborted: convert command not found\n"
@@ -51,20 +44,33 @@ pick() (
 
 main() (
 	[ -z "$1" ] && usage && exit 0
-
 	SCOPE="$1"
-	FN="$1"
-	FILENAME="$(date +'%Y%m%d_%H%M%S').jpeg"
+
+	EXT="${2:-jpeg}"
+	case $EXT in
+		png | jpeg | ppm) ;;
+		*)
+			EXT="jpeg" # fallback to jpeg for wrong value
+			;;
+	esac
+
+	FLAG="-t $EXT"
+	if [ "$EXT" = "jpeg" ]; then
+		FLAG="$FLAG -q 100"
+	fi
+
+	FILENAME="$(date +'%Y%m%d_%H%M%S').$EXT"
 	SAVEPATH="${GRIM_DEFAULT_DIR:-$XDG_PICTURES_DIR:-$HOME/picture}"
+	DEST="$SAVEPATH/$FILENAME"
 
 	case $SCOPE in
 		"r" | "region")
 			SCOPE="Region"
-			FN="region"
+			grim $FLAG -g "$(slurp)" "$DEST"
 			;;
 		"f" | "full")
 			SCOPE="Fullscreen"
-			FN="full"
+			grim $FLAG "$DEST"
 			;;
 		"p" | "pick")
 			pick
@@ -82,14 +88,13 @@ main() (
 			;;
 	esac
 
-	"$FN" "$SAVEPATH/$FILENAME"
 	if ! command -v notify-send >/dev/null; then
 		exit
 	fi
 
 	notify-send "$SCOPE Screenshot" "$FILENAME" \
 		-t 2500 \
-		-i "$SAVEPATH/$FILENAME"
+		-i "$DEST"
 )
 
 # Required dependencies
