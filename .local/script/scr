@@ -6,13 +6,13 @@ main() (
 	ACTION="$1"
 	shift
 	case "$ACTION" in
-		"e" | "ed")
+		e | ed)
 			ed "$@"
 			;;
-		"ex" | "x" )
+		ex | x)
 			ex "$@"
 			;;
-		"g" | "gen")
+		g | gen)
 			gen "$@"
 			;;
 		*)
