@@ -9,7 +9,7 @@ main() (
 		"e" | "ed")
 			ed "$@"
 			;;
-		"ex")
+		"ex" | "x" )
 			ex "$@"
 			;;
 		"g" | "gen")
@@ -30,7 +30,7 @@ Usage: \e[1;32mscr \e[96m<action> \e[94m<action-arg>\e[0m \e[3m[DEST_DIR]\e[0m
 Availabe \e[1;96maction\e[0m:
 	- g|gen: Generate a script
 	- e|ed: Edit an existing script
-	- ex: Make a script executable
+	- x|ex: Make a script executable
 
 \e[1;96mg|gen\e[0m action-arg: \e[1;94m<shebang>\e[0m \e[1m<filename>\e[0m
 	Run without an argument to see the available \e[34mshebang\e[0m
