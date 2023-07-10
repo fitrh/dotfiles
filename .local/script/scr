@@ -35,7 +35,7 @@ Availabe \e[1;96maction\e[0m:
 \e[1;96mg|gen\e[0m action-arg: \e[1;94m<shebang>\e[0m \e[1m<filename>\e[0m
 	Run without an argument to see the available \e[34mshebang\e[0m
 
-\e[1;96me|ed\e[0m,\e[1;96mex\e[0m action-arg: \e[1m<filename>\e[0m
+\e[1;96me|ed\e[0m,\e[1;96mx|ex\e[0m action-arg: \e[1m<filename>\e[0m
 
 \e[3mDEST_DIR\e[0m is optional, if not provided, fallback to
 	- \$LOCAL_SCRIPT
