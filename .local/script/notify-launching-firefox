@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+firefox-developer-edition "$@" &
+
+case $@ in
+	*private-window*)
+		MSG="Private Window"
+		;;
+esac
+
+notify-send "Launching Firefox…" "${MSG:-}" \
+	-i firefox-developer-edition \
+	-a notify-launching-app \
+	-t 1000

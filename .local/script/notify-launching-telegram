@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+telegram-desktop "$@" &
+notify-send "Launching Telegram…" "${MSG:-}" \
+	-i telegram \
+	-a notify-launching-app \
+	-t 1000
