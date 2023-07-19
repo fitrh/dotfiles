@@ -21,3 +21,6 @@ default-timeout=0
 width=400
 text-alignment=center
 anchor=top-center
+
+[app-name=notify-launching-app]
+anchor=center
