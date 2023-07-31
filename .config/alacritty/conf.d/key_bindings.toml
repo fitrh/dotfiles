@@ -1,0 +1,19 @@
+[[keyboard.bindings]]
+chars = "\u001B[13;2u"
+key = "Return"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[13;5u"
+key = "Return"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "Return"
+mods = "Control|Shift"

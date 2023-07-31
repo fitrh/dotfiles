@@ -1,5 +1,0 @@
-cursor:
-  style:
-    shape: Underline # Block, Beam, Underline
-  unfocused_hollow: false
-  thickness: 0.25

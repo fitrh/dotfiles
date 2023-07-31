@@ -1,0 +1,11 @@
+[window]
+dynamic_padding = true
+dynamic_title = true
+
+[window.dimensions]
+columns = 100
+lines = 24
+
+[window.padding]
+x = 4
+y = 4

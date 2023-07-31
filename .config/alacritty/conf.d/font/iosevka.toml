@@ -1,0 +1,22 @@
+[font]
+size = 10.0
+
+[font.normal]
+family = "Iosevka Term Extended"
+style = "Regular"
+
+[font.italic]
+family = "Iosevka Term Extended"
+style = "Italic"
+
+[font.bold]
+family = "Iosevka Term Extended"
+style = "Bold"
+
+[font.bold_italic]
+family = "Iosevka Term Extended"
+style = "Bold Italic"
+
+[font.offset]
+x = 0
+y = 0

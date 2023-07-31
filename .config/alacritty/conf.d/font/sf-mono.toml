@@ -1,0 +1,26 @@
+[font]
+size = 10.0
+
+[font.normal]
+family = "SF Mono"
+style = "Regular"
+
+[font.italic]
+family = "SF Mono"
+style = "Regular Italic"
+
+[font.bold]
+family = "SF Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "SF Mono"
+style = "Bold Italic"
+
+[font.offset]
+x = 0
+y = 8
+
+[font.glyph_offset]
+x = 0
+y = 4

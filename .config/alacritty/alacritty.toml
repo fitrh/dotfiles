@@ -1,0 +1,10 @@
+import = [
+	"~/.config/alacritty/conf.d/window.toml",
+	"~/.config/alacritty/conf.d/font/sf-mono.toml",
+	"~/.config/alacritty/conf.d/colorscheme/tokyonight.toml",
+	"~/.config/alacritty/conf.d/selection.toml",
+	"~/.config/alacritty/conf.d/cursor.toml",
+	"~/.config/alacritty/conf.d/mouse.toml",
+	"~/.config/alacritty/conf.d/hints.toml",
+	"~/.config/alacritty/conf.d/key_bindings.toml",
+]
