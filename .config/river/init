@@ -91,14 +91,14 @@ riverctl map normal Super+Shift J swap next
 riverctl map normal Super+Shift K swap previous
 
 #### Super+Alt+{H,J,K,L} to move views
-STEP=1
+STEP=8
 riverctl map -repeat normal Super+Alt H move left "$STEP"
 riverctl map -repeat normal Super+Alt J move down "$STEP"
 riverctl map -repeat normal Super+Alt K move up "$STEP"
 riverctl map -repeat normal Super+Alt L move right "$STEP"
 
 #### Super+Alt+Shift+{H,J,K,L} to resize views
-DELTA=2
+DELTA=4
 riverctl map -repeat normal Super+Alt+Shift H resize horizontal -"$DELTA"
 riverctl map -repeat normal Super+Alt+Shift J resize vertical -"$DELTA"
 riverctl map -repeat normal Super+Alt+Shift K resize vertical "$DELTA"
