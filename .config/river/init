@@ -161,7 +161,6 @@ PRIVATE_WEB_BROWSER='notify-launching-firefox --private-window'
 TERM_FILE_MANAGER="$TERMINAL --class float-term -e lf"
 FILE_MANAGER=thunar
 CHAT_APP=notify-launching-telegram
-SESSION_LOCKER="waylock -fork-on-lock -init-color 0x16161E -input-color 0x292E42 -fail-color 0xF7768E"
 
 riverctl map normal Alt Space spawn "$APP_LAUNCHER"
 riverctl map normal Super Space spawn "$TERMINAL"
