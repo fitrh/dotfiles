@@ -8,7 +8,7 @@ riverctl border-color-unfocused 0x16161eff
 riverctl xcursor-theme capitaine-cursors 24
 
 # Layout
-riverctl attach-mode bottom                                # New view attached to the bottom of view stack
+riverctl default-attach-mode bottom                        # New view attached to the bottom of view stack
 "${XDG_CONFIG_HOME:-$HOME/.config}/river/layout/stacktile" # Spawn layout generator
 
 # Autostart
@@ -39,33 +39,33 @@ riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touch
 # Filter
 
 ## Float
-riverctl rule-add float -app-id discord
-riverctl rule-add float -app-id "firefox*" -title "Firefox — Sharing Indicator"
-riverctl rule-add float -app-id "firefox*" -title "Library"
-riverctl rule-add float -app-id "firefox*" -title "Picture-in-Picture"
-riverctl rule-add float -app-id "firefox*" -title "*Tor Browser"
-riverctl rule-add float -app-id float-term
-riverctl rule-add float -app-id imv
-riverctl rule-add float -app-id jetbrains-studio
-riverctl rule-add float -app-id mpv
-riverctl rule-add float -app-id org.telegram.desktop
-riverctl rule-add float -app-id scrcpy
-riverctl rule-add float -app-id thunar
-riverctl rule-add float -app-id Thunar
-riverctl rule-add float -app-id "Tor Browser"
-riverctl rule-add float -app-id wev
-riverctl rule-add float -app-id xdg-desktop-portal-gtk
+riverctl rule-add -app-id discord float
+riverctl rule-add -app-id "firefox*" -title "Firefox — Sharing Indicator" float
+riverctl rule-add -app-id "firefox*" -title "Library" float
+riverctl rule-add -app-id "firefox*" -title "Picture-in-Picture" float
+riverctl rule-add -app-id "firefox*" -title "*Tor Browser" float
+riverctl rule-add -app-id float-term float
+riverctl rule-add -app-id imv float
+riverctl rule-add -app-id jetbrains-studio float
+riverctl rule-add -app-id mpv float
+riverctl rule-add -app-id org.telegram.desktop float
+riverctl rule-add -app-id scrcpy float
+riverctl rule-add -app-id thunar float
+riverctl rule-add -app-id Thunar float
+riverctl rule-add -app-id "Tor Browser" float
+riverctl rule-add -app-id wev float
+riverctl rule-add -app-id xdg-desktop-portal-gtk float
 
 ## Server-side decoration
-riverctl rule-add ssd -app-id "firefox*"
-riverctl rule-add ssd -app-id org.telegram.desktop
-riverctl rule-add ssd -app-id "Tor Browser"
+riverctl rule-add -app-id "firefox*" ssd
+riverctl rule-add -app-id org.telegram.desktop ssd
+riverctl rule-add -app-id "Tor Browser" ssd
 
 ## Tag
-riverctl rule-add tag -app-id "firefox*" $((1 << 2))
-riverctl rule-add tag -app-id org.telegram.desktop $((1 << 6))
-riverctl rule-add tag -app-id thunar $((1 << 3))
-riverctl rule-add tag -app-id Thunar $((1 << 3))
+riverctl rule-add -app-id "firefox*" tags $((1 << 2))
+riverctl rule-add -app-id org.telegram.desktop tags $((1 << 6))
+riverctl rule-add -app-id thunar tags $((1 << 3))
+riverctl rule-add -app-id Thunar tags $((1 << 3))
 
 # Mapping
 
