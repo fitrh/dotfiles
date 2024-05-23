@@ -34,5 +34,5 @@ export SYSTEM_REBOOT_CMD="systemctl reboot"
 export SYSTEM_SUSPEND_CMD="systemctl suspend"
 export SYSTEM_HIBERNATE_CMD="systemctl hibernate"
 
-LOG=/tmp/river-"$(date +%F_%s)".log
+LOG="${XDG_STATE_HOME:-$HOME/.local/state}"/river/river-"$(date +%F_%s)".log
 exec river -log-level debug >"$LOG" 2>&1
