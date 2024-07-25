@@ -61,6 +61,7 @@ main() (
 
 	FILENAME="$(date +'%Y%m%d_%H%M%S').$EXT"
 	FILEPATH="${GRIM_DEFAULT_DIR:-${XDG_PICTURES_DIR:-$HOME/picture}}"
+	[ ! -d "$FILEPATH" ] && mkdir -p "$FILEPATH"
 	DEST="$FILEPATH/$FILENAME"
 
 	case $SCOPE in
