@@ -24,3 +24,16 @@ regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|g
 [hints.enabled.binding]
 key = "Y"
 mods = "Control|Shift"
+
+[[hints.enabled]]
+regex = "[0-9a-f]{7,40}"
+post_processing = false
+action = "Copy"
+
+[hints.enabled.mouse]
+enabled = true
+
+[hints.enabled.binding]
+key = "H"
+mods = "Control|Shift"
+
