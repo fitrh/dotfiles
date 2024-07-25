@@ -23,14 +23,13 @@ notify() (
 	fi
 
 	SCOPE="$1"
-	PATH="$2"
+	FILEPATH="$2"
 	FILENAME="$3"
 
-	# FIX: notify-send not found in here or if with `if` block
-	[ -f "{$PATH}/$FILENAME" ] &&
+	[ -f "$FILEPATH/$FILENAME" ] &&
 		notify-send "$SCOPE Screenshot" "$FILENAME" \
 			-t 2500 \
-			-i "$PATH/$FILENAME"
+			-i "$FILEPATH/$FILENAME"
 )
 
 pick() (
@@ -89,13 +88,7 @@ main() (
 			;;
 	esac
 
-	if ! command -v notify-send >/dev/null; then
-		exit
-	fi
-
-	notify-send "$SCOPE Screenshot" "$FILENAME" \
-		-t 2500 \
-		-i "$DEST"
+	notify "$SCOPE" "$FILEPATH" "$FILENAME"
 )
 
 # Required dependencies
