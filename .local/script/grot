@@ -60,8 +60,8 @@ main() (
 	fi
 
 	FILENAME="$(date +'%Y%m%d_%H%M%S').$EXT"
-	SAVEPATH="${GRIM_DEFAULT_DIR:-$XDG_PICTURES_DIR:-$HOME/picture}"
-	DEST="$SAVEPATH/$FILENAME"
+	FILEPATH="${GRIM_DEFAULT_DIR:-${XDG_PICTURES_DIR:-$HOME/picture}}"
+	DEST="$FILEPATH/$FILENAME"
 
 	case $SCOPE in
 		"r" | "region")
