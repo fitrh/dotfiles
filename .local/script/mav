@@ -1,7 +1,7 @@
-#!/bin/sh -e
+#!/bin/sh
 
-WIDTH=80
-COL=$(tput cols)
-[ "$COL" -lt "$WIDTH" ] && WIDTH="$COL"
+WIDTH=100
+IFS=' ' read -r _ col < <(stty size)
+[ "$col" -lt "$WIDTH" ] && WIDTH="$col"
 
 MANPAGER="nvim +Man!" MANWIDTH="$WIDTH" command man "$@"
