@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 if
-    [[ -z "$LUA_LS" ||
-        ! -d "$LUA_LS" ||
-        ! -f "$LUA_LS/bin/lua-language-server" ||
-        ! -x "$LUA_LS/bin/lua-language-server" ]]
+	[ -z "$LUA_LS" ] ||
+		[ ! -d "$LUA_LS" ] ||
+		[ ! -f "$LUA_LS/bin/lua-language-server" ] ||
+		[ ! -x "$LUA_LS/bin/lua-language-server" ]
 then
-    exit 1
+	exit 1
 fi
 
 exec "$LUA_LS/bin/lua-language-server" "$@"
