@@ -17,6 +17,9 @@
 	tool = nvimdiff
 	conflictstyle = diff3
 
+[log]
+	date = iso
+
 [user]
 	name = "Fitrah Muhammad"
 	email = fitrahm17h@student.unhas.ac.id
