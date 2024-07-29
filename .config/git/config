@@ -1,5 +1,6 @@
 [commit]
 	gpgsign = true
+	verbose = true
 
 [diff]
 	submodule = short
