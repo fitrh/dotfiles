@@ -2,7 +2,7 @@
 
 main() (
 	LOCK="  Lock"
-	SUSPEND="  Suspend"
+	SUSPEND="󰒲  Suspend"
 	HIBERNATE="  Hibernate"
 	POWER_OFF="  Poweroff"
 	REBOOT="  Reboot"
