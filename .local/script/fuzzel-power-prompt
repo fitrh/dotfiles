@@ -10,9 +10,15 @@ main() (
 	OPTIONS="$LOCK\n$SUSPEND\n$HIBERNATE\n$POWER_OFF\n$REBOOT\n$LOG_OUT"
 
 	IFS=. read -r uptime _ </proc/uptime
+	SECOND=$((uptime % 60))
+	MINUTE=$((uptime / 60 % 60))
+	HOUR=$((uptime / 60 / 60 % 24))
 	DAY=$((uptime / 60 / 60 / 24))
-	UPTIME=$(printf "%02d hours %02d minutes" $((uptime / 60 / 60 % 24)) $((uptime / 60 % 60)))
+	[ "$HOUR" -lt 1 ] && [ "$SECOND" -gt 0 ] && UPTIME="$(printf '%02d' $SECOND) seconds"
+	[ "$MINUTE" -gt 0 ] && UPTIME="$(printf '%02d' $MINUTE) minutes $UPTIME"
+	[ "$HOUR" -gt 0 ] && UPTIME="$(printf '%02d' $HOUR) hours $UPTIME"
 	[ "$DAY" -gt 0 ] && UPTIME="$DAY days $UPTIME"
+
 	ACTION=$(printf '%b' "$OPTIONS" |
 		fuzzel \
 			--prompt "$UPTIME " \
