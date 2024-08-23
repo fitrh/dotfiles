@@ -102,8 +102,8 @@ main() (
 
 runnable() (
 	if ! $1; then
-		notify-send "fuzzel-power-prompt" "error when running $2"
-		printf "error when running %s\n" "$2"
+		notify-send "fuzzel-power-prompt" "error when running $1"
+		printf "error when running %s\n" "$1"
 		return 1
 	fi
 
