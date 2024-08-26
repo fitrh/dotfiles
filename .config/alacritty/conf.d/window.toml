@@ -1,6 +1,7 @@
 [window]
 dynamic_padding = true
 dynamic_title = true
+option_as_alt = "Both"
 
 [window.dimensions]
 columns = 100
