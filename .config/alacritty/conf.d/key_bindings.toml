@@ -17,3 +17,8 @@ mods = "Control|Shift"
 action = "CreateNewWindow"
 key = "Return"
 mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "N"
+mods = "Super"
