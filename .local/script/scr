@@ -60,12 +60,12 @@ Available \e[34mshebang\e[0m
 		exit
 	fi
 
-	SHELL="sh"
+	shebang="sh"
 	case "$1" in
-		"bash") SHELL="bash" ;;
-		"sh") SHELL="sh" ;;
-		"node") SHELL="node" ;;
-		"python") SHELL="python" ;;
+		"bash") shebang="bash" ;;
+		"sh") shebang="sh" ;;
+		"node") shebang="node" ;;
+		"python") shebang="python" ;;
 		*)
 			printf "\e[1;91m%s\e[0m shebang is not available\n" "$1"
 			gen
@@ -84,12 +84,12 @@ Available \e[34mshebang\e[0m
 		exit
 	fi
 
-	case "$SHELL" in
+	case "$shebang" in
 		"sh")
 			echo "#!/bin/sh -e" >"$DEST_DIR/$2"
 			;;
 		*)
-			echo "#!/usr/bin/env $SHELL" >"$DEST_DIR/$2"
+			echo "#!/usr/bin/env $shebang" >"$DEST_DIR/$2"
 			;;
 	esac
 )
