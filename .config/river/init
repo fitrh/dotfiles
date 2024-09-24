@@ -33,8 +33,8 @@ riverctl spawn "gsettings set org.gnome.desktop.interface font-name 'SF Pro Disp
 # Input
 riverctl hide-cursor timeout 2500 # Hide the cursor if it wasn't moved in the last n milliseconds
 riverctl set-cursor-warp on-focus-change
-riverctl set-repeat 50 250                                        # Set keyboard repeat rate (rate/second, delay(ms))
-riverctl input pointer-2-7-SynPS/2_Synaptics_TouchPad tap enabled # Enable touchpad tap-to-click
+riverctl set-repeat 50 250             # Set keyboard repeat rate (rate/second, delay(ms))
+riverctl input "*Touchpad" tap enabled # Enable touchpad tap-to-click
 
 # Filter
 
