@@ -18,14 +18,18 @@ main() (
 	[ "$MINUTE" -gt 0 ] && UPTIME="$(printf '%02d' $MINUTE) minutes $UPTIME"
 	[ "$HOUR" -gt 0 ] && UPTIME="$(printf '%02d' $HOUR) hours $UPTIME"
 	[ "$DAY" -gt 0 ] && UPTIME="$DAY days $UPTIME"
+	UPTIME=${UPTIME%"${UPTIME##*[![:space:]]}"} # strips trailing whitespaces
 
+	width=12
+	[ ${#UPTIME} -gt $width ] && width=${#UPTIME}
 	ACTION=$(printf '%b' "$OPTIONS" |
 		fuzzel \
 			--prompt "$UPTIME " \
 			--no-icons \
 			--lines 6 \
-			--width 24 \
+			--width "$width" \
 			--dmenu)
+
 	case "$ACTION" in
 		"$POWER_OFF")
 			sleep 0.2s
