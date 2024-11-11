@@ -33,3 +33,24 @@ mode= "Vi"
 mods = "Control"
 key = "["
 action = "ToggleViMode"
+
+[[keyboard.bindings]]
+mode = "Vi"
+key = "d"
+action = "ScrollHalfPageDown"
+
+[[keyboard.bindings]]
+mode = "Vi"
+key = "u"
+action = "ScrollHalfPageUp"
+
+[[keyboard.bindings]]
+mode = "Vi"
+key = "Space"
+action = "ScrollPageDown"
+
+[[keyboard.bindings]]
+mode = "Vi"
+mods = "Shift"
+key = "Space"
+action = "ScrollPageUp"
