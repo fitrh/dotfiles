@@ -13,12 +13,18 @@
 [init]
 	defaultBranch = main
 
+[branch]
+	sort = -committerdate
+
 [merge]
 	tool = nvimdiff
 	conflictstyle = diff3
 
 [log]
 	date = iso
+
+[tag]
+	sort = -taggerdate
 
 [user]
 	name = "Fitrah Muhammad"
