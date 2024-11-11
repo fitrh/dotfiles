@@ -22,3 +22,14 @@ mods = "Control|Shift"
 action = "CreateNewWindow"
 key = "N"
 mods = "Super"
+
+[[keyboard.bindings]]
+mode = "Vi"
+key = "Q"
+action = "ToggleViMode"
+
+[[keyboard.bindings]]
+mode= "Vi"
+mods = "Control"
+key = "["
+action = "ToggleViMode"
