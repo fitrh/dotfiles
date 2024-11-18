@@ -6,6 +6,8 @@ PADDING=0
 riverctl spawn "$LAYOUT \
     --per-tag-config \
     --primary-sublayout full \
+    --secondary-count 0 \
+    --remainder-sublayout rows \
     --inner-padding $PADDING \
     --outer-padding $PADDING"
 riverctl default-layout "$LAYOUT"
@@ -16,17 +18,14 @@ riverctl map -repeat normal Super L send-layout-cmd "$LAYOUT" "primary_ratio +0.
 riverctl map normal Super M send-layout-cmd "$LAYOUT" "all_primary toggle"
 riverctl map normal Super+Shift H send-layout-cmd "$LAYOUT" "primary_count +1"
 riverctl map normal Super+Shift L send-layout-cmd "$LAYOUT" "primary_count -1"
-riverctl map normal Alt+Shift K send-layout-cmd "$LAYOUT" "secondary_count +1"
-riverctl map normal Alt+Shift J send-layout-cmd "$LAYOUT" "secondary_count -1"
 
 riverctl map normal Super Up send-layout-cmd "$LAYOUT" "primary_position top"
 riverctl map normal Super Right send-layout-cmd "$LAYOUT" "primary_position right"
 riverctl map normal Super Down send-layout-cmd "$LAYOUT" "primary_position bottom"
 riverctl map normal Super Left send-layout-cmd "$LAYOUT" "primary_position left"
 
-riverctl map normal Super+Alt Space send-layout-cmd "$LAYOUT" "primary_sublayout full,columns,rows"
-riverctl map normal Super+Shift+Alt Space send-layout-cmd "$LAYOUT" "secondary_sublayout rows,columns,stack,full"
-riverctl map normal Super+Control+Alt Space send-layout-cmd "$LAYOUT" "remainder_sublayout stack,grid,full"
+riverctl map normal Super+Alt Space send-layout-cmd "$LAYOUT" "primary_sublayout full,columns,rows,grid"
+riverctl map normal Super+Control+Alt Space send-layout-cmd "$LAYOUT" "remainder_sublayout rows,columns,grid,stack,full"
 
 riverctl map normal Super+Alt Equal send-layout-cmd "$LAYOUT" "all_padding +1"
 riverctl map normal Super+Alt Minus send-layout-cmd "$LAYOUT" "all_padding -1"
