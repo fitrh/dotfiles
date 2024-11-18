@@ -2,11 +2,11 @@
 
 LAYOUT="rivertile"
 
-riverctl spawn "$LAYOUT -view-padding 2 -outer-padding 2 -main-ratio 0.55"
+riverctl spawn "$LAYOUT -view-padding 0 -outer-padding 0"
 riverctl default-layout "$LAYOUT"
 
-riverctl map normal Super H send-layout-cmd "$LAYOUT" "main-ratio -0.01"
-riverctl map normal Super L send-layout-cmd "$LAYOUT" "main-ratio +0.01"
+riverctl map normal Super H send-layout-cmd "$LAYOUT" "main-ratio -0.05"
+riverctl map normal Super L send-layout-cmd "$LAYOUT" "main-ratio +0.05"
 
 riverctl map normal Super+Shift H send-layout-cmd "$LAYOUT" "main-count +1"
 riverctl map normal Super+Shift L send-layout-cmd "$LAYOUT" "main-count -1"
