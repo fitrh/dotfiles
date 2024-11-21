@@ -10,12 +10,12 @@ mods = "Control"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
-key = "N"
+key = "Return"
 mods = "Control|Shift"
 
 [[keyboard.bindings]]
 action = "CreateNewWindow"
-key = "Return"
+key = "N"
 mods = "Control|Shift"
 
 [[keyboard.bindings]]
