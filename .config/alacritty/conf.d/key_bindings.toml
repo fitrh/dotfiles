@@ -1,27 +1,27 @@
 [[keyboard.bindings]]
-chars = "\u001B[13;2u"
-key = "Return"
 mods = "Shift"
+key = "Return"
+chars = "\u001B[13;2u"
 
 [[keyboard.bindings]]
-chars = "\u001B[13;5u"
-key = "Return"
 mods = "Control"
-
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
 key = "Return"
-mods = "Control|Shift"
+chars = "\u001B[13;5u"
 
 [[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "N"
 mods = "Control|Shift"
+key = "Return"
+action = "SpawnNewInstance"
 
 [[keyboard.bindings]]
-action = "CreateNewWindow"
+mods = "Control|Shift"
 key = "N"
+action = "CreateNewWindow"
+
+[[keyboard.bindings]]
 mods = "Super"
+key = "N"
+action = "CreateNewWindow"
 
 [[keyboard.bindings]]
 mode = "Vi"
