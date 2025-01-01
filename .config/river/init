@@ -11,25 +11,6 @@ riverctl xcursor-theme capitaine-cursors 24
 riverctl default-attach-mode bottom                        # New view attached to the bottom of view stack
 "${XDG_CONFIG_HOME:-$HOME/.config}/river/layout/stacktile" # Spawn layout generator
 
-# Autostart
-ENV="PATH WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE"
-riverctl spawn "systemctl --user import-environment $ENV"
-riverctl spawn "dbus-update-activation-environment --systemd $ENV"
-riverctl spawn /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-riverctl spawn "wlr-randr --output VGA-2 --off"
-riverctl spawn mako
-riverctl spawn yambar
-riverctl spawn "wlsunset -l -5.1 -L 119.4" # Makassar
-riverctl spawn lightsunset
-
-## GTK
-riverctl spawn "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
-riverctl spawn "gsettings set org.gnome.desktop.interface gtk-theme Adwaita"
-riverctl spawn "gsettings set org.gnome.desktop.interface icon-theme Reversal-black-dark"
-riverctl spawn "gsettings set org.gnome.desktop.interface cursor-theme capitaine-cursors"
-riverctl spawn "gsettings set org.gnome.desktop.interface cursor-size 24"
-riverctl spawn "gsettings set org.gnome.desktop.interface font-name 'SF Pro Display, Medium 10'"
-
 # Input
 riverctl hide-cursor timeout 2500 # Hide the cursor if it wasn't moved in the last n milliseconds
 riverctl set-cursor-warp on-focus-change
@@ -192,3 +173,21 @@ for MODE in launcher screenrecord; do
 	riverctl map "$MODE" Control C enter-mode normal
 	riverctl map "$MODE" Control bracketleft enter-mode normal
 done
+
+dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+# GTK
+GTK_THEME=Adwaita:dark
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark &
+gsettings set org.gnome.desktop.interface icon-theme Reversal-dark &
+gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME" &
+gsettings set org.gnome.desktop.interface cursor-theme "$XCURSOR_THEME" &
+gsettings set org.gnome.desktop.interface cursor-size "$XCURSOR_SIZE" &
+ln -sf "$XDG_DATA_HOME/icons/$XCURSOR_THEME/cursors" "$HOME/.icons/default" &
+
+# Autostart
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/libexec/pipewire-launcher &
+mpris-proxy & # Enable bluetooth media control via MPRIS
+yambar >"$RIVER_STATE_D/yambar.log" 2>&1 &
+wlsunset -s 20:00 -S 08:00 -d 1800 & # -l -5.1 -L 119.4 & # Makassar

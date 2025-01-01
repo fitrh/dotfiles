@@ -29,10 +29,12 @@ export PYTHON_TYPE_STUBS="$HOME/git/python-type-stubs/"
 
 export SESSION_LOCKER="waylock -fork-on-lock -init-color 0x16161E -input-color 0x1A1B26 -fail-color 0xF7768E"
 export SESSION_EXIT_CMD="riverctl exit"
-export SYSTEM_SHUTDOWN_CMD="systemctl poweroff"
-export SYSTEM_REBOOT_CMD="systemctl reboot"
-export SYSTEM_SUSPEND_CMD="systemctl suspend"
-export SYSTEM_HIBERNATE_CMD="systemctl hibernate"
 
-LOG="${XDG_STATE_HOME:-$HOME/.local/state}"/river/river-"$(date +%F_%s)".log
-exec river -log-level debug >"$LOG" 2>&1
+export RIVER_CONF_D="${XDG_CONFIG_HOME:-$HOME/.config}/river"
+export RIVER_STATE_D="${XDG_STATE_HOME:-$HOME/.local/state}/river"
+[ ! -d "$RIVER_STATE_D" ] && mkdir -p "$RIVER_STATE_D"
+
+loglv=warning
+RIVER_LOG="$RIVER_STATE_D/$(date +%Y%m%d%H%M%S).$loglv.log"
+export RIVER_LOG
+exec dbus-run-session -- river -log-level "$loglv" >"$RIVER_LOG" 2>&1
