@@ -1,8 +1,8 @@
 #!/bin/sh
 
 for i in $(seq 0 255); do
-    printf "\x1b[38;5;${i}m%3d " "${i}"
-    if [[ $i -eq 15 ]] || [[ $i -gt 15 ]] && [[ $(((i - 15) % 16)) -eq 0 ]]; then
-        echo
+    printf "\033[38;5;${i}m%3d\033[m " "${i}"
+    if [ $i -eq 15 ] || [ $i -gt 15 ] && [ $(((i - 15) % 16)) -eq 0 ]; then
+        printf "\033[m\n"
     fi
 done

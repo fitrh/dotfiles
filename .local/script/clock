@@ -1,3 +1,3 @@
-#! /usr/bin/env bash
+#!/bin/sh -e
 
 tty-clock -C 1 -sxcbBf '%A, %B %d %Y' || exit

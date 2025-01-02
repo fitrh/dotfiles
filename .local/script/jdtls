@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh -e
 
 PLUGINS="$JDTLS_HOME"/plugins
 CONFIG="$JDTLS_HOME"/config_linux

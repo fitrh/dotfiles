@@ -1,16 +1,16 @@
-#!/usr/bin/env bash
+#!/bin/sh -e
 
 prompt_power() {
-    local SELECTED="${1:-4}"
-    local ORIENTATION="${2:-"hor"}"
-    local POWER_OFF=""
-    local REBOOT=""
-    local SUSPEND=""
-    local HIBERNATE=""
-    local LOCK=""
-    local LOG_OUT=""
-    local OPTIONS="$POWER_OFF\n$REBOOT\n$SUSPEND\n$HIBERNATE\n$LOCK\n$LOG_OUT"
-    local ACTION
+    SELECTED="${1:-4}"
+    ORIENTATION="${2:-"hor"}"
+    POWER_OFF=""
+    REBOOT=""
+    SUSPEND=""
+    HIBERNATE=""
+    LOCK=""
+    LOG_OUT=""
+    OPTIONS="$POWER_OFF\n$REBOOT\n$SUSPEND\n$HIBERNATE\n$LOCK\n$LOG_OUT"
+    ACTION
     ACTION=$(printf '%b' "$OPTIONS" |
         rofi -dmenu \
             -theme-str '@import "themes/tokyonight/power.'"$ORIENTATION"'"' \
