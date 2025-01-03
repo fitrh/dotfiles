@@ -1,0 +1,39 @@
+#!/bin/sh -e
+
+case "$1" in
+	"-h")
+		printf "Usage: fuzzel-confirm [-h] <title> <confirm label> <cancel label>
+
+	-h    Show this help
+
+Example:
+
+	#!/bin/sh
+
+	fuzzel-confirm 'Are you sure?' Yes No || exit 0
+	echo 'Confirm action executed'
+
+"
+		return 0
+		;;
+esac
+
+prompt="${1:-Confirm to continue}"
+confirm_label="${2:-Confirm}"
+cancel_label="${3:-Cancel}"
+
+width="${#prompt}"
+[ ${#confirm_label} -gt "$width" ] && width=${#confirm_label}
+[ ${#cancel_label} -gt "$width" ] && width=${#cancel_label}
+
+action=$(printf "%b" "$cancel_label\n$confirm_label" |
+	fuzzel \
+		--prompt "$prompt " \
+		--placeholder "" \
+		--no-icons \
+		--lines 2 \
+		--width "$width" \
+		--dmenu)
+
+[ "$action" != "$confirm_label" ] && return 1
+return 0
