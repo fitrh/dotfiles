@@ -1,0 +1,49 @@
+#!/bin/sh -e
+
+usage() (
+	printf "Usage: notify-countdown <counter> <title>
+
+	counter    number in seconds, default: 5
+	title      string, default: \"Count Down\"
+
+"
+)
+
+case "$1" in
+	-h)
+		usage
+		return
+		;;
+	*[!0-9]*)
+		printf "\033[91merror\033[m: count must be a positive number\n\n"
+		usage
+		return 1
+		;;
+esac
+
+counter="${1:-5}"
+set -- "$counter" # Ensure $1 always set
+title="${2:-Count down}"
+notification_id=0
+# should be greater than 1s to avoid flickering due to the notification
+# disappearing before the next notification is displayed
+expire_time=1500
+
+while [ "$counter" -gt 0 ]; do
+	[ "$counter" -eq 1 ] && expire_time=1000
+	loading=.
+	for _ in $(seq $(($1 - counter))); do loading=".$loading"; done
+	notification_id=$(
+		notify-send \
+			-a notify-countdown \
+			-u critical \
+			-p \
+			-r "$notification_id" \
+			-t "$expire_time" \
+			"$title" "$loading\nin <b>$counter</b>"
+	)
+	sleep 1s
+	counter="$((counter - 1))"
+done
+sleep 0.5s # add delay after the last notification disappears
+
