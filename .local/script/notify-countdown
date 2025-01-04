@@ -22,8 +22,8 @@ case "$1" in
 esac
 
 counter="${1:-5}"
-set -- "$counter" # Ensure $1 always set
 title="${2:-Count down}"
+set -- "$counter" # Ensure $1 always set
 notification_id=0
 # should be greater than 1s to avoid flickering due to the notification
 # disappearing before the next notification is displayed
