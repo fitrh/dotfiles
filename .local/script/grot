@@ -26,9 +26,11 @@ notify() (
 	FILEPATH="$2"
 	FILENAME="$3"
 
-	[ -f "$FILEPATH/$FILENAME" ] &&
-		notify-send "$SCOPE Screenshot" "$FILENAME" \
-			-t 2500 \
+	[ -f "$FILEPATH/$FILENAME" ] && {
+		notify-send "$SCOPE Screenshot" \
+			"  ~${FILEPATH##"$HOME"}\n: $FILENAME" \
+			-a grot \
+			-t 3000 \
 			-i "$FILEPATH/$FILENAME"
 )
 
