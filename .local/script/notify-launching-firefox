@@ -1,14 +1,12 @@
 #!/bin/sh -e
 
-firefox-developer-edition "$@" &
+prg=firefox
+command -v ${prg}-developer-edition >/dev/null && prg=${prg}-developer-edition
 
-case $@ in
-	*private-window*)
-		MSG="Private Window"
-		;;
-esac
-
+case $@ in *private-window*) MSG="Private Window" ;; esac
 notify-send "Launching Firefox…" "${MSG:-}" \
-	-i firefox-developer-edition \
+	-i $prg \
 	-a notify-launching-app \
 	-t 1000
+
+exec $prg "$@" &
