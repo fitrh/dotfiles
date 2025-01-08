@@ -29,9 +29,7 @@ record() (
 
 save() (
 	pkill -2 wf-recorder
-	DIR=$(printf '%s\n' "${1##/home}")
-	DIR=$(printf '%s\n' "${DIR##/"$USER"}")
-	DIR=" <i>~$DIR</i>"
+	DIR=" <i>~/${1#"$HOME/"}</i>"
 	FILE=" <b>$2</b>"
 	notify-send "Recorded" "$DIR\n$FILE" \
 		-h string:x-canonical-private-synchronous:"$APP_NAME"
