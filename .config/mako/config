@@ -19,8 +19,10 @@ default-timeout=0
 
 [app-name=notify-datetime]
 width=400
+history=0
 text-alignment=center
 anchor=top-center
 
 [app-name=notify-launching-app]
+history=0
 anchor=center
