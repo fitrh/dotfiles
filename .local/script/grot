@@ -50,9 +50,7 @@ main() (
 	EXT="${2:-jpeg}"
 	case $EXT in
 		png | jpeg | ppm) ;;
-		*)
-			EXT="jpeg" # fallback to jpeg for wrong value
-			;;
+		*) EXT="jpeg" ;; # fallback to jpeg for wrong value
 	esac
 
 	FLAG="-t $EXT"
@@ -60,10 +58,17 @@ main() (
 		FLAG="$FLAG -q 100"
 	fi
 
-	FILENAME="$(date +'%Y%m%dT%H%M%S').$EXT"
+	timestamp="$(date +'%Y%m%dT%H%M%S')"
+	FILENAME="${timestamp}.$EXT"
 	FILEPATH="${GRIM_DEFAULT_DIR:-${XDG_PICTURES_DIR:-$HOME/picture}}"
 	[ ! -d "$FILEPATH" ] && mkdir -p "$FILEPATH"
-	DEST="$FILEPATH/$FILENAME"
+	# Handle more than 1 shot per seconds
+	i=1
+	while [ -f "${FILEPATH}/$FILENAME" ]; do
+		FILENAME="${timestamp}N$(printf "%03d" "$i").$EXT"
+		i=$((i + 1))
+	done
+	DEST="${FILEPATH}/$FILENAME"
 
 	case $SCOPE in
 		"r" | "region")
