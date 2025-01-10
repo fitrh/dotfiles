@@ -23,6 +23,9 @@
 [log]
 	date = iso
 
+[pager]
+	status = true
+
 [tag]
 	sort = -taggerdate
 
