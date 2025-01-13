@@ -17,7 +17,8 @@ riverctl set-cursor-warp on-focus-change
 riverctl set-repeat 50 250             # Set keyboard repeat rate (rate/second, delay(ms))
 riverctl input "*Touchpad" tap enabled # Enable touchpad tap-to-click
 
-# Filter
+# Rules
+riverctl rule-add ssd # Use server-side decoration by default
 
 ## Float
 riverctl rule-add -app-id discord float
@@ -36,11 +37,6 @@ riverctl rule-add -app-id Thunar float
 riverctl rule-add -app-id "Tor Browser" float
 riverctl rule-add -app-id wev float
 riverctl rule-add -app-id xdg-desktop-portal-gtk float
-
-## Server-side decoration
-riverctl rule-add -app-id "firefox*" ssd
-riverctl rule-add -app-id org.telegram.desktop ssd
-riverctl rule-add -app-id "Tor Browser" ssd
 
 ## Tag
 riverctl rule-add -app-id "firefox*" tags $((1 << 2))
