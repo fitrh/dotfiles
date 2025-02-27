@@ -1,0 +1,36 @@
+font-family = monospace
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+font-size = 11
+adjust-cell-height = 45%
+adjust-underline-position = 45%
+adjust-cursor-thickness = 45%
+adjust-underline-thickness = 45%
+adjust-cursor-height = 45%
+theme = light:NvimLight,dark:NvimDark
+unfocused-split-opacity = 1.0
+title = Ghostty
+window-padding-balance = true
+window-decoration = false
+# 88x26 -> 80x24
+# 26: 24-lines tall, +2 for top-bottom status lines
+window-height = 26
+# 88: 80-columns wide, +7 to handle 5-digit line number with 1-space left-right
+#     padding, +1 to show the 81th column limit
+window-width = 88
+resize-overlay = never
+
+# HACK: CTRL-M = CR, CTRL-I = Tab, CTRL-[ = Esc in BusyBox ash, Debian dash, and
+#       GNU bash. fish-shell seems to handle it correctly, or is it Ghostty
+#       handling it incorrectly? Alacritty don't need this hack
+keybind = ctrl+m=text:\x0D
+keybind = ctrl+i=text:\x09
+keybind = ctrl+[=text:\x1B
+
+# override default
+keybind = ctrl+shift+e=new_split:up
+keybind = ctrl+shift+o=new_split:left
+
+# host specific, untracked
+config-file = ?local
